@@ -64,6 +64,20 @@ cdef extern from "libfreenect.h":
         FREENECT_RESOLUTION_LOW
         FREENECT_RESOLUTION_MEDIUM
         FREENECT_RESOLUTION_HIGH
+    
+# modification pgaskell
+    ctypedef enum freenect_flag:
+        FREENECT_AUTO_EXPOSURE
+        FREENECT_AUTO_WHITE_BALANCE
+        FREENECT_RAW_COLOR
+        FREENECT_MIRROR_DEPTH
+        FREENECT_MIRROR_VIDEO
+        FREENECT_NEAR_MODE
+
+    ctypedef enum freenect_flag_value:
+        FREENECT_OFF
+        FREENECT_ON
+# end modification
 
     ctypedef enum freenect_device_flags:
         FREENECT_DEVICE_MOTOR
@@ -120,7 +134,9 @@ cdef extern from "libfreenect.h":
     freenect_frame_mode freenect_get_current_depth_mode(void *dev)
     freenect_frame_mode freenect_find_depth_mode(int res, int fmt)
     int freenect_set_depth_mode(freenect_device *dev, freenect_frame_mode mode)
-
+    # modification
+    int freenect_set_flag(freenect_device *dev, freenect_flag flag, freenect_flag_value value)
+    # end modification
     int freenect_start_depth(freenect_device *dev)
     int freenect_start_video(freenect_device *dev)
     int freenect_stop_depth(freenect_device *dev)
@@ -164,6 +180,16 @@ RESOLUTION_HIGH = FREENECT_RESOLUTION_HIGH
 DEVICE_MOTOR = FREENECT_DEVICE_MOTOR
 DEVICE_CAMERA = FREENECT_DEVICE_CAMERA
 DEVICE_AUDIO = FREENECT_DEVICE_AUDIO
+# modified by pgaskell
+AUTO_EXPOSURE = FREENECT_AUTO_EXPOSURE
+WHITE_BALANCE = FREENECT_AUTO_WHITE_BALANCE
+RAW_COLOR = FREENECT_RAW_COLOR
+MIRROR_DEPTH = FREENECT_MIRROR_DEPTH
+MIRROR_VIDEO = FREENECT_MIRROR_VIDEO
+NEAR_MODE = FREENECT_NEAR_MODE
+OFF = FREENECT_OFF
+ON = FREENECT_ON
+# end modification
 
 cdef inline str _format_ptr(void *ptr):
     if sizeof(void *) == 4:
@@ -225,6 +251,11 @@ cdef class StatePtr:
 def set_depth_mode(DevPtr dev, int res, int mode):
     return freenect_set_depth_mode(dev._ptr, freenect_find_depth_mode(res, mode))
 
+# modification pgaskell
+def set_flags(DevPtr dev, freenect_flag flag, freenect_flag_value state):
+    return freenect_set_flag(dev._ptr, flag, state)
+# end modification
+  
 def set_video_mode(DevPtr dev, int res, int mode):
     return freenect_set_video_mode(dev._ptr, freenect_find_video_mode(res, mode))
 
