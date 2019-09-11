@@ -374,6 +374,10 @@ int freenect_sync_get_video_with_res(void **video, uint32_t *timestamp, int inde
 	if (!thread_running || !kinects[index] || kinects[index]->video.fmt != fmt || kinects[index]->video.res != res)
 		if (setup_kinect(index, res, fmt, 0))
 			return -1;
+	//hack to turn off autogain and white balance - pgaskell
+	freenect_set_flag(kinects[index]->dev, FREENECT_AUTO_EXPOSURE, FREENECT_OFF);
+	freenect_set_flag(kinects[index]->dev, FREENECT_AUTO_WHITE_BALANCE, FREENECT_OFF);
+	//end hack
 	sync_get(video, timestamp, &kinects[index]->video);
 	return 0;
 }
@@ -394,6 +398,7 @@ int freenect_sync_get_depth_with_res(void **depth, uint32_t *timestamp, int inde
             || kinects[index]->depth.res != res)
 		if (setup_kinect(index, res, fmt, 1))
 			return -1;
+	
 	sync_get(depth, timestamp, &kinects[index]->depth);
 	return 0;
 }
