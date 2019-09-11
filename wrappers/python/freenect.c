@@ -728,7 +728,7 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "freenect.pyx":202
+/* "freenect.pyx":206
  *         raise TypeError("What kind of system are you using?!")
  * 
  * cdef class CtxPtr:             # <<<<<<<<<<<<<<
@@ -741,7 +741,7 @@ struct __pyx_obj_8freenect_CtxPtr {
 };
 
 
-/* "freenect.pyx":211
+/* "freenect.pyx":215
  *         return "<Ctx Pointer %s>" % _format_ptr(self._ptr)
  * 
  * cdef class DevPtr:             # <<<<<<<<<<<<<<
@@ -755,7 +755,7 @@ struct __pyx_obj_8freenect_DevPtr {
 };
 
 
-/* "freenect.pyx":221
+/* "freenect.pyx":225
  *         return "<Dev Pointer %s>" % _format_ptr(self._ptr)
  * 
  * cdef class StatePtr:             # <<<<<<<<<<<<<<
@@ -1000,6 +1000,10 @@ static CYTHON_INLINE freenect_depth_format __Pyx_PyInt_As_freenect_depth_format(
 
 static CYTHON_INLINE freenect_video_format __Pyx_PyInt_As_freenect_video_format(PyObject *);
 
+static CYTHON_INLINE freenect_resolution __Pyx_PyInt_As_freenect_resolution(PyObject *);
+
+static CYTHON_INLINE Py_intptr_t __Pyx_PyInt_As_Py_intptr_t(PyObject *);
+
 #if CYTHON_CCOMPLEX
   #ifdef __cplusplus
     #define __Pyx_CREAL(z) ((z).real())
@@ -1221,10 +1225,13 @@ static char __pyx_k_index[] = "index";
 static char __pyx_k_numpy[] = "numpy";
 static char __pyx_k_print[] = "print";
 static char __pyx_k_range[] = "range";
+static char __pyx_k_res_2[] = "_res";
 static char __pyx_k_state[] = "state";
 static char __pyx_k_video[] = "video";
+static char __pyx_k_width[] = "width";
 static char __pyx_k_0x_08x[] = "0x%08x";
 static char __pyx_k_format[] = "format";
+static char __pyx_k_height[] = "height";
 static char __pyx_k_import[] = "__import__";
 static char __pyx_k_module[] = "__module__";
 static char __pyx_k_option[] = "option";
@@ -1260,6 +1267,7 @@ static char __pyx_k_ValueError[] = "ValueError";
 static char __pyx_k_get_accelx[] = "_get_accelx";
 static char __pyx_k_get_accely[] = "_get_accely";
 static char __pyx_k_get_accelz[] = "_get_accelz";
+static char __pyx_k_resolution[] = "resolution";
 static char __pyx_k_stop_depth[] = "stop_depth";
 static char __pyx_k_stop_video[] = "stop_video";
 static char __pyx_k_tilt_angle[] = "tilt_angle";
@@ -1316,6 +1324,8 @@ static char __pyx_k_set_depth_callback[] = "set_depth_callback";
 static char __pyx_k_set_video_callback[] = "set_video_callback";
 static char __pyx_k_LED_BLINK_RED_YELLOW[] = "LED_BLINK_RED_YELLOW";
 static char __pyx_k_VIDEO_IR_10BIT_PACKED[] = "VIDEO_IR_10BIT_PACKED";
+static char __pyx_k_sync_get_depth_with_res[] = "sync_get_depth_with_res";
+static char __pyx_k_sync_get_video_with_res[] = "sync_get_video_with_res";
 static char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
 static char __pyx_k_Error_Can_t_open_device_1_is_it[] = "Error: Can't open device. 1.) is it plugged in? 2.) Read the README";
 static char __pyx_k_home_pgaskell_github_libfreenec[] = "/home/pgaskell/github/libfreenect/wrappers/python/freenect.pyx";
@@ -1326,6 +1336,7 @@ static char __pyx_k_Cannot_create_instances_of_State[] = "Cannot create instance
 static char __pyx_k_Conversion_not_implemented_for_t[] = "Conversion not implemented for type [%d]";
 static char __pyx_k_Format_string_allocated_too_shor[] = "Format string allocated too short, see comment in numpy.pxd";
 static char __pyx_k_Non_native_byte_order_not_suppor[] = "Non-native byte order not supported";
+static char __pyx_k_Resolution_not_implemented_for_t[] = "Resolution not implemented for type [%d]";
 static char __pyx_k_This_kills_the_runloop_raise_fro[] = "This kills the runloop, raise from the body only";
 static char __pyx_k_What_kind_of_system_are_you_usin[] = "What kind of system are you using?!";
 static char __pyx_k_ndarray_is_not_Fortran_contiguou[] = "ndarray is not Fortran contiguous";
@@ -1369,6 +1380,7 @@ static PyObject *__pyx_n_s_RAW_COLOR;
 static PyObject *__pyx_n_s_RESOLUTION_HIGH;
 static PyObject *__pyx_n_s_RESOLUTION_LOW;
 static PyObject *__pyx_n_s_RESOLUTION_MEDIUM;
+static PyObject *__pyx_kp_s_Resolution_not_implemented_for_t;
 static PyObject *__pyx_n_s_RuntimeError;
 static PyObject *__pyx_kp_s_State_Pointer_s;
 static PyObject *__pyx_kp_s_This_kills_the_runloop_raise_fro;
@@ -1418,6 +1430,7 @@ static PyObject *__pyx_n_s_get_tilt_degs;
 static PyObject *__pyx_n_s_get_tilt_state;
 static PyObject *__pyx_n_s_get_tilt_status;
 static PyObject *__pyx_n_s_get_video_format;
+static PyObject *__pyx_n_s_height;
 static PyObject *__pyx_kp_s_home_pgaskell_github_libfreenec;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_index;
@@ -1441,6 +1454,8 @@ static PyObject *__pyx_n_s_property;
 static PyObject *__pyx_n_s_qualname;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_res;
+static PyObject *__pyx_n_s_res_2;
+static PyObject *__pyx_n_s_resolution;
 static PyObject *__pyx_n_s_runloop;
 static PyObject *__pyx_n_s_set_depth_callback;
 static PyObject *__pyx_n_s_set_depth_mode;
@@ -1457,7 +1472,9 @@ static PyObject *__pyx_n_s_state_out;
 static PyObject *__pyx_n_s_stop_depth;
 static PyObject *__pyx_n_s_stop_video;
 static PyObject *__pyx_n_s_sync_get_depth;
+static PyObject *__pyx_n_s_sync_get_depth_with_res;
 static PyObject *__pyx_n_s_sync_get_video;
+static PyObject *__pyx_n_s_sync_get_video_with_res;
 static PyObject *__pyx_n_s_sync_stop;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_tilt_angle;
@@ -1467,6 +1484,7 @@ static PyObject *__pyx_kp_u_unknown_dtype_code_in_numpy_pxd;
 static PyObject *__pyx_n_s_update_tilt_state;
 static PyObject *__pyx_n_s_video;
 static PyObject *__pyx_n_s_video_cb;
+static PyObject *__pyx_n_s_width;
 static PyObject *__pyx_n_s_x;
 static PyObject *__pyx_n_s_y;
 static PyObject *__pyx_n_s_z;
@@ -1510,27 +1528,37 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
 static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_8freenect_CtxPtr *__pyx_v_ctx, PyObject *__pyx_v_body); /* proto */
 static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_index, PyObject *__pyx_v_format); /* proto */
 static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_index, PyObject *__pyx_v_format); /* proto */
-static PyObject *__pyx_pf_8freenect_58sync_stop(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
+static PyObject *__pyx_pf_8freenect_58sync_get_depth_with_res(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_index, PyObject *__pyx_v_resolution, PyObject *__pyx_v_format); /* proto */
+static PyObject *__pyx_pf_8freenect_60sync_get_video_with_res(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_index, PyObject *__pyx_v_resolution, PyObject *__pyx_v_format); /* proto */
+static PyObject *__pyx_pf_8freenect_62sync_stop(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static PyObject *__pyx_tp_new_8freenect_CtxPtr(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_8freenect_DevPtr(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_8freenect_StatePtr(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_0;
+static PyObject *__pyx_int_240;
+static PyObject *__pyx_int_320;
+static PyObject *__pyx_int_480;
+static PyObject *__pyx_int_640;
+static PyObject *__pyx_int_1024;
+static PyObject *__pyx_int_1280;
 static PyObject *__pyx_k__5;
 static PyObject *__pyx_k__6;
+static PyObject *__pyx_k__7;
+static PyObject *__pyx_k__8;
+static PyObject *__pyx_k__9;
+static PyObject *__pyx_k__10;
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
 static PyObject *__pyx_tuple__3;
 static PyObject *__pyx_tuple__4;
-static PyObject *__pyx_tuple__7;
-static PyObject *__pyx_tuple__8;
-static PyObject *__pyx_tuple__9;
-static PyObject *__pyx_tuple__10;
 static PyObject *__pyx_tuple__11;
 static PyObject *__pyx_tuple__12;
 static PyObject *__pyx_tuple__13;
+static PyObject *__pyx_tuple__14;
 static PyObject *__pyx_tuple__15;
+static PyObject *__pyx_tuple__16;
 static PyObject *__pyx_tuple__17;
 static PyObject *__pyx_tuple__19;
 static PyObject *__pyx_tuple__21;
@@ -1549,14 +1577,16 @@ static PyObject *__pyx_tuple__45;
 static PyObject *__pyx_tuple__47;
 static PyObject *__pyx_tuple__49;
 static PyObject *__pyx_tuple__51;
-static PyObject *__pyx_tuple__54;
-static PyObject *__pyx_tuple__56;
+static PyObject *__pyx_tuple__53;
+static PyObject *__pyx_tuple__55;
 static PyObject *__pyx_tuple__58;
 static PyObject *__pyx_tuple__60;
 static PyObject *__pyx_tuple__62;
 static PyObject *__pyx_tuple__64;
-static PyObject *__pyx_codeobj__14;
-static PyObject *__pyx_codeobj__16;
+static PyObject *__pyx_tuple__66;
+static PyObject *__pyx_tuple__68;
+static PyObject *__pyx_tuple__70;
+static PyObject *__pyx_tuple__72;
 static PyObject *__pyx_codeobj__18;
 static PyObject *__pyx_codeobj__20;
 static PyObject *__pyx_codeobj__22;
@@ -1575,16 +1605,20 @@ static PyObject *__pyx_codeobj__46;
 static PyObject *__pyx_codeobj__48;
 static PyObject *__pyx_codeobj__50;
 static PyObject *__pyx_codeobj__52;
-static PyObject *__pyx_codeobj__53;
-static PyObject *__pyx_codeobj__55;
+static PyObject *__pyx_codeobj__54;
+static PyObject *__pyx_codeobj__56;
 static PyObject *__pyx_codeobj__57;
 static PyObject *__pyx_codeobj__59;
 static PyObject *__pyx_codeobj__61;
 static PyObject *__pyx_codeobj__63;
 static PyObject *__pyx_codeobj__65;
-static PyObject *__pyx_codeobj__66;
+static PyObject *__pyx_codeobj__67;
+static PyObject *__pyx_codeobj__69;
+static PyObject *__pyx_codeobj__71;
+static PyObject *__pyx_codeobj__73;
+static PyObject *__pyx_codeobj__74;
 
-/* "freenect.pyx":194
+/* "freenect.pyx":198
  * # end modification
  * 
  * cdef inline str _format_ptr(void *ptr):             # <<<<<<<<<<<<<<
@@ -1603,7 +1637,7 @@ static CYTHON_INLINE PyObject *__pyx_f_8freenect__format_ptr(void *__pyx_v_ptr) 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_format_ptr", 0);
 
-  /* "freenect.pyx":195
+  /* "freenect.pyx":199
  * 
  * cdef inline str _format_ptr(void *ptr):
  *     if sizeof(void *) == 4:             # <<<<<<<<<<<<<<
@@ -1613,7 +1647,7 @@ static CYTHON_INLINE PyObject *__pyx_f_8freenect__format_ptr(void *__pyx_v_ptr) 
   __pyx_t_1 = (((sizeof(void *)) == 4) != 0);
   if (__pyx_t_1) {
 
-    /* "freenect.pyx":196
+    /* "freenect.pyx":200
  * cdef inline str _format_ptr(void *ptr):
  *     if sizeof(void *) == 4:
  *         return "0x%08x" % <Py_ssize_t>ptr             # <<<<<<<<<<<<<<
@@ -1621,17 +1655,17 @@ static CYTHON_INLINE PyObject *__pyx_f_8freenect__format_ptr(void *__pyx_v_ptr) 
  *         return "0x%016x" % <Py_ssize_t>ptr
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyInt_FromSsize_t(((Py_ssize_t)__pyx_v_ptr)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyInt_FromSsize_t(((Py_ssize_t)__pyx_v_ptr)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_0x_08x, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_0x_08x, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (!(likely(PyString_CheckExact(__pyx_t_3))||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_3)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(PyString_CheckExact(__pyx_t_3))||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_3)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_r = ((PyObject*)__pyx_t_3);
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "freenect.pyx":195
+    /* "freenect.pyx":199
  * 
  * cdef inline str _format_ptr(void *ptr):
  *     if sizeof(void *) == 4:             # <<<<<<<<<<<<<<
@@ -1640,7 +1674,7 @@ static CYTHON_INLINE PyObject *__pyx_f_8freenect__format_ptr(void *__pyx_v_ptr) 
  */
   }
 
-  /* "freenect.pyx":197
+  /* "freenect.pyx":201
  *     if sizeof(void *) == 4:
  *         return "0x%08x" % <Py_ssize_t>ptr
  *     elif sizeof(void *) == 8:             # <<<<<<<<<<<<<<
@@ -1650,7 +1684,7 @@ static CYTHON_INLINE PyObject *__pyx_f_8freenect__format_ptr(void *__pyx_v_ptr) 
   __pyx_t_1 = (((sizeof(void *)) == 8) != 0);
   if (__pyx_t_1) {
 
-    /* "freenect.pyx":198
+    /* "freenect.pyx":202
  *         return "0x%08x" % <Py_ssize_t>ptr
  *     elif sizeof(void *) == 8:
  *         return "0x%016x" % <Py_ssize_t>ptr             # <<<<<<<<<<<<<<
@@ -1658,17 +1692,17 @@ static CYTHON_INLINE PyObject *__pyx_f_8freenect__format_ptr(void *__pyx_v_ptr) 
  *         raise TypeError("What kind of system are you using?!")
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyInt_FromSsize_t(((Py_ssize_t)__pyx_v_ptr)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyInt_FromSsize_t(((Py_ssize_t)__pyx_v_ptr)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_0x_016x, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_0x_016x, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (!(likely(PyString_CheckExact(__pyx_t_2))||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(PyString_CheckExact(__pyx_t_2))||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_r = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "freenect.pyx":197
+    /* "freenect.pyx":201
  *     if sizeof(void *) == 4:
  *         return "0x%08x" % <Py_ssize_t>ptr
  *     elif sizeof(void *) == 8:             # <<<<<<<<<<<<<<
@@ -1677,7 +1711,7 @@ static CYTHON_INLINE PyObject *__pyx_f_8freenect__format_ptr(void *__pyx_v_ptr) 
  */
   }
 
-  /* "freenect.pyx":200
+  /* "freenect.pyx":204
  *         return "0x%016x" % <Py_ssize_t>ptr
  *     else:
  *         raise TypeError("What kind of system are you using?!")             # <<<<<<<<<<<<<<
@@ -1685,14 +1719,14 @@ static CYTHON_INLINE PyObject *__pyx_f_8freenect__format_ptr(void *__pyx_v_ptr) 
  * cdef class CtxPtr:
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 204; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 204; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "freenect.pyx":194
+  /* "freenect.pyx":198
  * # end modification
  * 
  * cdef inline str _format_ptr(void *ptr):             # <<<<<<<<<<<<<<
@@ -1712,7 +1746,7 @@ static CYTHON_INLINE PyObject *__pyx_f_8freenect__format_ptr(void *__pyx_v_ptr) 
   return __pyx_r;
 }
 
-/* "freenect.pyx":204
+/* "freenect.pyx":208
  * cdef class CtxPtr:
  *     cdef freenect_context* _ptr
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -1745,20 +1779,20 @@ static int __pyx_pf_8freenect_6CtxPtr___init__(CYTHON_UNUSED struct __pyx_obj_8f
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "freenect.pyx":206
+  /* "freenect.pyx":210
  *     def __init__(self):
  *         # Safety: do not allow Python to create instances as they would be NULL
  *         raise TypeError("Cannot create instances of CtxPtr from Python")             # <<<<<<<<<<<<<<
  * 
  *     def __repr__(self):
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 206; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 210; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 206; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 210; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":204
+  /* "freenect.pyx":208
  * cdef class CtxPtr:
  *     cdef freenect_context* _ptr
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -1775,7 +1809,7 @@ static int __pyx_pf_8freenect_6CtxPtr___init__(CYTHON_UNUSED struct __pyx_obj_8f
   return __pyx_r;
 }
 
-/* "freenect.pyx":208
+/* "freenect.pyx":212
  *         raise TypeError("Cannot create instances of CtxPtr from Python")
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -1806,7 +1840,7 @@ static PyObject *__pyx_pf_8freenect_6CtxPtr_2__repr__(struct __pyx_obj_8freenect
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "freenect.pyx":209
+  /* "freenect.pyx":213
  * 
  *     def __repr__(self):
  *         return "<Ctx Pointer %s>" % _format_ptr(self._ptr)             # <<<<<<<<<<<<<<
@@ -1814,16 +1848,16 @@ static PyObject *__pyx_pf_8freenect_6CtxPtr_2__repr__(struct __pyx_obj_8freenect
  * cdef class DevPtr:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_8freenect__format_ptr(__pyx_v_self->_ptr); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 209; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_8freenect__format_ptr(__pyx_v_self->_ptr); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Ctx_Pointer_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 209; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Ctx_Pointer_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":208
+  /* "freenect.pyx":212
  *         raise TypeError("Cannot create instances of CtxPtr from Python")
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -1843,7 +1877,7 @@ static PyObject *__pyx_pf_8freenect_6CtxPtr_2__repr__(struct __pyx_obj_8freenect
   return __pyx_r;
 }
 
-/* "freenect.pyx":214
+/* "freenect.pyx":218
  *     cdef freenect_device* _ptr
  *     cdef CtxPtr ctx
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -1876,20 +1910,20 @@ static int __pyx_pf_8freenect_6DevPtr___init__(CYTHON_UNUSED struct __pyx_obj_8f
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "freenect.pyx":216
+  /* "freenect.pyx":220
  *     def __init__(self):
  *         # Safety: do not allow Python to create instances as they would be NULL
  *         raise TypeError("Cannot create instances of DevPtr from Python")             # <<<<<<<<<<<<<<
  * 
  *     def __repr__(self):
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 216; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 216; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":214
+  /* "freenect.pyx":218
  *     cdef freenect_device* _ptr
  *     cdef CtxPtr ctx
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -1906,7 +1940,7 @@ static int __pyx_pf_8freenect_6DevPtr___init__(CYTHON_UNUSED struct __pyx_obj_8f
   return __pyx_r;
 }
 
-/* "freenect.pyx":218
+/* "freenect.pyx":222
  *         raise TypeError("Cannot create instances of DevPtr from Python")
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -1937,7 +1971,7 @@ static PyObject *__pyx_pf_8freenect_6DevPtr_2__repr__(struct __pyx_obj_8freenect
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "freenect.pyx":219
+  /* "freenect.pyx":223
  * 
  *     def __repr__(self):
  *         return "<Dev Pointer %s>" % _format_ptr(self._ptr)             # <<<<<<<<<<<<<<
@@ -1945,16 +1979,16 @@ static PyObject *__pyx_pf_8freenect_6DevPtr_2__repr__(struct __pyx_obj_8freenect
  * cdef class StatePtr:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_8freenect__format_ptr(__pyx_v_self->_ptr); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 219; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_8freenect__format_ptr(__pyx_v_self->_ptr); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Dev_Pointer_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 219; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Dev_Pointer_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":218
+  /* "freenect.pyx":222
  *         raise TypeError("Cannot create instances of DevPtr from Python")
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -1974,7 +2008,7 @@ static PyObject *__pyx_pf_8freenect_6DevPtr_2__repr__(struct __pyx_obj_8freenect
   return __pyx_r;
 }
 
-/* "freenect.pyx":223
+/* "freenect.pyx":227
  * cdef class StatePtr:
  *     cdef freenect_raw_tilt_state* _ptr
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -2007,20 +2041,20 @@ static int __pyx_pf_8freenect_8StatePtr___init__(CYTHON_UNUSED struct __pyx_obj_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "freenect.pyx":225
+  /* "freenect.pyx":229
  *     def __init__(self):
  *         # Safety: do not allow Python to create instances as they would be NULL
  *         raise TypeError("Cannot create instances of StatePtr from Python")             # <<<<<<<<<<<<<<
  * 
  *     def __repr__(self):
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 225; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 225; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":223
+  /* "freenect.pyx":227
  * cdef class StatePtr:
  *     cdef freenect_raw_tilt_state* _ptr
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -2037,7 +2071,7 @@ static int __pyx_pf_8freenect_8StatePtr___init__(CYTHON_UNUSED struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "freenect.pyx":227
+/* "freenect.pyx":231
  *         raise TypeError("Cannot create instances of StatePtr from Python")
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -2068,7 +2102,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_2__repr__(struct __pyx_obj_8freene
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "freenect.pyx":228
+  /* "freenect.pyx":232
  * 
  *     def __repr__(self):
  *         return "<State Pointer %s>" % _format_ptr(self._ptr)             # <<<<<<<<<<<<<<
@@ -2076,16 +2110,16 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_2__repr__(struct __pyx_obj_8freene
  *     def _get_accelx(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_8freenect__format_ptr(__pyx_v_self->_ptr); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_8freenect__format_ptr(__pyx_v_self->_ptr); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_State_Pointer_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_State_Pointer_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":227
+  /* "freenect.pyx":231
  *         raise TypeError("Cannot create instances of StatePtr from Python")
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -2105,7 +2139,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_2__repr__(struct __pyx_obj_8freene
   return __pyx_r;
 }
 
-/* "freenect.pyx":230
+/* "freenect.pyx":234
  *         return "<State Pointer %s>" % _format_ptr(self._ptr)
  * 
  *     def _get_accelx(self):             # <<<<<<<<<<<<<<
@@ -2136,7 +2170,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_4_get_accelx(struct __pyx_obj_8fre
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_get_accelx", 0);
 
-  /* "freenect.pyx":231
+  /* "freenect.pyx":235
  * 
  *     def _get_accelx(self):
  *         return int(self._ptr.accelerometer_x)             # <<<<<<<<<<<<<<
@@ -2144,21 +2178,21 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_4_get_accelx(struct __pyx_obj_8fre
  *     def _get_accely(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int16_t(__pyx_v_self->_ptr->accelerometer_x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int16_t(__pyx_v_self->_ptr->accelerometer_x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyInt_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyInt_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":230
+  /* "freenect.pyx":234
  *         return "<State Pointer %s>" % _format_ptr(self._ptr)
  * 
  *     def _get_accelx(self):             # <<<<<<<<<<<<<<
@@ -2178,7 +2212,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_4_get_accelx(struct __pyx_obj_8fre
   return __pyx_r;
 }
 
-/* "freenect.pyx":233
+/* "freenect.pyx":237
  *         return int(self._ptr.accelerometer_x)
  * 
  *     def _get_accely(self):             # <<<<<<<<<<<<<<
@@ -2209,7 +2243,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_6_get_accely(struct __pyx_obj_8fre
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_get_accely", 0);
 
-  /* "freenect.pyx":234
+  /* "freenect.pyx":238
  * 
  *     def _get_accely(self):
  *         return int(self._ptr.accelerometer_y)             # <<<<<<<<<<<<<<
@@ -2217,21 +2251,21 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_6_get_accely(struct __pyx_obj_8fre
  *     def _get_accelz(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int16_t(__pyx_v_self->_ptr->accelerometer_y); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 234; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int16_t(__pyx_v_self->_ptr->accelerometer_y); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 234; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyInt_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 234; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyInt_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":233
+  /* "freenect.pyx":237
  *         return int(self._ptr.accelerometer_x)
  * 
  *     def _get_accely(self):             # <<<<<<<<<<<<<<
@@ -2251,7 +2285,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_6_get_accely(struct __pyx_obj_8fre
   return __pyx_r;
 }
 
-/* "freenect.pyx":236
+/* "freenect.pyx":240
  *         return int(self._ptr.accelerometer_y)
  * 
  *     def _get_accelz(self):             # <<<<<<<<<<<<<<
@@ -2282,7 +2316,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_8_get_accelz(struct __pyx_obj_8fre
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_get_accelz", 0);
 
-  /* "freenect.pyx":237
+  /* "freenect.pyx":241
  * 
  *     def _get_accelz(self):
  *         return int(self._ptr.accelerometer_z)             # <<<<<<<<<<<<<<
@@ -2290,21 +2324,21 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_8_get_accelz(struct __pyx_obj_8fre
  *     def _get_tilt_angle(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int16_t(__pyx_v_self->_ptr->accelerometer_z); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int16_t(__pyx_v_self->_ptr->accelerometer_z); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyInt_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyInt_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":236
+  /* "freenect.pyx":240
  *         return int(self._ptr.accelerometer_y)
  * 
  *     def _get_accelz(self):             # <<<<<<<<<<<<<<
@@ -2324,7 +2358,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_8_get_accelz(struct __pyx_obj_8fre
   return __pyx_r;
 }
 
-/* "freenect.pyx":239
+/* "freenect.pyx":243
  *         return int(self._ptr.accelerometer_z)
  * 
  *     def _get_tilt_angle(self):             # <<<<<<<<<<<<<<
@@ -2355,7 +2389,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_10_get_tilt_angle(struct __pyx_obj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_get_tilt_angle", 0);
 
-  /* "freenect.pyx":240
+  /* "freenect.pyx":244
  * 
  *     def _get_tilt_angle(self):
  *         return int(self._ptr.tilt_angle)             # <<<<<<<<<<<<<<
@@ -2363,21 +2397,21 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_10_get_tilt_angle(struct __pyx_obj
  *     def _get_tilt_status(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int8_t(__pyx_v_self->_ptr->tilt_angle); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int8_t(__pyx_v_self->_ptr->tilt_angle); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyInt_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyInt_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":239
+  /* "freenect.pyx":243
  *         return int(self._ptr.accelerometer_z)
  * 
  *     def _get_tilt_angle(self):             # <<<<<<<<<<<<<<
@@ -2397,7 +2431,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_10_get_tilt_angle(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "freenect.pyx":242
+/* "freenect.pyx":246
  *         return int(self._ptr.tilt_angle)
  * 
  *     def _get_tilt_status(self):             # <<<<<<<<<<<<<<
@@ -2428,7 +2462,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_12_get_tilt_status(struct __pyx_ob
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_get_tilt_status", 0);
 
-  /* "freenect.pyx":243
+  /* "freenect.pyx":247
  * 
  *     def _get_tilt_status(self):
  *         return int(self._ptr.tilt_status)             # <<<<<<<<<<<<<<
@@ -2436,21 +2470,21 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_12_get_tilt_status(struct __pyx_ob
  *     accelerometer_x = property(_get_accelx)
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_tilt_status_code(__pyx_v_self->_ptr->tilt_status); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_tilt_status_code(__pyx_v_self->_ptr->tilt_status); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyInt_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyInt_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":242
+  /* "freenect.pyx":246
  *         return int(self._ptr.tilt_angle)
  * 
  *     def _get_tilt_status(self):             # <<<<<<<<<<<<<<
@@ -2470,7 +2504,7 @@ static PyObject *__pyx_pf_8freenect_8StatePtr_12_get_tilt_status(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "freenect.pyx":251
+/* "freenect.pyx":255
  *     tilt_status = property(_get_tilt_status)
  * 
  * def set_depth_mode(DevPtr dev, int res, int mode):             # <<<<<<<<<<<<<<
@@ -2512,16 +2546,16 @@ static PyObject *__pyx_pw_8freenect_1set_depth_mode(PyObject *__pyx_self, PyObje
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_res)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_depth_mode", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("set_depth_mode", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_mode)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_depth_mode", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("set_depth_mode", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_depth_mode") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_depth_mode") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -2531,18 +2565,18 @@ static PyObject *__pyx_pw_8freenect_1set_depth_mode(PyObject *__pyx_self, PyObje
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
     __pyx_v_dev = ((struct __pyx_obj_8freenect_DevPtr *)values[0]);
-    __pyx_v_res = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_res == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_mode = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_mode == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_res = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_res == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_mode = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_mode == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("set_depth_mode", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("set_depth_mode", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.set_depth_mode", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_set_depth_mode(__pyx_self, __pyx_v_dev, __pyx_v_res, __pyx_v_mode);
 
   /* function exit code */
@@ -2563,7 +2597,7 @@ static PyObject *__pyx_pf_8freenect_set_depth_mode(CYTHON_UNUSED PyObject *__pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("set_depth_mode", 0);
 
-  /* "freenect.pyx":252
+  /* "freenect.pyx":256
  * 
  * def set_depth_mode(DevPtr dev, int res, int mode):
  *     return freenect_set_depth_mode(dev._ptr, freenect_find_depth_mode(res, mode))             # <<<<<<<<<<<<<<
@@ -2571,13 +2605,13 @@ static PyObject *__pyx_pf_8freenect_set_depth_mode(CYTHON_UNUSED PyObject *__pyx
  * # modification pgaskell
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_set_depth_mode(__pyx_v_dev->_ptr, freenect_find_depth_mode(__pyx_v_res, __pyx_v_mode))); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_set_depth_mode(__pyx_v_dev->_ptr, freenect_find_depth_mode(__pyx_v_res, __pyx_v_mode))); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 256; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":251
+  /* "freenect.pyx":255
  *     tilt_status = property(_get_tilt_status)
  * 
  * def set_depth_mode(DevPtr dev, int res, int mode):             # <<<<<<<<<<<<<<
@@ -2596,7 +2630,7 @@ static PyObject *__pyx_pf_8freenect_set_depth_mode(CYTHON_UNUSED PyObject *__pyx
   return __pyx_r;
 }
 
-/* "freenect.pyx":255
+/* "freenect.pyx":259
  * 
  * # modification pgaskell
  * def set_flags(DevPtr dev, freenect_flag flag, freenect_flag_value state):             # <<<<<<<<<<<<<<
@@ -2638,16 +2672,16 @@ static PyObject *__pyx_pw_8freenect_3set_flags(PyObject *__pyx_self, PyObject *_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_flag)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_flags", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("set_flags", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_state)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_flags", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("set_flags", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_flags") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_flags") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -2657,18 +2691,18 @@ static PyObject *__pyx_pw_8freenect_3set_flags(PyObject *__pyx_self, PyObject *_
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
     __pyx_v_dev = ((struct __pyx_obj_8freenect_DevPtr *)values[0]);
-    __pyx_v_flag = ((freenect_flag)__Pyx_PyInt_As_freenect_flag(values[1])); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_state = ((freenect_flag_value)__Pyx_PyInt_As_freenect_flag_value(values[2])); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_flag = ((freenect_flag)__Pyx_PyInt_As_freenect_flag(values[1])); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_state = ((freenect_flag_value)__Pyx_PyInt_As_freenect_flag_value(values[2])); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("set_flags", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("set_flags", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.set_flags", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_2set_flags(__pyx_self, __pyx_v_dev, __pyx_v_flag, __pyx_v_state);
 
   /* function exit code */
@@ -2689,7 +2723,7 @@ static PyObject *__pyx_pf_8freenect_2set_flags(CYTHON_UNUSED PyObject *__pyx_sel
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("set_flags", 0);
 
-  /* "freenect.pyx":256
+  /* "freenect.pyx":260
  * # modification pgaskell
  * def set_flags(DevPtr dev, freenect_flag flag, freenect_flag_value state):
  *     return freenect_set_flag(dev._ptr, flag, state)             # <<<<<<<<<<<<<<
@@ -2697,13 +2731,13 @@ static PyObject *__pyx_pf_8freenect_2set_flags(CYTHON_UNUSED PyObject *__pyx_sel
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_set_flag(__pyx_v_dev->_ptr, __pyx_v_flag, __pyx_v_state)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 256; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_set_flag(__pyx_v_dev->_ptr, __pyx_v_flag, __pyx_v_state)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":255
+  /* "freenect.pyx":259
  * 
  * # modification pgaskell
  * def set_flags(DevPtr dev, freenect_flag flag, freenect_flag_value state):             # <<<<<<<<<<<<<<
@@ -2722,7 +2756,7 @@ static PyObject *__pyx_pf_8freenect_2set_flags(CYTHON_UNUSED PyObject *__pyx_sel
   return __pyx_r;
 }
 
-/* "freenect.pyx":259
+/* "freenect.pyx":263
  * # end modification
  * 
  * def set_video_mode(DevPtr dev, int res, int mode):             # <<<<<<<<<<<<<<
@@ -2764,16 +2798,16 @@ static PyObject *__pyx_pw_8freenect_5set_video_mode(PyObject *__pyx_self, PyObje
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_res)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_video_mode", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("set_video_mode", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_mode)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_video_mode", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("set_video_mode", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_video_mode") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_video_mode") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -2783,18 +2817,18 @@ static PyObject *__pyx_pw_8freenect_5set_video_mode(PyObject *__pyx_self, PyObje
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
     __pyx_v_dev = ((struct __pyx_obj_8freenect_DevPtr *)values[0]);
-    __pyx_v_res = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_res == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_mode = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_mode == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_res = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_res == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_mode = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_mode == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("set_video_mode", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("set_video_mode", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.set_video_mode", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_4set_video_mode(__pyx_self, __pyx_v_dev, __pyx_v_res, __pyx_v_mode);
 
   /* function exit code */
@@ -2815,7 +2849,7 @@ static PyObject *__pyx_pf_8freenect_4set_video_mode(CYTHON_UNUSED PyObject *__py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("set_video_mode", 0);
 
-  /* "freenect.pyx":260
+  /* "freenect.pyx":264
  * 
  * def set_video_mode(DevPtr dev, int res, int mode):
  *     return freenect_set_video_mode(dev._ptr, freenect_find_video_mode(res, mode))             # <<<<<<<<<<<<<<
@@ -2823,13 +2857,13 @@ static PyObject *__pyx_pf_8freenect_4set_video_mode(CYTHON_UNUSED PyObject *__py
  * def get_depth_format(DevPtr dev):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_set_video_mode(__pyx_v_dev->_ptr, freenect_find_video_mode(__pyx_v_res, __pyx_v_mode))); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_set_video_mode(__pyx_v_dev->_ptr, freenect_find_video_mode(__pyx_v_res, __pyx_v_mode))); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":259
+  /* "freenect.pyx":263
  * # end modification
  * 
  * def set_video_mode(DevPtr dev, int res, int mode):             # <<<<<<<<<<<<<<
@@ -2848,7 +2882,7 @@ static PyObject *__pyx_pf_8freenect_4set_video_mode(CYTHON_UNUSED PyObject *__py
   return __pyx_r;
 }
 
-/* "freenect.pyx":262
+/* "freenect.pyx":266
  *     return freenect_set_video_mode(dev._ptr, freenect_find_video_mode(res, mode))
  * 
  * def get_depth_format(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -2866,7 +2900,7 @@ static PyObject *__pyx_pw_8freenect_7get_depth_format(PyObject *__pyx_self, PyOb
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_depth_format (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_6get_depth_format(__pyx_self, ((struct __pyx_obj_8freenect_DevPtr *)__pyx_v_dev));
 
   /* function exit code */
@@ -2887,7 +2921,7 @@ static PyObject *__pyx_pf_8freenect_6get_depth_format(CYTHON_UNUSED PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_depth_format", 0);
 
-  /* "freenect.pyx":263
+  /* "freenect.pyx":267
  * 
  * def get_depth_format(DevPtr dev):
  *     return freenect_get_current_depth_mode(dev._ptr).video_format             # <<<<<<<<<<<<<<
@@ -2895,13 +2929,13 @@ static PyObject *__pyx_pf_8freenect_6get_depth_format(CYTHON_UNUSED PyObject *__
  * def get_video_format(DevPtr dev):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int32_t(freenect_get_current_depth_mode(__pyx_v_dev->_ptr).video_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int32_t(freenect_get_current_depth_mode(__pyx_v_dev->_ptr).video_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":262
+  /* "freenect.pyx":266
  *     return freenect_set_video_mode(dev._ptr, freenect_find_video_mode(res, mode))
  * 
  * def get_depth_format(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -2920,7 +2954,7 @@ static PyObject *__pyx_pf_8freenect_6get_depth_format(CYTHON_UNUSED PyObject *__
   return __pyx_r;
 }
 
-/* "freenect.pyx":265
+/* "freenect.pyx":269
  *     return freenect_get_current_depth_mode(dev._ptr).video_format
  * 
  * def get_video_format(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -2938,7 +2972,7 @@ static PyObject *__pyx_pw_8freenect_9get_video_format(PyObject *__pyx_self, PyOb
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_video_format (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_8get_video_format(__pyx_self, ((struct __pyx_obj_8freenect_DevPtr *)__pyx_v_dev));
 
   /* function exit code */
@@ -2959,7 +2993,7 @@ static PyObject *__pyx_pf_8freenect_8get_video_format(CYTHON_UNUSED PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_video_format", 0);
 
-  /* "freenect.pyx":266
+  /* "freenect.pyx":270
  * 
  * def get_video_format(DevPtr dev):
  *     return freenect_get_current_video_mode(dev._ptr).video_format             # <<<<<<<<<<<<<<
@@ -2967,13 +3001,13 @@ static PyObject *__pyx_pf_8freenect_8get_video_format(CYTHON_UNUSED PyObject *__
  * def start_depth(DevPtr dev):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int32_t(freenect_get_current_video_mode(__pyx_v_dev->_ptr).video_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int32_t(freenect_get_current_video_mode(__pyx_v_dev->_ptr).video_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":265
+  /* "freenect.pyx":269
  *     return freenect_get_current_depth_mode(dev._ptr).video_format
  * 
  * def get_video_format(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -2992,7 +3026,7 @@ static PyObject *__pyx_pf_8freenect_8get_video_format(CYTHON_UNUSED PyObject *__
   return __pyx_r;
 }
 
-/* "freenect.pyx":268
+/* "freenect.pyx":272
  *     return freenect_get_current_video_mode(dev._ptr).video_format
  * 
  * def start_depth(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3010,7 +3044,7 @@ static PyObject *__pyx_pw_8freenect_11start_depth(PyObject *__pyx_self, PyObject
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("start_depth (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 268; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_10start_depth(__pyx_self, ((struct __pyx_obj_8freenect_DevPtr *)__pyx_v_dev));
 
   /* function exit code */
@@ -3031,7 +3065,7 @@ static PyObject *__pyx_pf_8freenect_10start_depth(CYTHON_UNUSED PyObject *__pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("start_depth", 0);
 
-  /* "freenect.pyx":269
+  /* "freenect.pyx":273
  * 
  * def start_depth(DevPtr dev):
  *     return freenect_start_depth(dev._ptr)             # <<<<<<<<<<<<<<
@@ -3039,13 +3073,13 @@ static PyObject *__pyx_pf_8freenect_10start_depth(CYTHON_UNUSED PyObject *__pyx_
  * def start_video(DevPtr dev):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_start_depth(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_start_depth(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":268
+  /* "freenect.pyx":272
  *     return freenect_get_current_video_mode(dev._ptr).video_format
  * 
  * def start_depth(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3064,7 +3098,7 @@ static PyObject *__pyx_pf_8freenect_10start_depth(CYTHON_UNUSED PyObject *__pyx_
   return __pyx_r;
 }
 
-/* "freenect.pyx":271
+/* "freenect.pyx":275
  *     return freenect_start_depth(dev._ptr)
  * 
  * def start_video(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3082,7 +3116,7 @@ static PyObject *__pyx_pw_8freenect_13start_video(PyObject *__pyx_self, PyObject
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("start_video (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 271; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_12start_video(__pyx_self, ((struct __pyx_obj_8freenect_DevPtr *)__pyx_v_dev));
 
   /* function exit code */
@@ -3103,7 +3137,7 @@ static PyObject *__pyx_pf_8freenect_12start_video(CYTHON_UNUSED PyObject *__pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("start_video", 0);
 
-  /* "freenect.pyx":272
+  /* "freenect.pyx":276
  * 
  * def start_video(DevPtr dev):
  *     return freenect_start_video(dev._ptr)             # <<<<<<<<<<<<<<
@@ -3111,13 +3145,13 @@ static PyObject *__pyx_pf_8freenect_12start_video(CYTHON_UNUSED PyObject *__pyx_
  * def stop_depth(DevPtr dev):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_start_video(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_start_video(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":271
+  /* "freenect.pyx":275
  *     return freenect_start_depth(dev._ptr)
  * 
  * def start_video(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3136,7 +3170,7 @@ static PyObject *__pyx_pf_8freenect_12start_video(CYTHON_UNUSED PyObject *__pyx_
   return __pyx_r;
 }
 
-/* "freenect.pyx":274
+/* "freenect.pyx":278
  *     return freenect_start_video(dev._ptr)
  * 
  * def stop_depth(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3154,7 +3188,7 @@ static PyObject *__pyx_pw_8freenect_15stop_depth(PyObject *__pyx_self, PyObject 
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("stop_depth (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_14stop_depth(__pyx_self, ((struct __pyx_obj_8freenect_DevPtr *)__pyx_v_dev));
 
   /* function exit code */
@@ -3175,7 +3209,7 @@ static PyObject *__pyx_pf_8freenect_14stop_depth(CYTHON_UNUSED PyObject *__pyx_s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("stop_depth", 0);
 
-  /* "freenect.pyx":275
+  /* "freenect.pyx":279
  * 
  * def stop_depth(DevPtr dev):
  *     return freenect_stop_depth(dev._ptr)             # <<<<<<<<<<<<<<
@@ -3183,13 +3217,13 @@ static PyObject *__pyx_pf_8freenect_14stop_depth(CYTHON_UNUSED PyObject *__pyx_s
  * def stop_video(DevPtr dev):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_stop_depth(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_stop_depth(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":274
+  /* "freenect.pyx":278
  *     return freenect_start_video(dev._ptr)
  * 
  * def stop_depth(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3208,7 +3242,7 @@ static PyObject *__pyx_pf_8freenect_14stop_depth(CYTHON_UNUSED PyObject *__pyx_s
   return __pyx_r;
 }
 
-/* "freenect.pyx":277
+/* "freenect.pyx":281
  *     return freenect_stop_depth(dev._ptr)
  * 
  * def stop_video(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3226,7 +3260,7 @@ static PyObject *__pyx_pw_8freenect_17stop_video(PyObject *__pyx_self, PyObject 
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("stop_video (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_16stop_video(__pyx_self, ((struct __pyx_obj_8freenect_DevPtr *)__pyx_v_dev));
 
   /* function exit code */
@@ -3247,7 +3281,7 @@ static PyObject *__pyx_pf_8freenect_16stop_video(CYTHON_UNUSED PyObject *__pyx_s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("stop_video", 0);
 
-  /* "freenect.pyx":278
+  /* "freenect.pyx":282
  * 
  * def stop_video(DevPtr dev):
  *     return freenect_stop_video(dev._ptr)             # <<<<<<<<<<<<<<
@@ -3255,13 +3289,13 @@ static PyObject *__pyx_pf_8freenect_16stop_video(CYTHON_UNUSED PyObject *__pyx_s
  * def shutdown(CtxPtr ctx):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_stop_video(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_stop_video(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":277
+  /* "freenect.pyx":281
  *     return freenect_stop_depth(dev._ptr)
  * 
  * def stop_video(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3280,7 +3314,7 @@ static PyObject *__pyx_pf_8freenect_16stop_video(CYTHON_UNUSED PyObject *__pyx_s
   return __pyx_r;
 }
 
-/* "freenect.pyx":280
+/* "freenect.pyx":284
  *     return freenect_stop_video(dev._ptr)
  * 
  * def shutdown(CtxPtr ctx):             # <<<<<<<<<<<<<<
@@ -3298,7 +3332,7 @@ static PyObject *__pyx_pw_8freenect_19shutdown(PyObject *__pyx_self, PyObject *_
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("shutdown (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ctx), __pyx_ptype_8freenect_CtxPtr, 1, "ctx", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ctx), __pyx_ptype_8freenect_CtxPtr, 1, "ctx", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_18shutdown(__pyx_self, ((struct __pyx_obj_8freenect_CtxPtr *)__pyx_v_ctx));
 
   /* function exit code */
@@ -3319,7 +3353,7 @@ static PyObject *__pyx_pf_8freenect_18shutdown(CYTHON_UNUSED PyObject *__pyx_sel
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("shutdown", 0);
 
-  /* "freenect.pyx":281
+  /* "freenect.pyx":285
  * 
  * def shutdown(CtxPtr ctx):
  *     return freenect_shutdown(ctx._ptr)             # <<<<<<<<<<<<<<
@@ -3327,13 +3361,13 @@ static PyObject *__pyx_pf_8freenect_18shutdown(CYTHON_UNUSED PyObject *__pyx_sel
  * def process_events(CtxPtr ctx):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_shutdown(__pyx_v_ctx->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_shutdown(__pyx_v_ctx->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":280
+  /* "freenect.pyx":284
  *     return freenect_stop_video(dev._ptr)
  * 
  * def shutdown(CtxPtr ctx):             # <<<<<<<<<<<<<<
@@ -3352,7 +3386,7 @@ static PyObject *__pyx_pf_8freenect_18shutdown(CYTHON_UNUSED PyObject *__pyx_sel
   return __pyx_r;
 }
 
-/* "freenect.pyx":283
+/* "freenect.pyx":287
  *     return freenect_shutdown(ctx._ptr)
  * 
  * def process_events(CtxPtr ctx):             # <<<<<<<<<<<<<<
@@ -3370,7 +3404,7 @@ static PyObject *__pyx_pw_8freenect_21process_events(PyObject *__pyx_self, PyObj
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("process_events (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ctx), __pyx_ptype_8freenect_CtxPtr, 1, "ctx", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ctx), __pyx_ptype_8freenect_CtxPtr, 1, "ctx", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_20process_events(__pyx_self, ((struct __pyx_obj_8freenect_CtxPtr *)__pyx_v_ctx));
 
   /* function exit code */
@@ -3391,7 +3425,7 @@ static PyObject *__pyx_pf_8freenect_20process_events(CYTHON_UNUSED PyObject *__p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("process_events", 0);
 
-  /* "freenect.pyx":284
+  /* "freenect.pyx":288
  * 
  * def process_events(CtxPtr ctx):
  *     return freenect_process_events(ctx._ptr)             # <<<<<<<<<<<<<<
@@ -3399,13 +3433,13 @@ static PyObject *__pyx_pf_8freenect_20process_events(CYTHON_UNUSED PyObject *__p
  * def num_devices(CtxPtr ctx):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_process_events(__pyx_v_ctx->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_process_events(__pyx_v_ctx->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":283
+  /* "freenect.pyx":287
  *     return freenect_shutdown(ctx._ptr)
  * 
  * def process_events(CtxPtr ctx):             # <<<<<<<<<<<<<<
@@ -3424,7 +3458,7 @@ static PyObject *__pyx_pf_8freenect_20process_events(CYTHON_UNUSED PyObject *__p
   return __pyx_r;
 }
 
-/* "freenect.pyx":286
+/* "freenect.pyx":290
  *     return freenect_process_events(ctx._ptr)
  * 
  * def num_devices(CtxPtr ctx):             # <<<<<<<<<<<<<<
@@ -3442,7 +3476,7 @@ static PyObject *__pyx_pw_8freenect_23num_devices(PyObject *__pyx_self, PyObject
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("num_devices (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ctx), __pyx_ptype_8freenect_CtxPtr, 1, "ctx", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ctx), __pyx_ptype_8freenect_CtxPtr, 1, "ctx", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_22num_devices(__pyx_self, ((struct __pyx_obj_8freenect_CtxPtr *)__pyx_v_ctx));
 
   /* function exit code */
@@ -3463,7 +3497,7 @@ static PyObject *__pyx_pf_8freenect_22num_devices(CYTHON_UNUSED PyObject *__pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("num_devices", 0);
 
-  /* "freenect.pyx":287
+  /* "freenect.pyx":291
  * 
  * def num_devices(CtxPtr ctx):
  *     return freenect_num_devices(ctx._ptr)             # <<<<<<<<<<<<<<
@@ -3471,13 +3505,13 @@ static PyObject *__pyx_pf_8freenect_22num_devices(CYTHON_UNUSED PyObject *__pyx_
  * def close_device(DevPtr dev):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_num_devices(__pyx_v_ctx->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_num_devices(__pyx_v_ctx->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 291; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":286
+  /* "freenect.pyx":290
  *     return freenect_process_events(ctx._ptr)
  * 
  * def num_devices(CtxPtr ctx):             # <<<<<<<<<<<<<<
@@ -3496,7 +3530,7 @@ static PyObject *__pyx_pf_8freenect_22num_devices(CYTHON_UNUSED PyObject *__pyx_
   return __pyx_r;
 }
 
-/* "freenect.pyx":289
+/* "freenect.pyx":293
  *     return freenect_num_devices(ctx._ptr)
  * 
  * def close_device(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3514,7 +3548,7 @@ static PyObject *__pyx_pw_8freenect_25close_device(PyObject *__pyx_self, PyObjec
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("close_device (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_24close_device(__pyx_self, ((struct __pyx_obj_8freenect_DevPtr *)__pyx_v_dev));
 
   /* function exit code */
@@ -3535,7 +3569,7 @@ static PyObject *__pyx_pf_8freenect_24close_device(CYTHON_UNUSED PyObject *__pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("close_device", 0);
 
-  /* "freenect.pyx":290
+  /* "freenect.pyx":294
  * 
  * def close_device(DevPtr dev):
  *     return freenect_close_device(dev._ptr)             # <<<<<<<<<<<<<<
@@ -3543,13 +3577,13 @@ static PyObject *__pyx_pf_8freenect_24close_device(CYTHON_UNUSED PyObject *__pyx
  * def set_tilt_degs(DevPtr dev, float angle):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_close_device(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_close_device(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 294; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":289
+  /* "freenect.pyx":293
  *     return freenect_num_devices(ctx._ptr)
  * 
  * def close_device(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3568,7 +3602,7 @@ static PyObject *__pyx_pf_8freenect_24close_device(CYTHON_UNUSED PyObject *__pyx
   return __pyx_r;
 }
 
-/* "freenect.pyx":292
+/* "freenect.pyx":296
  *     return freenect_close_device(dev._ptr)
  * 
  * def set_tilt_degs(DevPtr dev, float angle):             # <<<<<<<<<<<<<<
@@ -3608,11 +3642,11 @@ static PyObject *__pyx_pw_8freenect_27set_tilt_degs(PyObject *__pyx_self, PyObje
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_angle)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_tilt_degs", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("set_tilt_degs", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_tilt_degs") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_tilt_degs") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3621,17 +3655,17 @@ static PyObject *__pyx_pw_8freenect_27set_tilt_degs(PyObject *__pyx_self, PyObje
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
     __pyx_v_dev = ((struct __pyx_obj_8freenect_DevPtr *)values[0]);
-    __pyx_v_angle = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v_angle == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_angle = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v_angle == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("set_tilt_degs", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("set_tilt_degs", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.set_tilt_degs", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_26set_tilt_degs(__pyx_self, __pyx_v_dev, __pyx_v_angle);
 
   /* function exit code */
@@ -3648,7 +3682,7 @@ static PyObject *__pyx_pf_8freenect_26set_tilt_degs(CYTHON_UNUSED PyObject *__py
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("set_tilt_degs", 0);
 
-  /* "freenect.pyx":293
+  /* "freenect.pyx":297
  * 
  * def set_tilt_degs(DevPtr dev, float angle):
  *     freenect_set_tilt_degs(dev._ptr, angle)             # <<<<<<<<<<<<<<
@@ -3657,7 +3691,7 @@ static PyObject *__pyx_pf_8freenect_26set_tilt_degs(CYTHON_UNUSED PyObject *__py
  */
   freenect_set_tilt_degs(__pyx_v_dev->_ptr, __pyx_v_angle);
 
-  /* "freenect.pyx":292
+  /* "freenect.pyx":296
  *     return freenect_close_device(dev._ptr)
  * 
  * def set_tilt_degs(DevPtr dev, float angle):             # <<<<<<<<<<<<<<
@@ -3672,7 +3706,7 @@ static PyObject *__pyx_pf_8freenect_26set_tilt_degs(CYTHON_UNUSED PyObject *__py
   return __pyx_r;
 }
 
-/* "freenect.pyx":295
+/* "freenect.pyx":299
  *     freenect_set_tilt_degs(dev._ptr, angle)
  * 
  * def set_led(DevPtr dev, freenect_led_options option):             # <<<<<<<<<<<<<<
@@ -3712,11 +3746,11 @@ static PyObject *__pyx_pw_8freenect_29set_led(PyObject *__pyx_self, PyObject *__
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_option)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_led", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("set_led", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_led") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_led") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3725,17 +3759,17 @@ static PyObject *__pyx_pw_8freenect_29set_led(PyObject *__pyx_self, PyObject *__
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
     __pyx_v_dev = ((struct __pyx_obj_8freenect_DevPtr *)values[0]);
-    __pyx_v_option = ((freenect_led_options)__Pyx_PyInt_As_freenect_led_options(values[1])); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_option = ((freenect_led_options)__Pyx_PyInt_As_freenect_led_options(values[1])); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("set_led", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("set_led", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.set_led", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_28set_led(__pyx_self, __pyx_v_dev, __pyx_v_option);
 
   /* function exit code */
@@ -3756,7 +3790,7 @@ static PyObject *__pyx_pf_8freenect_28set_led(CYTHON_UNUSED PyObject *__pyx_self
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("set_led", 0);
 
-  /* "freenect.pyx":296
+  /* "freenect.pyx":300
  * 
  * def set_led(DevPtr dev, freenect_led_options option):
  *     return freenect_set_led(dev._ptr, option)             # <<<<<<<<<<<<<<
@@ -3764,13 +3798,13 @@ static PyObject *__pyx_pf_8freenect_28set_led(CYTHON_UNUSED PyObject *__pyx_self
  * def update_tilt_state(DevPtr dev):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_set_led(__pyx_v_dev->_ptr, __pyx_v_option)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_set_led(__pyx_v_dev->_ptr, __pyx_v_option)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":295
+  /* "freenect.pyx":299
  *     freenect_set_tilt_degs(dev._ptr, angle)
  * 
  * def set_led(DevPtr dev, freenect_led_options option):             # <<<<<<<<<<<<<<
@@ -3789,7 +3823,7 @@ static PyObject *__pyx_pf_8freenect_28set_led(CYTHON_UNUSED PyObject *__pyx_self
   return __pyx_r;
 }
 
-/* "freenect.pyx":298
+/* "freenect.pyx":302
  *     return freenect_set_led(dev._ptr, option)
  * 
  * def update_tilt_state(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3807,7 +3841,7 @@ static PyObject *__pyx_pw_8freenect_31update_tilt_state(PyObject *__pyx_self, Py
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("update_tilt_state (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_30update_tilt_state(__pyx_self, ((struct __pyx_obj_8freenect_DevPtr *)__pyx_v_dev));
 
   /* function exit code */
@@ -3828,7 +3862,7 @@ static PyObject *__pyx_pf_8freenect_30update_tilt_state(CYTHON_UNUSED PyObject *
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("update_tilt_state", 0);
 
-  /* "freenect.pyx":299
+  /* "freenect.pyx":303
  * 
  * def update_tilt_state(DevPtr dev):
  *     return freenect_update_tilt_state(dev._ptr)             # <<<<<<<<<<<<<<
@@ -3836,13 +3870,13 @@ static PyObject *__pyx_pf_8freenect_30update_tilt_state(CYTHON_UNUSED PyObject *
  * def get_tilt_state(DevPtr dev):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_update_tilt_state(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(freenect_update_tilt_state(__pyx_v_dev->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 303; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":298
+  /* "freenect.pyx":302
  *     return freenect_set_led(dev._ptr, option)
  * 
  * def update_tilt_state(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3861,7 +3895,7 @@ static PyObject *__pyx_pf_8freenect_30update_tilt_state(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "freenect.pyx":301
+/* "freenect.pyx":305
  *     return freenect_update_tilt_state(dev._ptr)
  * 
  * def get_tilt_state(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3879,7 +3913,7 @@ static PyObject *__pyx_pw_8freenect_33get_tilt_state(PyObject *__pyx_self, PyObj
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_tilt_state (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_32get_tilt_state(__pyx_self, ((struct __pyx_obj_8freenect_DevPtr *)__pyx_v_dev));
 
   /* function exit code */
@@ -3902,7 +3936,7 @@ static PyObject *__pyx_pf_8freenect_32get_tilt_state(CYTHON_UNUSED PyObject *__p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_tilt_state", 0);
 
-  /* "freenect.pyx":302
+  /* "freenect.pyx":306
  * 
  * def get_tilt_state(DevPtr dev):
  *     cdef freenect_raw_tilt_state* state = freenect_get_tilt_state(dev._ptr)             # <<<<<<<<<<<<<<
@@ -3911,20 +3945,20 @@ static PyObject *__pyx_pf_8freenect_32get_tilt_state(CYTHON_UNUSED PyObject *__p
  */
   __pyx_v_state = freenect_get_tilt_state(__pyx_v_dev->_ptr);
 
-  /* "freenect.pyx":303
+  /* "freenect.pyx":307
  * def get_tilt_state(DevPtr dev):
  *     cdef freenect_raw_tilt_state* state = freenect_get_tilt_state(dev._ptr)
  *     cdef StatePtr state_out = StatePtr.__new__(StatePtr)             # <<<<<<<<<<<<<<
  *     state_out._ptr = state
  *     return state_out
  */
-  __pyx_t_1 = __pyx_tp_new_8freenect_StatePtr(((PyTypeObject *)__pyx_ptype_8freenect_StatePtr), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 303; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_tp_new_8freenect_StatePtr(((PyTypeObject *)__pyx_ptype_8freenect_StatePtr), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_8freenect_StatePtr)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 303; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_8freenect_StatePtr)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_state_out = ((struct __pyx_obj_8freenect_StatePtr *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "freenect.pyx":304
+  /* "freenect.pyx":308
  *     cdef freenect_raw_tilt_state* state = freenect_get_tilt_state(dev._ptr)
  *     cdef StatePtr state_out = StatePtr.__new__(StatePtr)
  *     state_out._ptr = state             # <<<<<<<<<<<<<<
@@ -3933,7 +3967,7 @@ static PyObject *__pyx_pf_8freenect_32get_tilt_state(CYTHON_UNUSED PyObject *__p
  */
   __pyx_v_state_out->_ptr = __pyx_v_state;
 
-  /* "freenect.pyx":305
+  /* "freenect.pyx":309
  *     cdef StatePtr state_out = StatePtr.__new__(StatePtr)
  *     state_out._ptr = state
  *     return state_out             # <<<<<<<<<<<<<<
@@ -3945,7 +3979,7 @@ static PyObject *__pyx_pf_8freenect_32get_tilt_state(CYTHON_UNUSED PyObject *__p
   __pyx_r = ((PyObject *)__pyx_v_state_out);
   goto __pyx_L0;
 
-  /* "freenect.pyx":301
+  /* "freenect.pyx":305
  *     return freenect_update_tilt_state(dev._ptr)
  * 
  * def get_tilt_state(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -3965,7 +3999,7 @@ static PyObject *__pyx_pf_8freenect_32get_tilt_state(CYTHON_UNUSED PyObject *__p
   return __pyx_r;
 }
 
-/* "freenect.pyx":307
+/* "freenect.pyx":311
  *     return state_out
  * 
  * def get_mks_accel(StatePtr state):             # <<<<<<<<<<<<<<
@@ -3983,7 +4017,7 @@ static PyObject *__pyx_pw_8freenect_35get_mks_accel(PyObject *__pyx_self, PyObje
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_mks_accel (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_state), __pyx_ptype_8freenect_StatePtr, 1, "state", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_state), __pyx_ptype_8freenect_StatePtr, 1, "state", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_34get_mks_accel(__pyx_self, ((struct __pyx_obj_8freenect_StatePtr *)__pyx_v_state));
 
   /* function exit code */
@@ -4010,7 +4044,7 @@ static PyObject *__pyx_pf_8freenect_34get_mks_accel(CYTHON_UNUSED PyObject *__py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_mks_accel", 0);
 
-  /* "freenect.pyx":309
+  /* "freenect.pyx":313
  * def get_mks_accel(StatePtr state):
  *     cdef double x, y, z
  *     freenect_get_mks_accel(state._ptr, &x, &y, &z)             # <<<<<<<<<<<<<<
@@ -4019,7 +4053,7 @@ static PyObject *__pyx_pf_8freenect_34get_mks_accel(CYTHON_UNUSED PyObject *__py
  */
   freenect_get_mks_accel(__pyx_v_state->_ptr, (&__pyx_v_x), (&__pyx_v_y), (&__pyx_v_z));
 
-  /* "freenect.pyx":310
+  /* "freenect.pyx":314
  *     cdef double x, y, z
  *     freenect_get_mks_accel(state._ptr, &x, &y, &z)
  *     return x, y, z             # <<<<<<<<<<<<<<
@@ -4027,13 +4061,13 @@ static PyObject *__pyx_pf_8freenect_34get_mks_accel(CYTHON_UNUSED PyObject *__py
  * def get_accel(DevPtr dev):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_y); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_z); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_z); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -4048,7 +4082,7 @@ static PyObject *__pyx_pf_8freenect_34get_mks_accel(CYTHON_UNUSED PyObject *__py
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":307
+  /* "freenect.pyx":311
  *     return state_out
  * 
  * def get_mks_accel(StatePtr state):             # <<<<<<<<<<<<<<
@@ -4070,7 +4104,7 @@ static PyObject *__pyx_pf_8freenect_34get_mks_accel(CYTHON_UNUSED PyObject *__py
   return __pyx_r;
 }
 
-/* "freenect.pyx":312
+/* "freenect.pyx":316
  *     return x, y, z
  * 
  * def get_accel(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -4089,7 +4123,7 @@ static PyObject *__pyx_pw_8freenect_37get_accel(PyObject *__pyx_self, PyObject *
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_accel (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_36get_accel(__pyx_self, ((struct __pyx_obj_8freenect_DevPtr *)__pyx_v_dev));
 
   /* function exit code */
@@ -4115,14 +4149,14 @@ static PyObject *__pyx_pf_8freenect_36get_accel(CYTHON_UNUSED PyObject *__pyx_se
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_accel", 0);
 
-  /* "freenect.pyx":321
+  /* "freenect.pyx":325
  *         (x, y, z) accelerometer values
  *     """
  *     update_tilt_state(dev)             # <<<<<<<<<<<<<<
  *     return get_mks_accel(get_tilt_state(dev))
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_update_tilt_state); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_update_tilt_state); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -4135,23 +4169,23 @@ static PyObject *__pyx_pf_8freenect_36get_accel(CYTHON_UNUSED PyObject *__pyx_se
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, ((PyObject *)__pyx_v_dev)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, ((PyObject *)__pyx_v_dev)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
     __Pyx_INCREF(((PyObject *)__pyx_v_dev));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_dev));
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, ((PyObject *)__pyx_v_dev));
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":322
+  /* "freenect.pyx":326
  *     """
  *     update_tilt_state(dev)
  *     return get_mks_accel(get_tilt_state(dev))             # <<<<<<<<<<<<<<
@@ -4159,9 +4193,9 @@ static PyObject *__pyx_pf_8freenect_36get_accel(CYTHON_UNUSED PyObject *__pyx_se
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_get_mks_accel); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_get_mks_accel); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_get_tilt_state); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_get_tilt_state); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_5 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -4174,16 +4208,16 @@ static PyObject *__pyx_pf_8freenect_36get_accel(CYTHON_UNUSED PyObject *__pyx_se
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_dev)); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_dev)); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
   } else {
-    __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_5); __pyx_t_5 = NULL;
     __Pyx_INCREF(((PyObject *)__pyx_v_dev));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_dev));
     PyTuple_SET_ITEM(__pyx_t_6, 0+1, ((PyObject *)__pyx_v_dev));
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -4199,17 +4233,17 @@ static PyObject *__pyx_pf_8freenect_36get_accel(CYTHON_UNUSED PyObject *__pyx_se
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3); __pyx_t_3 = NULL;
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -4218,7 +4252,7 @@ static PyObject *__pyx_pf_8freenect_36get_accel(CYTHON_UNUSED PyObject *__pyx_se
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":312
+  /* "freenect.pyx":316
  *     return x, y, z
  * 
  * def get_accel(DevPtr dev):             # <<<<<<<<<<<<<<
@@ -4242,7 +4276,7 @@ static PyObject *__pyx_pf_8freenect_36get_accel(CYTHON_UNUSED PyObject *__pyx_se
   return __pyx_r;
 }
 
-/* "freenect.pyx":325
+/* "freenect.pyx":329
  * 
  * 
  * def get_tilt_degs(StatePtr state):             # <<<<<<<<<<<<<<
@@ -4260,7 +4294,7 @@ static PyObject *__pyx_pw_8freenect_39get_tilt_degs(PyObject *__pyx_self, PyObje
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_tilt_degs (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_state), __pyx_ptype_8freenect_StatePtr, 1, "state", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_state), __pyx_ptype_8freenect_StatePtr, 1, "state", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_38get_tilt_degs(__pyx_self, ((struct __pyx_obj_8freenect_StatePtr *)__pyx_v_state));
 
   /* function exit code */
@@ -4281,7 +4315,7 @@ static PyObject *__pyx_pf_8freenect_38get_tilt_degs(CYTHON_UNUSED PyObject *__py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_tilt_degs", 0);
 
-  /* "freenect.pyx":326
+  /* "freenect.pyx":330
  * 
  * def get_tilt_degs(StatePtr state):
  *     return freenect_get_tilt_degs(state._ptr)             # <<<<<<<<<<<<<<
@@ -4289,13 +4323,13 @@ static PyObject *__pyx_pf_8freenect_38get_tilt_degs(CYTHON_UNUSED PyObject *__py
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(freenect_get_tilt_degs(__pyx_v_state->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(freenect_get_tilt_degs(__pyx_v_state->_ptr)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "freenect.pyx":325
+  /* "freenect.pyx":329
  * 
  * 
  * def get_tilt_degs(StatePtr state):             # <<<<<<<<<<<<<<
@@ -4314,7 +4348,7 @@ static PyObject *__pyx_pf_8freenect_38get_tilt_degs(CYTHON_UNUSED PyObject *__py
   return __pyx_r;
 }
 
-/* "freenect.pyx":329
+/* "freenect.pyx":333
  * 
  * 
  * def error_open_device():             # <<<<<<<<<<<<<<
@@ -4344,16 +4378,16 @@ static PyObject *__pyx_pf_8freenect_40error_open_device(CYTHON_UNUSED PyObject *
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("error_open_device", 0);
 
-  /* "freenect.pyx":330
+  /* "freenect.pyx":334
  * 
  * def error_open_device():
  *     print("Error: Can't open device. 1.) is it plugged in? 2.) Read the README")             # <<<<<<<<<<<<<<
  * 
  * cpdef init():
  */
-  if (__Pyx_PrintOne(0, __pyx_kp_s_Error_Can_t_open_device_1_is_it) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PrintOne(0, __pyx_kp_s_Error_Can_t_open_device_1_is_it) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":329
+  /* "freenect.pyx":333
  * 
  * 
  * def error_open_device():             # <<<<<<<<<<<<<<
@@ -4373,7 +4407,7 @@ static PyObject *__pyx_pf_8freenect_40error_open_device(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "freenect.pyx":332
+/* "freenect.pyx":336
  *     print("Error: Can't open device. 1.) is it plugged in? 2.) Read the README")
  * 
  * cpdef init():             # <<<<<<<<<<<<<<
@@ -4394,7 +4428,7 @@ static PyObject *__pyx_f_8freenect_init(CYTHON_UNUSED int __pyx_skip_dispatch) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("init", 0);
 
-  /* "freenect.pyx":334
+  /* "freenect.pyx":338
  * cpdef init():
  *     cdef freenect_context* ctx
  *     if freenect_init(&ctx, NULL) < 0:             # <<<<<<<<<<<<<<
@@ -4404,7 +4438,7 @@ static PyObject *__pyx_f_8freenect_init(CYTHON_UNUSED int __pyx_skip_dispatch) {
   __pyx_t_1 = ((freenect_init((&__pyx_v_ctx), NULL) < 0) != 0);
   if (__pyx_t_1) {
 
-    /* "freenect.pyx":335
+    /* "freenect.pyx":339
  *     cdef freenect_context* ctx
  *     if freenect_init(&ctx, NULL) < 0:
  *         return             # <<<<<<<<<<<<<<
@@ -4415,7 +4449,7 @@ static PyObject *__pyx_f_8freenect_init(CYTHON_UNUSED int __pyx_skip_dispatch) {
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "freenect.pyx":334
+    /* "freenect.pyx":338
  * cpdef init():
  *     cdef freenect_context* ctx
  *     if freenect_init(&ctx, NULL) < 0:             # <<<<<<<<<<<<<<
@@ -4424,7 +4458,7 @@ static PyObject *__pyx_f_8freenect_init(CYTHON_UNUSED int __pyx_skip_dispatch) {
  */
   }
 
-  /* "freenect.pyx":340
+  /* "freenect.pyx":344
  *     # Also, we don't support audio in the python wrapper yet, so no sense claiming
  *     # the device.
  *     freenect_select_subdevices(ctx, <freenect_device_flags> (FREENECT_DEVICE_MOTOR | FREENECT_DEVICE_CAMERA))             # <<<<<<<<<<<<<<
@@ -4433,20 +4467,20 @@ static PyObject *__pyx_f_8freenect_init(CYTHON_UNUSED int __pyx_skip_dispatch) {
  */
   freenect_select_subdevices(__pyx_v_ctx, ((freenect_device_flags)(FREENECT_DEVICE_MOTOR | FREENECT_DEVICE_CAMERA)));
 
-  /* "freenect.pyx":341
+  /* "freenect.pyx":345
  *     # the device.
  *     freenect_select_subdevices(ctx, <freenect_device_flags> (FREENECT_DEVICE_MOTOR | FREENECT_DEVICE_CAMERA))
  *     cdef CtxPtr ctx_out = CtxPtr.__new__(CtxPtr)             # <<<<<<<<<<<<<<
  *     ctx_out._ptr = ctx
  *     return ctx_out
  */
-  __pyx_t_2 = __pyx_tp_new_8freenect_CtxPtr(((PyTypeObject *)__pyx_ptype_8freenect_CtxPtr), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __pyx_tp_new_8freenect_CtxPtr(((PyTypeObject *)__pyx_ptype_8freenect_CtxPtr), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8freenect_CtxPtr)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8freenect_CtxPtr)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_ctx_out = ((struct __pyx_obj_8freenect_CtxPtr *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "freenect.pyx":342
+  /* "freenect.pyx":346
  *     freenect_select_subdevices(ctx, <freenect_device_flags> (FREENECT_DEVICE_MOTOR | FREENECT_DEVICE_CAMERA))
  *     cdef CtxPtr ctx_out = CtxPtr.__new__(CtxPtr)
  *     ctx_out._ptr = ctx             # <<<<<<<<<<<<<<
@@ -4455,7 +4489,7 @@ static PyObject *__pyx_f_8freenect_init(CYTHON_UNUSED int __pyx_skip_dispatch) {
  */
   __pyx_v_ctx_out->_ptr = __pyx_v_ctx;
 
-  /* "freenect.pyx":343
+  /* "freenect.pyx":347
  *     cdef CtxPtr ctx_out = CtxPtr.__new__(CtxPtr)
  *     ctx_out._ptr = ctx
  *     return ctx_out             # <<<<<<<<<<<<<<
@@ -4467,7 +4501,7 @@ static PyObject *__pyx_f_8freenect_init(CYTHON_UNUSED int __pyx_skip_dispatch) {
   __pyx_r = ((PyObject *)__pyx_v_ctx_out);
   goto __pyx_L0;
 
-  /* "freenect.pyx":332
+  /* "freenect.pyx":336
  *     print("Error: Can't open device. 1.) is it plugged in? 2.) Read the README")
  * 
  * cpdef init():             # <<<<<<<<<<<<<<
@@ -4509,7 +4543,7 @@ static PyObject *__pyx_pf_8freenect_42init(CYTHON_UNUSED PyObject *__pyx_self) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("init", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_8freenect_init(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_8freenect_init(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 336; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4526,7 +4560,7 @@ static PyObject *__pyx_pf_8freenect_42init(CYTHON_UNUSED PyObject *__pyx_self) {
   return __pyx_r;
 }
 
-/* "freenect.pyx":345
+/* "freenect.pyx":349
  *     return ctx_out
  * 
  * cpdef open_device(CtxPtr ctx, int index):             # <<<<<<<<<<<<<<
@@ -4547,7 +4581,7 @@ static PyObject *__pyx_f_8freenect_open_device(struct __pyx_obj_8freenect_CtxPtr
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("open_device", 0);
 
-  /* "freenect.pyx":347
+  /* "freenect.pyx":351
  * cpdef open_device(CtxPtr ctx, int index):
  *     cdef freenect_device* dev
  *     if freenect_open_device(ctx._ptr, &dev, index) < 0:             # <<<<<<<<<<<<<<
@@ -4557,7 +4591,7 @@ static PyObject *__pyx_f_8freenect_open_device(struct __pyx_obj_8freenect_CtxPtr
   __pyx_t_1 = ((freenect_open_device(__pyx_v_ctx->_ptr, (&__pyx_v_dev), __pyx_v_index) < 0) != 0);
   if (__pyx_t_1) {
 
-    /* "freenect.pyx":348
+    /* "freenect.pyx":352
  *     cdef freenect_device* dev
  *     if freenect_open_device(ctx._ptr, &dev, index) < 0:
  *         return             # <<<<<<<<<<<<<<
@@ -4568,7 +4602,7 @@ static PyObject *__pyx_f_8freenect_open_device(struct __pyx_obj_8freenect_CtxPtr
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "freenect.pyx":347
+    /* "freenect.pyx":351
  * cpdef open_device(CtxPtr ctx, int index):
  *     cdef freenect_device* dev
  *     if freenect_open_device(ctx._ptr, &dev, index) < 0:             # <<<<<<<<<<<<<<
@@ -4577,20 +4611,20 @@ static PyObject *__pyx_f_8freenect_open_device(struct __pyx_obj_8freenect_CtxPtr
  */
   }
 
-  /* "freenect.pyx":349
+  /* "freenect.pyx":353
  *     if freenect_open_device(ctx._ptr, &dev, index) < 0:
  *         return
  *     cdef DevPtr dev_out = DevPtr.__new__(DevPtr)             # <<<<<<<<<<<<<<
  *     dev_out._ptr = dev
  *     dev_out.ctx = ctx
  */
-  __pyx_t_2 = __pyx_tp_new_8freenect_DevPtr(((PyTypeObject *)__pyx_ptype_8freenect_DevPtr), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __pyx_tp_new_8freenect_DevPtr(((PyTypeObject *)__pyx_ptype_8freenect_DevPtr), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 353; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8freenect_DevPtr)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8freenect_DevPtr)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 353; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_dev_out = ((struct __pyx_obj_8freenect_DevPtr *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "freenect.pyx":350
+  /* "freenect.pyx":354
  *         return
  *     cdef DevPtr dev_out = DevPtr.__new__(DevPtr)
  *     dev_out._ptr = dev             # <<<<<<<<<<<<<<
@@ -4599,7 +4633,7 @@ static PyObject *__pyx_f_8freenect_open_device(struct __pyx_obj_8freenect_CtxPtr
  */
   __pyx_v_dev_out->_ptr = __pyx_v_dev;
 
-  /* "freenect.pyx":351
+  /* "freenect.pyx":355
  *     cdef DevPtr dev_out = DevPtr.__new__(DevPtr)
  *     dev_out._ptr = dev
  *     dev_out.ctx = ctx             # <<<<<<<<<<<<<<
@@ -4612,7 +4646,7 @@ static PyObject *__pyx_f_8freenect_open_device(struct __pyx_obj_8freenect_CtxPtr
   __Pyx_DECREF(((PyObject *)__pyx_v_dev_out->ctx));
   __pyx_v_dev_out->ctx = __pyx_v_ctx;
 
-  /* "freenect.pyx":352
+  /* "freenect.pyx":356
  *     dev_out._ptr = dev
  *     dev_out.ctx = ctx
  *     return dev_out             # <<<<<<<<<<<<<<
@@ -4624,7 +4658,7 @@ static PyObject *__pyx_f_8freenect_open_device(struct __pyx_obj_8freenect_CtxPtr
   __pyx_r = ((PyObject *)__pyx_v_dev_out);
   goto __pyx_L0;
 
-  /* "freenect.pyx":345
+  /* "freenect.pyx":349
  *     return ctx_out
  * 
  * cpdef open_device(CtxPtr ctx, int index):             # <<<<<<<<<<<<<<
@@ -4675,11 +4709,11 @@ static PyObject *__pyx_pw_8freenect_45open_device(PyObject *__pyx_self, PyObject
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_index)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("open_device", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("open_device", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "open_device") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "open_device") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4688,17 +4722,17 @@ static PyObject *__pyx_pw_8freenect_45open_device(PyObject *__pyx_self, PyObject
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
     __pyx_v_ctx = ((struct __pyx_obj_8freenect_CtxPtr *)values[0]);
-    __pyx_v_index = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_index = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("open_device", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("open_device", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.open_device", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ctx), __pyx_ptype_8freenect_CtxPtr, 1, "ctx", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ctx), __pyx_ptype_8freenect_CtxPtr, 1, "ctx", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_44open_device(__pyx_self, __pyx_v_ctx, __pyx_v_index);
 
   /* function exit code */
@@ -4719,7 +4753,7 @@ static PyObject *__pyx_pf_8freenect_44open_device(CYTHON_UNUSED PyObject *__pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("open_device", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_8freenect_open_device(__pyx_v_ctx, __pyx_v_index, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_8freenect_open_device(__pyx_v_ctx, __pyx_v_index, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4736,7 +4770,7 @@ static PyObject *__pyx_pf_8freenect_44open_device(CYTHON_UNUSED PyObject *__pyx_
   return __pyx_r;
 }
 
-/* "freenect.pyx":356
+/* "freenect.pyx":360
  * _depth_cb, _video_cb = None, None
  * 
  * cdef void depth_cb(freenect_device *dev, void *data, uint32_t timestamp) with gil:             # <<<<<<<<<<<<<<
@@ -4765,7 +4799,7 @@ static void __pyx_f_8freenect_depth_cb(freenect_device *__pyx_v_dev, void *__pyx
   #endif
   __Pyx_RefNannySetupContext("depth_cb", 0);
 
-  /* "freenect.pyx":357
+  /* "freenect.pyx":361
  * 
  * cdef void depth_cb(freenect_device *dev, void *data, uint32_t timestamp) with gil:
  *     cdef freenect_frame_mode mode = freenect_get_current_depth_mode(dev)             # <<<<<<<<<<<<<<
@@ -4774,7 +4808,7 @@ static void __pyx_f_8freenect_depth_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
   __pyx_v_mode = freenect_get_current_depth_mode(__pyx_v_dev);
 
-  /* "freenect.pyx":358
+  /* "freenect.pyx":362
  * cdef void depth_cb(freenect_device *dev, void *data, uint32_t timestamp) with gil:
  *     cdef freenect_frame_mode mode = freenect_get_current_depth_mode(dev)
  *     if not mode.is_valid:             # <<<<<<<<<<<<<<
@@ -4784,7 +4818,7 @@ static void __pyx_f_8freenect_depth_cb(freenect_device *__pyx_v_dev, void *__pyx
   __pyx_t_1 = ((!(__pyx_v_mode.is_valid != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "freenect.pyx":359
+    /* "freenect.pyx":363
  *     cdef freenect_frame_mode mode = freenect_get_current_depth_mode(dev)
  *     if not mode.is_valid:
  *         return             # <<<<<<<<<<<<<<
@@ -4793,7 +4827,7 @@ static void __pyx_f_8freenect_depth_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
     goto __pyx_L0;
 
-    /* "freenect.pyx":358
+    /* "freenect.pyx":362
  * cdef void depth_cb(freenect_device *dev, void *data, uint32_t timestamp) with gil:
  *     cdef freenect_frame_mode mode = freenect_get_current_depth_mode(dev)
  *     if not mode.is_valid:             # <<<<<<<<<<<<<<
@@ -4802,21 +4836,21 @@ static void __pyx_f_8freenect_depth_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
   }
 
-  /* "freenect.pyx":360
+  /* "freenect.pyx":364
  *     if not mode.is_valid:
  *         return
  *     if not _depth_cb:             # <<<<<<<<<<<<<<
  *         return
  *     cdef DevPtr dev_out = DevPtr.__new__(DevPtr)
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_depth_cb); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 360; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_depth_cb); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 360; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_3 = ((!__pyx_t_1) != 0);
   if (__pyx_t_3) {
 
-    /* "freenect.pyx":361
+    /* "freenect.pyx":365
  *         return
  *     if not _depth_cb:
  *         return             # <<<<<<<<<<<<<<
@@ -4825,7 +4859,7 @@ static void __pyx_f_8freenect_depth_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
     goto __pyx_L0;
 
-    /* "freenect.pyx":360
+    /* "freenect.pyx":364
  *     if not mode.is_valid:
  *         return
  *     if not _depth_cb:             # <<<<<<<<<<<<<<
@@ -4834,20 +4868,20 @@ static void __pyx_f_8freenect_depth_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
   }
 
-  /* "freenect.pyx":362
+  /* "freenect.pyx":366
  *     if not _depth_cb:
  *         return
  *     cdef DevPtr dev_out = DevPtr.__new__(DevPtr)             # <<<<<<<<<<<<<<
  *     dev_out._ptr = dev
  *     pydata = _depth_cb_np(data, &mode)
  */
-  __pyx_t_2 = __pyx_tp_new_8freenect_DevPtr(((PyTypeObject *)__pyx_ptype_8freenect_DevPtr), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __pyx_tp_new_8freenect_DevPtr(((PyTypeObject *)__pyx_ptype_8freenect_DevPtr), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8freenect_DevPtr)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8freenect_DevPtr)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_dev_out = ((struct __pyx_obj_8freenect_DevPtr *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "freenect.pyx":363
+  /* "freenect.pyx":367
  *         return
  *     cdef DevPtr dev_out = DevPtr.__new__(DevPtr)
  *     dev_out._ptr = dev             # <<<<<<<<<<<<<<
@@ -4856,28 +4890,28 @@ static void __pyx_f_8freenect_depth_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
   __pyx_v_dev_out->_ptr = __pyx_v_dev;
 
-  /* "freenect.pyx":364
+  /* "freenect.pyx":368
  *     cdef DevPtr dev_out = DevPtr.__new__(DevPtr)
  *     dev_out._ptr = dev
  *     pydata = _depth_cb_np(data, &mode)             # <<<<<<<<<<<<<<
  *     _depth_cb(dev_out, pydata, timestamp)
  * 
  */
-  __pyx_t_2 = __pyx_f_8freenect__depth_cb_np(__pyx_v_data, (&__pyx_v_mode)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __pyx_f_8freenect__depth_cb_np(__pyx_v_data, (&__pyx_v_mode)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_pydata = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "freenect.pyx":365
+  /* "freenect.pyx":369
  *     dev_out._ptr = dev
  *     pydata = _depth_cb_np(data, &mode)
  *     _depth_cb(dev_out, pydata, timestamp)             # <<<<<<<<<<<<<<
  * 
  * cdef void video_cb(freenect_device *dev, void *data, uint32_t timestamp) with gil:
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_depth_cb); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_depth_cb); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 369; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 369; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_6 = NULL;
   __pyx_t_7 = 0;
@@ -4891,7 +4925,7 @@ static void __pyx_f_8freenect_depth_cb(freenect_device *__pyx_v_dev, void *__pyx
       __pyx_t_7 = 1;
     }
   }
-  __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 369; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   if (__pyx_t_6) {
     __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -4905,13 +4939,13 @@ static void __pyx_f_8freenect_depth_cb(freenect_device *__pyx_v_dev, void *__pyx
   __Pyx_GIVEREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_8, 2+__pyx_t_7, __pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 369; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "freenect.pyx":356
+  /* "freenect.pyx":360
  * _depth_cb, _video_cb = None, None
  * 
  * cdef void depth_cb(freenect_device *dev, void *data, uint32_t timestamp) with gil:             # <<<<<<<<<<<<<<
@@ -4937,7 +4971,7 @@ static void __pyx_f_8freenect_depth_cb(freenect_device *__pyx_v_dev, void *__pyx
   #endif
 }
 
-/* "freenect.pyx":367
+/* "freenect.pyx":371
  *     _depth_cb(dev_out, pydata, timestamp)
  * 
  * cdef void video_cb(freenect_device *dev, void *data, uint32_t timestamp) with gil:             # <<<<<<<<<<<<<<
@@ -4966,7 +5000,7 @@ static void __pyx_f_8freenect_video_cb(freenect_device *__pyx_v_dev, void *__pyx
   #endif
   __Pyx_RefNannySetupContext("video_cb", 0);
 
-  /* "freenect.pyx":368
+  /* "freenect.pyx":372
  * 
  * cdef void video_cb(freenect_device *dev, void *data, uint32_t timestamp) with gil:
  *     cdef freenect_frame_mode mode = freenect_get_current_video_mode(dev)             # <<<<<<<<<<<<<<
@@ -4975,7 +5009,7 @@ static void __pyx_f_8freenect_video_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
   __pyx_v_mode = freenect_get_current_video_mode(__pyx_v_dev);
 
-  /* "freenect.pyx":369
+  /* "freenect.pyx":373
  * cdef void video_cb(freenect_device *dev, void *data, uint32_t timestamp) with gil:
  *     cdef freenect_frame_mode mode = freenect_get_current_video_mode(dev)
  *     if not mode.is_valid:             # <<<<<<<<<<<<<<
@@ -4985,7 +5019,7 @@ static void __pyx_f_8freenect_video_cb(freenect_device *__pyx_v_dev, void *__pyx
   __pyx_t_1 = ((!(__pyx_v_mode.is_valid != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "freenect.pyx":370
+    /* "freenect.pyx":374
  *     cdef freenect_frame_mode mode = freenect_get_current_video_mode(dev)
  *     if not mode.is_valid:
  *         return             # <<<<<<<<<<<<<<
@@ -4994,7 +5028,7 @@ static void __pyx_f_8freenect_video_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
     goto __pyx_L0;
 
-    /* "freenect.pyx":369
+    /* "freenect.pyx":373
  * cdef void video_cb(freenect_device *dev, void *data, uint32_t timestamp) with gil:
  *     cdef freenect_frame_mode mode = freenect_get_current_video_mode(dev)
  *     if not mode.is_valid:             # <<<<<<<<<<<<<<
@@ -5003,21 +5037,21 @@ static void __pyx_f_8freenect_video_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
   }
 
-  /* "freenect.pyx":371
+  /* "freenect.pyx":375
  *     if not mode.is_valid:
  *         return
  *     if not _video_cb:             # <<<<<<<<<<<<<<
  *         return
  *     cdef DevPtr dev_out = DevPtr.__new__(DevPtr)
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_video_cb); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_video_cb); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_3 = ((!__pyx_t_1) != 0);
   if (__pyx_t_3) {
 
-    /* "freenect.pyx":372
+    /* "freenect.pyx":376
  *         return
  *     if not _video_cb:
  *         return             # <<<<<<<<<<<<<<
@@ -5026,7 +5060,7 @@ static void __pyx_f_8freenect_video_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
     goto __pyx_L0;
 
-    /* "freenect.pyx":371
+    /* "freenect.pyx":375
  *     if not mode.is_valid:
  *         return
  *     if not _video_cb:             # <<<<<<<<<<<<<<
@@ -5035,20 +5069,20 @@ static void __pyx_f_8freenect_video_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
   }
 
-  /* "freenect.pyx":373
+  /* "freenect.pyx":377
  *     if not _video_cb:
  *         return
  *     cdef DevPtr dev_out = DevPtr.__new__(DevPtr)             # <<<<<<<<<<<<<<
  *     dev_out._ptr = dev
  *     pydata = _video_cb_np(data, &mode)
  */
-  __pyx_t_2 = __pyx_tp_new_8freenect_DevPtr(((PyTypeObject *)__pyx_ptype_8freenect_DevPtr), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __pyx_tp_new_8freenect_DevPtr(((PyTypeObject *)__pyx_ptype_8freenect_DevPtr), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8freenect_DevPtr)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8freenect_DevPtr)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_dev_out = ((struct __pyx_obj_8freenect_DevPtr *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "freenect.pyx":374
+  /* "freenect.pyx":378
  *         return
  *     cdef DevPtr dev_out = DevPtr.__new__(DevPtr)
  *     dev_out._ptr = dev             # <<<<<<<<<<<<<<
@@ -5057,28 +5091,28 @@ static void __pyx_f_8freenect_video_cb(freenect_device *__pyx_v_dev, void *__pyx
  */
   __pyx_v_dev_out->_ptr = __pyx_v_dev;
 
-  /* "freenect.pyx":375
+  /* "freenect.pyx":379
  *     cdef DevPtr dev_out = DevPtr.__new__(DevPtr)
  *     dev_out._ptr = dev
  *     pydata = _video_cb_np(data, &mode)             # <<<<<<<<<<<<<<
  *     _video_cb(dev_out, pydata, timestamp)
  * 
  */
-  __pyx_t_2 = __pyx_f_8freenect__video_cb_np(__pyx_v_data, (&__pyx_v_mode)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __pyx_f_8freenect__video_cb_np(__pyx_v_data, (&__pyx_v_mode)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_pydata = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "freenect.pyx":376
+  /* "freenect.pyx":380
  *     dev_out._ptr = dev
  *     pydata = _video_cb_np(data, &mode)
  *     _video_cb(dev_out, pydata, timestamp)             # <<<<<<<<<<<<<<
  * 
  * def set_depth_callback(DevPtr dev, cb):
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_video_cb); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_video_cb); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 380; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 380; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_6 = NULL;
   __pyx_t_7 = 0;
@@ -5092,7 +5126,7 @@ static void __pyx_f_8freenect_video_cb(freenect_device *__pyx_v_dev, void *__pyx
       __pyx_t_7 = 1;
     }
   }
-  __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 380; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   if (__pyx_t_6) {
     __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -5106,13 +5140,13 @@ static void __pyx_f_8freenect_video_cb(freenect_device *__pyx_v_dev, void *__pyx
   __Pyx_GIVEREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_8, 2+__pyx_t_7, __pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 380; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "freenect.pyx":367
+  /* "freenect.pyx":371
  *     _depth_cb(dev_out, pydata, timestamp)
  * 
  * cdef void video_cb(freenect_device *dev, void *data, uint32_t timestamp) with gil:             # <<<<<<<<<<<<<<
@@ -5138,7 +5172,7 @@ static void __pyx_f_8freenect_video_cb(freenect_device *__pyx_v_dev, void *__pyx
   #endif
 }
 
-/* "freenect.pyx":378
+/* "freenect.pyx":382
  *     _video_cb(dev_out, pydata, timestamp)
  * 
  * def set_depth_callback(DevPtr dev, cb):             # <<<<<<<<<<<<<<
@@ -5178,11 +5212,11 @@ static PyObject *__pyx_pw_8freenect_47set_depth_callback(PyObject *__pyx_self, P
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_cb)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_depth_callback", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("set_depth_callback", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_depth_callback") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_depth_callback") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5195,13 +5229,13 @@ static PyObject *__pyx_pw_8freenect_47set_depth_callback(PyObject *__pyx_self, P
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("set_depth_callback", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("set_depth_callback", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.set_depth_callback", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_46set_depth_callback(__pyx_self, __pyx_v_dev, __pyx_v_cb);
 
   /* function exit code */
@@ -5223,7 +5257,7 @@ static PyObject *__pyx_pf_8freenect_46set_depth_callback(CYTHON_UNUSED PyObject 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("set_depth_callback", 0);
 
-  /* "freenect.pyx":380
+  /* "freenect.pyx":384
  * def set_depth_callback(DevPtr dev, cb):
  *     global _depth_cb
  *     if cb is not None:             # <<<<<<<<<<<<<<
@@ -5234,16 +5268,16 @@ static PyObject *__pyx_pf_8freenect_46set_depth_callback(CYTHON_UNUSED PyObject 
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "freenect.pyx":381
+    /* "freenect.pyx":385
  *     global _depth_cb
  *     if cb is not None:
  *         _depth_cb = cb             # <<<<<<<<<<<<<<
  *         freenect_set_depth_callback(dev._ptr, depth_cb)
  *     else:
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_depth_cb, __pyx_v_cb) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_depth_cb, __pyx_v_cb) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "freenect.pyx":382
+    /* "freenect.pyx":386
  *     if cb is not None:
  *         _depth_cb = cb
  *         freenect_set_depth_callback(dev._ptr, depth_cb)             # <<<<<<<<<<<<<<
@@ -5252,7 +5286,7 @@ static PyObject *__pyx_pf_8freenect_46set_depth_callback(CYTHON_UNUSED PyObject 
  */
     freenect_set_depth_callback(__pyx_v_dev->_ptr, __pyx_f_8freenect_depth_cb);
 
-    /* "freenect.pyx":380
+    /* "freenect.pyx":384
  * def set_depth_callback(DevPtr dev, cb):
  *     global _depth_cb
  *     if cb is not None:             # <<<<<<<<<<<<<<
@@ -5262,7 +5296,7 @@ static PyObject *__pyx_pf_8freenect_46set_depth_callback(CYTHON_UNUSED PyObject 
     goto __pyx_L3;
   }
 
-  /* "freenect.pyx":384
+  /* "freenect.pyx":388
  *         freenect_set_depth_callback(dev._ptr, depth_cb)
  *     else:
  *         _depth_cb = None             # <<<<<<<<<<<<<<
@@ -5270,9 +5304,9 @@ static PyObject *__pyx_pf_8freenect_46set_depth_callback(CYTHON_UNUSED PyObject 
  * 
  */
   /*else*/ {
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_depth_cb, Py_None) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_depth_cb, Py_None) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "freenect.pyx":385
+    /* "freenect.pyx":389
  *     else:
  *         _depth_cb = None
  *         freenect_set_depth_callback(dev._ptr, NULL)             # <<<<<<<<<<<<<<
@@ -5283,7 +5317,7 @@ static PyObject *__pyx_pf_8freenect_46set_depth_callback(CYTHON_UNUSED PyObject 
   }
   __pyx_L3:;
 
-  /* "freenect.pyx":378
+  /* "freenect.pyx":382
  *     _video_cb(dev_out, pydata, timestamp)
  * 
  * def set_depth_callback(DevPtr dev, cb):             # <<<<<<<<<<<<<<
@@ -5303,7 +5337,7 @@ static PyObject *__pyx_pf_8freenect_46set_depth_callback(CYTHON_UNUSED PyObject 
   return __pyx_r;
 }
 
-/* "freenect.pyx":387
+/* "freenect.pyx":391
  *         freenect_set_depth_callback(dev._ptr, NULL)
  * 
  * def set_video_callback(DevPtr dev, cb):             # <<<<<<<<<<<<<<
@@ -5343,11 +5377,11 @@ static PyObject *__pyx_pw_8freenect_49set_video_callback(PyObject *__pyx_self, P
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_cb)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_video_callback", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 387; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("set_video_callback", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 391; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_video_callback") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 387; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_video_callback") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 391; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5360,13 +5394,13 @@ static PyObject *__pyx_pw_8freenect_49set_video_callback(PyObject *__pyx_self, P
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("set_video_callback", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 387; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("set_video_callback", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 391; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.set_video_callback", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 387; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dev), __pyx_ptype_8freenect_DevPtr, 1, "dev", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 391; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_48set_video_callback(__pyx_self, __pyx_v_dev, __pyx_v_cb);
 
   /* function exit code */
@@ -5388,7 +5422,7 @@ static PyObject *__pyx_pf_8freenect_48set_video_callback(CYTHON_UNUSED PyObject 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("set_video_callback", 0);
 
-  /* "freenect.pyx":389
+  /* "freenect.pyx":393
  * def set_video_callback(DevPtr dev, cb):
  *     global _video_cb
  *     if cb is not None:             # <<<<<<<<<<<<<<
@@ -5399,16 +5433,16 @@ static PyObject *__pyx_pf_8freenect_48set_video_callback(CYTHON_UNUSED PyObject 
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "freenect.pyx":390
+    /* "freenect.pyx":394
  *     global _video_cb
  *     if cb is not None:
  *         _video_cb = cb             # <<<<<<<<<<<<<<
  *         freenect_set_video_callback(dev._ptr, video_cb)
  *     else:
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_video_cb, __pyx_v_cb) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 390; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_video_cb, __pyx_v_cb) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "freenect.pyx":391
+    /* "freenect.pyx":395
  *     if cb is not None:
  *         _video_cb = cb
  *         freenect_set_video_callback(dev._ptr, video_cb)             # <<<<<<<<<<<<<<
@@ -5417,7 +5451,7 @@ static PyObject *__pyx_pf_8freenect_48set_video_callback(CYTHON_UNUSED PyObject 
  */
     freenect_set_video_callback(__pyx_v_dev->_ptr, __pyx_f_8freenect_video_cb);
 
-    /* "freenect.pyx":389
+    /* "freenect.pyx":393
  * def set_video_callback(DevPtr dev, cb):
  *     global _video_cb
  *     if cb is not None:             # <<<<<<<<<<<<<<
@@ -5427,7 +5461,7 @@ static PyObject *__pyx_pf_8freenect_48set_video_callback(CYTHON_UNUSED PyObject 
     goto __pyx_L3;
   }
 
-  /* "freenect.pyx":393
+  /* "freenect.pyx":397
  *         freenect_set_video_callback(dev._ptr, video_cb)
  *     else:
  *         _video_cb = None             # <<<<<<<<<<<<<<
@@ -5435,9 +5469,9 @@ static PyObject *__pyx_pf_8freenect_48set_video_callback(CYTHON_UNUSED PyObject 
  * 
  */
   /*else*/ {
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_video_cb, Py_None) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 393; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_video_cb, Py_None) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "freenect.pyx":394
+    /* "freenect.pyx":398
  *     else:
  *         _video_cb = None
  *         freenect_set_video_callback(dev._ptr, NULL)             # <<<<<<<<<<<<<<
@@ -5448,7 +5482,7 @@ static PyObject *__pyx_pf_8freenect_48set_video_callback(CYTHON_UNUSED PyObject 
   }
   __pyx_L3:;
 
-  /* "freenect.pyx":387
+  /* "freenect.pyx":391
  *         freenect_set_depth_callback(dev._ptr, NULL)
  * 
  * def set_video_callback(DevPtr dev, cb):             # <<<<<<<<<<<<<<
@@ -5468,7 +5502,7 @@ static PyObject *__pyx_pf_8freenect_48set_video_callback(CYTHON_UNUSED PyObject 
   return __pyx_r;
 }
 
-/* "freenect.pyx":401
+/* "freenect.pyx":405
  * 
  * 
  * def runloop(depth=None, video=None, body=None, dev=None):             # <<<<<<<<<<<<<<
@@ -5533,7 +5567,7 @@ static PyObject *__pyx_pw_8freenect_51runloop(PyObject *__pyx_self, PyObject *__
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "runloop") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "runloop") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -5552,7 +5586,7 @@ static PyObject *__pyx_pw_8freenect_51runloop(PyObject *__pyx_self, PyObject *__
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("runloop", 0, 0, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("runloop", 0, 0, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.runloop", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5590,26 +5624,26 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("runloop", 0);
 
-  /* "freenect.pyx":418
+  /* "freenect.pyx":422
  *     """
  *     global _depth_cb, _video_cb
  *     if depth:             # <<<<<<<<<<<<<<
  *        _depth_cb = depth
  *     if video:
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_depth); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 418; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_depth); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "freenect.pyx":419
+    /* "freenect.pyx":423
  *     global _depth_cb, _video_cb
  *     if depth:
  *        _depth_cb = depth             # <<<<<<<<<<<<<<
  *     if video:
  *        _video_cb = video
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_depth_cb, __pyx_v_depth) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 419; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_depth_cb, __pyx_v_depth) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 423; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "freenect.pyx":418
+    /* "freenect.pyx":422
  *     """
  *     global _depth_cb, _video_cb
  *     if depth:             # <<<<<<<<<<<<<<
@@ -5618,26 +5652,26 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
   }
 
-  /* "freenect.pyx":420
+  /* "freenect.pyx":424
  *     if depth:
  *        _depth_cb = depth
  *     if video:             # <<<<<<<<<<<<<<
  *        _video_cb = video
  *     cdef DevPtr mdev
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_video); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 420; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_video); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 424; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "freenect.pyx":421
+    /* "freenect.pyx":425
  *        _depth_cb = depth
  *     if video:
  *        _video_cb = video             # <<<<<<<<<<<<<<
  *     cdef DevPtr mdev
  *     cdef CtxPtr ctx
  */
-    if (PyDict_SetItem(__pyx_d, __pyx_n_s_video_cb, __pyx_v_video) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 421; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_d, __pyx_n_s_video_cb, __pyx_v_video) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 425; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "freenect.pyx":420
+    /* "freenect.pyx":424
  *     if depth:
  *        _depth_cb = depth
  *     if video:             # <<<<<<<<<<<<<<
@@ -5646,7 +5680,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
   }
 
-  /* "freenect.pyx":426
+  /* "freenect.pyx":430
  *     cdef freenect_device* devp
  *     cdef freenect_context* ctxp
  *     if dev is None:             # <<<<<<<<<<<<<<
@@ -5657,109 +5691,36 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "freenect.pyx":427
+    /* "freenect.pyx":431
  *     cdef freenect_context* ctxp
  *     if dev is None:
  *         ctx = init()             # <<<<<<<<<<<<<<
  *         if not ctx:
  *             error_open_device()
  */
-    __pyx_t_3 = __pyx_f_8freenect_init(0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 427; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __pyx_f_8freenect_init(0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_8freenect_CtxPtr))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 427; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_8freenect_CtxPtr))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_ctx = ((struct __pyx_obj_8freenect_CtxPtr *)__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "freenect.pyx":428
+    /* "freenect.pyx":432
  *     if dev is None:
  *         ctx = init()
  *         if not ctx:             # <<<<<<<<<<<<<<
  *             error_open_device()
  *             return
  */
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_ctx)); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 428; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_ctx)); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 432; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_1 = ((!__pyx_t_2) != 0);
     if (__pyx_t_1) {
 
-      /* "freenect.pyx":429
- *         ctx = init()
- *         if not ctx:
- *             error_open_device()             # <<<<<<<<<<<<<<
- *             return
- *         mdev = open_device(ctx, 0)
- */
-      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_error_open_device); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = NULL;
-      if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
-        __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
-        if (likely(__pyx_t_5)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-          __Pyx_INCREF(__pyx_t_5);
-          __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_4, function);
-        }
-      }
-      if (__pyx_t_5) {
-        __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      } else {
-        __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      }
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-      /* "freenect.pyx":430
- *         if not ctx:
- *             error_open_device()
- *             return             # <<<<<<<<<<<<<<
- *         mdev = open_device(ctx, 0)
- *         if not mdev:
- */
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-      goto __pyx_L0;
-
-      /* "freenect.pyx":428
- *     if dev is None:
- *         ctx = init()
- *         if not ctx:             # <<<<<<<<<<<<<<
- *             error_open_device()
- *             return
- */
-    }
-
-    /* "freenect.pyx":431
- *             error_open_device()
- *             return
- *         mdev = open_device(ctx, 0)             # <<<<<<<<<<<<<<
- *         if not mdev:
- *             error_open_device()
- */
-    __pyx_t_3 = __pyx_f_8freenect_open_device(__pyx_v_ctx, 0, 0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
-    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_8freenect_DevPtr))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_v_mdev = ((struct __pyx_obj_8freenect_DevPtr *)__pyx_t_3);
-    __pyx_t_3 = 0;
-
-    /* "freenect.pyx":432
- *             return
- *         mdev = open_device(ctx, 0)
- *         if not mdev:             # <<<<<<<<<<<<<<
- *             error_open_device()
- *             return
- */
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_mdev)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 432; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_2 = ((!__pyx_t_1) != 0);
-    if (__pyx_t_2) {
-
       /* "freenect.pyx":433
- *         mdev = open_device(ctx, 0)
- *         if not mdev:
+ *         ctx = init()
+ *         if not ctx:
  *             error_open_device()             # <<<<<<<<<<<<<<
  *             return
- *         if depth is not None:
+ *         mdev = open_device(ctx, 0)
  */
       __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_error_open_device); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
@@ -5784,6 +5745,79 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
       /* "freenect.pyx":434
+ *         if not ctx:
+ *             error_open_device()
+ *             return             # <<<<<<<<<<<<<<
+ *         mdev = open_device(ctx, 0)
+ *         if not mdev:
+ */
+      __Pyx_XDECREF(__pyx_r);
+      __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+      goto __pyx_L0;
+
+      /* "freenect.pyx":432
+ *     if dev is None:
+ *         ctx = init()
+ *         if not ctx:             # <<<<<<<<<<<<<<
+ *             error_open_device()
+ *             return
+ */
+    }
+
+    /* "freenect.pyx":435
+ *             error_open_device()
+ *             return
+ *         mdev = open_device(ctx, 0)             # <<<<<<<<<<<<<<
+ *         if not mdev:
+ *             error_open_device()
+ */
+    __pyx_t_3 = __pyx_f_8freenect_open_device(__pyx_v_ctx, 0, 0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 435; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_8freenect_DevPtr))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 435; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_v_mdev = ((struct __pyx_obj_8freenect_DevPtr *)__pyx_t_3);
+    __pyx_t_3 = 0;
+
+    /* "freenect.pyx":436
+ *             return
+ *         mdev = open_device(ctx, 0)
+ *         if not mdev:             # <<<<<<<<<<<<<<
+ *             error_open_device()
+ *             return
+ */
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_mdev)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = ((!__pyx_t_1) != 0);
+    if (__pyx_t_2) {
+
+      /* "freenect.pyx":437
+ *         mdev = open_device(ctx, 0)
+ *         if not mdev:
+ *             error_open_device()             # <<<<<<<<<<<<<<
+ *             return
+ *         if depth is not None:
+ */
+      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_error_open_device); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_5 = NULL;
+      if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
+        __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
+        if (likely(__pyx_t_5)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+          __Pyx_INCREF(__pyx_t_5);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_4, function);
+        }
+      }
+      if (__pyx_t_5) {
+        __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      } else {
+        __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      }
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+      /* "freenect.pyx":438
  *         if not mdev:
  *             error_open_device()
  *             return             # <<<<<<<<<<<<<<
@@ -5794,7 +5828,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
       __pyx_r = Py_None; __Pyx_INCREF(Py_None);
       goto __pyx_L0;
 
-      /* "freenect.pyx":432
+      /* "freenect.pyx":436
  *             return
  *         mdev = open_device(ctx, 0)
  *         if not mdev:             # <<<<<<<<<<<<<<
@@ -5803,7 +5837,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
     }
 
-    /* "freenect.pyx":435
+    /* "freenect.pyx":439
  *             error_open_device()
  *             return
  *         if depth is not None:             # <<<<<<<<<<<<<<
@@ -5814,7 +5848,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
     __pyx_t_1 = (__pyx_t_2 != 0);
     if (__pyx_t_1) {
 
-      /* "freenect.pyx":436
+      /* "freenect.pyx":440
  *             return
  *         if depth is not None:
  *             freenect_set_depth_mode(mdev._ptr, freenect_find_depth_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_DEPTH_11BIT))             # <<<<<<<<<<<<<<
@@ -5823,7 +5857,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
       freenect_set_depth_mode(__pyx_v_mdev->_ptr, freenect_find_depth_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_DEPTH_11BIT));
 
-      /* "freenect.pyx":435
+      /* "freenect.pyx":439
  *             error_open_device()
  *             return
  *         if depth is not None:             # <<<<<<<<<<<<<<
@@ -5832,7 +5866,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
     }
 
-    /* "freenect.pyx":437
+    /* "freenect.pyx":441
  *         if depth is not None:
  *             freenect_set_depth_mode(mdev._ptr, freenect_find_depth_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_DEPTH_11BIT))
  *         if video is not None:             # <<<<<<<<<<<<<<
@@ -5843,7 +5877,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
     __pyx_t_2 = (__pyx_t_1 != 0);
     if (__pyx_t_2) {
 
-      /* "freenect.pyx":438
+      /* "freenect.pyx":442
  *             freenect_set_depth_mode(mdev._ptr, freenect_find_depth_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_DEPTH_11BIT))
  *         if video is not None:
  *             freenect_set_video_mode(mdev._ptr, freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB))             # <<<<<<<<<<<<<<
@@ -5852,7 +5886,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
       freenect_set_video_mode(__pyx_v_mdev->_ptr, freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB));
 
-      /* "freenect.pyx":437
+      /* "freenect.pyx":441
  *         if depth is not None:
  *             freenect_set_depth_mode(mdev._ptr, freenect_find_depth_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_DEPTH_11BIT))
  *         if video is not None:             # <<<<<<<<<<<<<<
@@ -5861,7 +5895,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
     }
 
-    /* "freenect.pyx":426
+    /* "freenect.pyx":430
  *     cdef freenect_device* devp
  *     cdef freenect_context* ctxp
  *     if dev is None:             # <<<<<<<<<<<<<<
@@ -5871,7 +5905,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
     goto __pyx_L5;
   }
 
-  /* "freenect.pyx":441
+  /* "freenect.pyx":445
  * 
  *     else:
  *         mdev = dev             # <<<<<<<<<<<<<<
@@ -5879,7 +5913,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  *     ctxp = mdev.ctx._ptr
  */
   /*else*/ {
-    if (!(likely(((__pyx_v_dev) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_dev, __pyx_ptype_8freenect_DevPtr))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 441; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(((__pyx_v_dev) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_dev, __pyx_ptype_8freenect_DevPtr))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_3 = __pyx_v_dev;
     __Pyx_INCREF(__pyx_t_3);
     __pyx_v_mdev = ((struct __pyx_obj_8freenect_DevPtr *)__pyx_t_3);
@@ -5887,7 +5921,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
   }
   __pyx_L5:;
 
-  /* "freenect.pyx":442
+  /* "freenect.pyx":446
  *     else:
  *         mdev = dev
  *     devp = mdev._ptr             # <<<<<<<<<<<<<<
@@ -5897,7 +5931,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
   __pyx_t_6 = __pyx_v_mdev->_ptr;
   __pyx_v_devp = __pyx_t_6;
 
-  /* "freenect.pyx":443
+  /* "freenect.pyx":447
  *         mdev = dev
  *     devp = mdev._ptr
  *     ctxp = mdev.ctx._ptr             # <<<<<<<<<<<<<<
@@ -5907,7 +5941,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
   __pyx_t_7 = __pyx_v_mdev->ctx->_ptr;
   __pyx_v_ctxp = __pyx_t_7;
 
-  /* "freenect.pyx":444
+  /* "freenect.pyx":448
  *     devp = mdev._ptr
  *     ctxp = mdev.ctx._ptr
  *     if depth is not None:             # <<<<<<<<<<<<<<
@@ -5918,7 +5952,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
-    /* "freenect.pyx":445
+    /* "freenect.pyx":449
  *     ctxp = mdev.ctx._ptr
  *     if depth is not None:
  *         freenect_start_depth(devp)             # <<<<<<<<<<<<<<
@@ -5927,7 +5961,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
     freenect_start_depth(__pyx_v_devp);
 
-    /* "freenect.pyx":446
+    /* "freenect.pyx":450
  *     if depth is not None:
  *         freenect_start_depth(devp)
  *         freenect_set_depth_callback(devp, depth_cb)             # <<<<<<<<<<<<<<
@@ -5936,7 +5970,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
     freenect_set_depth_callback(__pyx_v_devp, __pyx_f_8freenect_depth_cb);
 
-    /* "freenect.pyx":444
+    /* "freenect.pyx":448
  *     devp = mdev._ptr
  *     ctxp = mdev.ctx._ptr
  *     if depth is not None:             # <<<<<<<<<<<<<<
@@ -5945,7 +5979,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
   }
 
-  /* "freenect.pyx":447
+  /* "freenect.pyx":451
  *         freenect_start_depth(devp)
  *         freenect_set_depth_callback(devp, depth_cb)
  *     if video is not None:             # <<<<<<<<<<<<<<
@@ -5956,7 +5990,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "freenect.pyx":448
+    /* "freenect.pyx":452
  *         freenect_set_depth_callback(devp, depth_cb)
  *     if video is not None:
  *         freenect_start_video(devp)             # <<<<<<<<<<<<<<
@@ -5965,7 +5999,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
     freenect_start_video(__pyx_v_devp);
 
-    /* "freenect.pyx":449
+    /* "freenect.pyx":453
  *     if video is not None:
  *         freenect_start_video(devp)
  *         freenect_set_video_callback(devp, video_cb)             # <<<<<<<<<<<<<<
@@ -5974,7 +6008,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
     freenect_set_video_callback(__pyx_v_devp, __pyx_f_8freenect_video_cb);
 
-    /* "freenect.pyx":447
+    /* "freenect.pyx":451
  *         freenect_start_depth(devp)
  *         freenect_set_depth_callback(devp, depth_cb)
  *     if video is not None:             # <<<<<<<<<<<<<<
@@ -5983,7 +6017,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
   }
 
-  /* "freenect.pyx":450
+  /* "freenect.pyx":454
  *         freenect_start_video(devp)
  *         freenect_set_video_callback(devp, video_cb)
  *     try:             # <<<<<<<<<<<<<<
@@ -5997,7 +6031,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
     __Pyx_XGOTREF(__pyx_t_10);
     /*try:*/ {
 
-      /* "freenect.pyx":451
+      /* "freenect.pyx":455
  *         freenect_set_video_callback(devp, video_cb)
  *     try:
  *         while True:             # <<<<<<<<<<<<<<
@@ -6006,7 +6040,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
       while (1) {
 
-        /* "freenect.pyx":452
+        /* "freenect.pyx":456
  *     try:
  *         while True:
  *             with nogil:             # <<<<<<<<<<<<<<
@@ -6020,7 +6054,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
             #endif
             /*try:*/ {
 
-              /* "freenect.pyx":453
+              /* "freenect.pyx":457
  *         while True:
  *             with nogil:
  *                 if freenect_process_events(ctxp) < 0:             # <<<<<<<<<<<<<<
@@ -6030,7 +6064,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
               __pyx_t_2 = ((freenect_process_events(__pyx_v_ctxp) < 0) != 0);
               if (__pyx_t_2) {
 
-                /* "freenect.pyx":454
+                /* "freenect.pyx":458
  *             with nogil:
  *                 if freenect_process_events(ctxp) < 0:
  *                     break             # <<<<<<<<<<<<<<
@@ -6039,7 +6073,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
                 goto __pyx_L23_break;
 
-                /* "freenect.pyx":453
+                /* "freenect.pyx":457
  *         while True:
  *             with nogil:
  *                 if freenect_process_events(ctxp) < 0:             # <<<<<<<<<<<<<<
@@ -6049,7 +6083,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
               }
             }
 
-            /* "freenect.pyx":452
+            /* "freenect.pyx":456
  *     try:
  *         while True:
  *             with nogil:             # <<<<<<<<<<<<<<
@@ -6073,17 +6107,17 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
             }
         }
 
-        /* "freenect.pyx":455
+        /* "freenect.pyx":459
  *                 if freenect_process_events(ctxp) < 0:
  *                     break
  *             if body:             # <<<<<<<<<<<<<<
  *                 body(mdev, mdev.ctx)
  *     except Kill:
  */
-        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_body); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L12_error;}
+        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_body); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 459; __pyx_clineno = __LINE__; goto __pyx_L12_error;}
         if (__pyx_t_2) {
 
-          /* "freenect.pyx":456
+          /* "freenect.pyx":460
  *                     break
  *             if body:
  *                 body(mdev, mdev.ctx)             # <<<<<<<<<<<<<<
@@ -6103,7 +6137,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
               __pyx_t_11 = 1;
             }
           }
-          __pyx_t_12 = PyTuple_New(2+__pyx_t_11); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 456; __pyx_clineno = __LINE__; goto __pyx_L12_error;}
+          __pyx_t_12 = PyTuple_New(2+__pyx_t_11); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 460; __pyx_clineno = __LINE__; goto __pyx_L12_error;}
           __Pyx_GOTREF(__pyx_t_12);
           if (__pyx_t_5) {
             __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -6114,13 +6148,13 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
           __Pyx_INCREF(((PyObject *)__pyx_v_mdev->ctx));
           __Pyx_GIVEREF(((PyObject *)__pyx_v_mdev->ctx));
           PyTuple_SET_ITEM(__pyx_t_12, 1+__pyx_t_11, ((PyObject *)__pyx_v_mdev->ctx));
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_12, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 456; __pyx_clineno = __LINE__; goto __pyx_L12_error;}
+          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_12, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 460; __pyx_clineno = __LINE__; goto __pyx_L12_error;}
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "freenect.pyx":455
+          /* "freenect.pyx":459
  *                 if freenect_process_events(ctxp) < 0:
  *                     break
  *             if body:             # <<<<<<<<<<<<<<
@@ -6131,7 +6165,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
       }
       __pyx_L21_break:;
 
-      /* "freenect.pyx":450
+      /* "freenect.pyx":454
  *         freenect_start_video(devp)
  *         freenect_set_video_callback(devp, video_cb)
  *     try:             # <<<<<<<<<<<<<<
@@ -6149,14 +6183,14 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "freenect.pyx":457
+    /* "freenect.pyx":461
  *             if body:
  *                 body(mdev, mdev.ctx)
  *     except Kill:             # <<<<<<<<<<<<<<
  *         pass
  *     freenect_stop_depth(devp)
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_Kill); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 457; __pyx_clineno = __LINE__; goto __pyx_L14_except_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_Kill); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 461; __pyx_clineno = __LINE__; goto __pyx_L14_except_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_13 = PyErr_ExceptionMatches(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6167,7 +6201,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
     goto __pyx_L14_except_error;
     __pyx_L14_except_error:;
 
-    /* "freenect.pyx":450
+    /* "freenect.pyx":454
  *         freenect_start_video(devp)
  *         freenect_set_video_callback(devp, video_cb)
  *     try:             # <<<<<<<<<<<<<<
@@ -6187,7 +6221,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
     __pyx_L19_try_end:;
   }
 
-  /* "freenect.pyx":459
+  /* "freenect.pyx":463
  *     except Kill:
  *         pass
  *     freenect_stop_depth(devp)             # <<<<<<<<<<<<<<
@@ -6196,7 +6230,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
   freenect_stop_depth(__pyx_v_devp);
 
-  /* "freenect.pyx":460
+  /* "freenect.pyx":464
  *         pass
  *     freenect_stop_depth(devp)
  *     freenect_stop_video(devp)             # <<<<<<<<<<<<<<
@@ -6205,7 +6239,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
   freenect_stop_video(__pyx_v_devp);
 
-  /* "freenect.pyx":461
+  /* "freenect.pyx":465
  *     freenect_stop_depth(devp)
  *     freenect_stop_video(devp)
  *     if dev is None:             # <<<<<<<<<<<<<<
@@ -6216,7 +6250,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
-    /* "freenect.pyx":462
+    /* "freenect.pyx":466
  *     freenect_stop_video(devp)
  *     if dev is None:
  *         freenect_close_device(devp)             # <<<<<<<<<<<<<<
@@ -6225,7 +6259,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
     freenect_close_device(__pyx_v_devp);
 
-    /* "freenect.pyx":463
+    /* "freenect.pyx":467
  *     if dev is None:
  *         freenect_close_device(devp)
  *         freenect_shutdown(ctxp)             # <<<<<<<<<<<<<<
@@ -6234,7 +6268,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
     freenect_shutdown(__pyx_v_ctxp);
 
-    /* "freenect.pyx":461
+    /* "freenect.pyx":465
  *     freenect_stop_depth(devp)
  *     freenect_stop_video(devp)
  *     if dev is None:             # <<<<<<<<<<<<<<
@@ -6243,7 +6277,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
  */
   }
 
-  /* "freenect.pyx":401
+  /* "freenect.pyx":405
  * 
  * 
  * def runloop(depth=None, video=None, body=None, dev=None):             # <<<<<<<<<<<<<<
@@ -6269,7 +6303,7 @@ static PyObject *__pyx_pf_8freenect_50runloop(CYTHON_UNUSED PyObject *__pyx_self
   return __pyx_r;
 }
 
-/* "freenect.pyx":465
+/* "freenect.pyx":469
  *         freenect_shutdown(ctxp)
  * 
  * def base_runloop(CtxPtr ctx, body=None):             # <<<<<<<<<<<<<<
@@ -6315,7 +6349,7 @@ static PyObject *__pyx_pw_8freenect_53base_runloop(PyObject *__pyx_self, PyObjec
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "base_runloop") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 465; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "base_runloop") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 469; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -6330,13 +6364,13 @@ static PyObject *__pyx_pw_8freenect_53base_runloop(PyObject *__pyx_self, PyObjec
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("base_runloop", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 465; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("base_runloop", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 469; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.base_runloop", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ctx), __pyx_ptype_8freenect_CtxPtr, 1, "ctx", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 465; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ctx), __pyx_ptype_8freenect_CtxPtr, 1, "ctx", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 469; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_8freenect_52base_runloop(__pyx_self, __pyx_v_ctx, __pyx_v_body);
 
   /* function exit code */
@@ -6367,7 +6401,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("base_runloop", 0);
 
-  /* "freenect.pyx":478
+  /* "freenect.pyx":482
  *     """
  *     cdef freenect_context* ctxp
  *     ctxp = ctx._ptr             # <<<<<<<<<<<<<<
@@ -6377,7 +6411,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
   __pyx_t_1 = __pyx_v_ctx->_ptr;
   __pyx_v_ctxp = __pyx_t_1;
 
-  /* "freenect.pyx":479
+  /* "freenect.pyx":483
  *     cdef freenect_context* ctxp
  *     ctxp = ctx._ptr
  *     try:             # <<<<<<<<<<<<<<
@@ -6391,7 +6425,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
     __Pyx_XGOTREF(__pyx_t_4);
     /*try:*/ {
 
-      /* "freenect.pyx":480
+      /* "freenect.pyx":484
  *     ctxp = ctx._ptr
  *     try:
  *         while True:             # <<<<<<<<<<<<<<
@@ -6400,7 +6434,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
  */
       while (1) {
 
-        /* "freenect.pyx":481
+        /* "freenect.pyx":485
  *     try:
  *         while True:
  *             with nogil:             # <<<<<<<<<<<<<<
@@ -6414,7 +6448,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
             #endif
             /*try:*/ {
 
-              /* "freenect.pyx":482
+              /* "freenect.pyx":486
  *         while True:
  *             with nogil:
  *                 if freenect_process_events(ctxp) < 0:             # <<<<<<<<<<<<<<
@@ -6424,7 +6458,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
               __pyx_t_5 = ((freenect_process_events(__pyx_v_ctxp) < 0) != 0);
               if (__pyx_t_5) {
 
-                /* "freenect.pyx":483
+                /* "freenect.pyx":487
  *             with nogil:
  *                 if freenect_process_events(ctxp) < 0:
  *                     break             # <<<<<<<<<<<<<<
@@ -6433,7 +6467,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
  */
                 goto __pyx_L14_break;
 
-                /* "freenect.pyx":482
+                /* "freenect.pyx":486
  *         while True:
  *             with nogil:
  *                 if freenect_process_events(ctxp) < 0:             # <<<<<<<<<<<<<<
@@ -6443,7 +6477,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
               }
             }
 
-            /* "freenect.pyx":481
+            /* "freenect.pyx":485
  *     try:
  *         while True:
  *             with nogil:             # <<<<<<<<<<<<<<
@@ -6467,17 +6501,17 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
             }
         }
 
-        /* "freenect.pyx":484
+        /* "freenect.pyx":488
  *                 if freenect_process_events(ctxp) < 0:
  *                     break
  *             if body:             # <<<<<<<<<<<<<<
  *                 body(ctx)
  *     except Kill:
  */
-        __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_body); if (unlikely(__pyx_t_5 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 484; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_body); if (unlikely(__pyx_t_5 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 488; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         if (__pyx_t_5) {
 
-          /* "freenect.pyx":485
+          /* "freenect.pyx":489
  *                     break
  *             if body:
  *                 body(ctx)             # <<<<<<<<<<<<<<
@@ -6496,23 +6530,23 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
             }
           }
           if (!__pyx_t_8) {
-            __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_7, ((PyObject *)__pyx_v_ctx)); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 485; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+            __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_7, ((PyObject *)__pyx_v_ctx)); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 489; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
             __Pyx_GOTREF(__pyx_t_6);
           } else {
-            __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 485; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+            __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 489; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
             __Pyx_GOTREF(__pyx_t_9);
             __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_8); __pyx_t_8 = NULL;
             __Pyx_INCREF(((PyObject *)__pyx_v_ctx));
             __Pyx_GIVEREF(((PyObject *)__pyx_v_ctx));
             PyTuple_SET_ITEM(__pyx_t_9, 0+1, ((PyObject *)__pyx_v_ctx));
-            __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_9, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 485; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+            __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_9, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 489; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
             __Pyx_GOTREF(__pyx_t_6);
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           }
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-          /* "freenect.pyx":484
+          /* "freenect.pyx":488
  *                 if freenect_process_events(ctxp) < 0:
  *                     break
  *             if body:             # <<<<<<<<<<<<<<
@@ -6523,7 +6557,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
       }
       __pyx_L12_break:;
 
-      /* "freenect.pyx":479
+      /* "freenect.pyx":483
  *     cdef freenect_context* ctxp
  *     ctxp = ctx._ptr
  *     try:             # <<<<<<<<<<<<<<
@@ -6541,14 +6575,14 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "freenect.pyx":486
+    /* "freenect.pyx":490
  *             if body:
  *                 body(ctx)
  *     except Kill:             # <<<<<<<<<<<<<<
  *         pass
  * 
  */
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_Kill); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 486; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_Kill); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 490; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_10 = PyErr_ExceptionMatches(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -6559,7 +6593,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "freenect.pyx":479
+    /* "freenect.pyx":483
  *     cdef freenect_context* ctxp
  *     ctxp = ctx._ptr
  *     try:             # <<<<<<<<<<<<<<
@@ -6579,7 +6613,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
     __pyx_L10_try_end:;
   }
 
-  /* "freenect.pyx":465
+  /* "freenect.pyx":469
  *         freenect_shutdown(ctxp)
  * 
  * def base_runloop(CtxPtr ctx, body=None):             # <<<<<<<<<<<<<<
@@ -6603,7 +6637,7 @@ static PyObject *__pyx_pf_8freenect_52base_runloop(CYTHON_UNUSED PyObject *__pyx
   return __pyx_r;
 }
 
-/* "freenect.pyx":491
+/* "freenect.pyx":495
  * import_array()
  * 
  * cdef object _depth_cb_np(void *data, freenect_frame_mode *mode):             # <<<<<<<<<<<<<<
@@ -6628,7 +6662,7 @@ static PyObject *__pyx_f_8freenect__depth_cb_np(void *__pyx_v_data, freenect_fra
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_depth_cb_np", 0);
 
-  /* "freenect.pyx":494
+  /* "freenect.pyx":498
  *     cdef npc.npy_intp dims[2]
  * 
  *     if mode.video_format in (DEPTH_11BIT, DEPTH_10BIT, DEPTH_REGISTERED, DEPTH_MM):             # <<<<<<<<<<<<<<
@@ -6636,63 +6670,63 @@ static PyObject *__pyx_f_8freenect__depth_cb_np(void *__pyx_v_data, freenect_fra
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data)
  */
   __pyx_t_1 = __pyx_v_mode->video_format;
-  __pyx_t_3 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_11BIT); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_11BIT); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (!__pyx_t_6) {
   } else {
     __pyx_t_2 = __pyx_t_6;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_5 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_10BIT); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_10BIT); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (!__pyx_t_6) {
   } else {
     __pyx_t_2 = __pyx_t_6;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_3 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_REGISTERED); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_REGISTERED); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (!__pyx_t_6) {
   } else {
     __pyx_t_2 = __pyx_t_6;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_5 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_MM); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_MM); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_2 = __pyx_t_6;
   __pyx_L4_bool_binop_done:;
   __pyx_t_6 = (__pyx_t_2 != 0);
   if (__pyx_t_6) {
 
-    /* "freenect.pyx":495
+    /* "freenect.pyx":499
  * 
  *     if mode.video_format in (DEPTH_11BIT, DEPTH_10BIT, DEPTH_REGISTERED, DEPTH_MM):
  *         dims[0], dims[1] = mode.height, mode.width             # <<<<<<<<<<<<<<
@@ -6704,7 +6738,7 @@ static PyObject *__pyx_f_8freenect__depth_cb_np(void *__pyx_v_data, freenect_fra
     (__pyx_v_dims[0]) = __pyx_t_7;
     (__pyx_v_dims[1]) = __pyx_t_8;
 
-    /* "freenect.pyx":496
+    /* "freenect.pyx":500
  *     if mode.video_format in (DEPTH_11BIT, DEPTH_10BIT, DEPTH_REGISTERED, DEPTH_MM):
  *         dims[0], dims[1] = mode.height, mode.width
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data)             # <<<<<<<<<<<<<<
@@ -6712,13 +6746,13 @@ static PyObject *__pyx_f_8freenect__depth_cb_np(void *__pyx_v_data, freenect_fra
  *         return (<char *>data)[:mode.bytes]
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT16, __pyx_v_data); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 496; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT16, __pyx_v_data); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 500; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "freenect.pyx":494
+    /* "freenect.pyx":498
  *     cdef npc.npy_intp dims[2]
  * 
  *     if mode.video_format in (DEPTH_11BIT, DEPTH_10BIT, DEPTH_REGISTERED, DEPTH_MM):             # <<<<<<<<<<<<<<
@@ -6727,7 +6761,7 @@ static PyObject *__pyx_f_8freenect__depth_cb_np(void *__pyx_v_data, freenect_fra
  */
   }
 
-  /* "freenect.pyx":498
+  /* "freenect.pyx":502
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data)
  *     else:
  *         return (<char *>data)[:mode.bytes]             # <<<<<<<<<<<<<<
@@ -6736,14 +6770,14 @@ static PyObject *__pyx_f_8freenect__depth_cb_np(void *__pyx_v_data, freenect_fra
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = __Pyx_PyBytes_FromStringAndSize(((char *)__pyx_v_data) + 0, __pyx_v_mode->bytes - 0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyBytes_FromStringAndSize(((char *)__pyx_v_data) + 0, __pyx_v_mode->bytes - 0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
   }
 
-  /* "freenect.pyx":491
+  /* "freenect.pyx":495
  * import_array()
  * 
  * cdef object _depth_cb_np(void *data, freenect_frame_mode *mode):             # <<<<<<<<<<<<<<
@@ -6764,7 +6798,7 @@ static PyObject *__pyx_f_8freenect__depth_cb_np(void *__pyx_v_data, freenect_fra
   return __pyx_r;
 }
 
-/* "freenect.pyx":501
+/* "freenect.pyx":505
  * 
  * 
  * cdef _video_cb_np(void *data, freenect_frame_mode *mode):             # <<<<<<<<<<<<<<
@@ -6790,7 +6824,7 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_video_cb_np", 0);
 
-  /* "freenect.pyx":504
+  /* "freenect.pyx":508
  *     cdef npc.npy_intp dims[3]
  * 
  *     if mode.video_format in (VIDEO_RGB, VIDEO_YUV_RGB):             # <<<<<<<<<<<<<<
@@ -6798,35 +6832,35 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
  *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data)
  */
   __pyx_t_1 = __pyx_v_mode->video_format;
-  __pyx_t_3 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 504; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_RGB); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 504; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_RGB); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 504; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 504; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (!__pyx_t_6) {
   } else {
     __pyx_t_2 = __pyx_t_6;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_5 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 504; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_From_int32_t(__pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_YUV_RGB); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 504; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_YUV_RGB); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 504; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 504; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_2 = __pyx_t_6;
   __pyx_L4_bool_binop_done:;
   __pyx_t_6 = (__pyx_t_2 != 0);
   if (__pyx_t_6) {
 
-    /* "freenect.pyx":505
+    /* "freenect.pyx":509
  * 
  *     if mode.video_format in (VIDEO_RGB, VIDEO_YUV_RGB):
  *         dims[0], dims[1], dims[2]  = mode.height, mode.width, 3             # <<<<<<<<<<<<<<
@@ -6840,7 +6874,7 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
     (__pyx_v_dims[1]) = __pyx_t_8;
     (__pyx_v_dims[2]) = __pyx_t_9;
 
-    /* "freenect.pyx":506
+    /* "freenect.pyx":510
  *     if mode.video_format in (VIDEO_RGB, VIDEO_YUV_RGB):
  *         dims[0], dims[1], dims[2]  = mode.height, mode.width, 3
  *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data)             # <<<<<<<<<<<<<<
@@ -6848,13 +6882,13 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
  *         dims[0], dims[1]  = mode.height, mode.width
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyArray_SimpleNewFromData(3, __pyx_v_dims, NPY_UINT8, __pyx_v_data); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 506; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyArray_SimpleNewFromData(3, __pyx_v_dims, NPY_UINT8, __pyx_v_data); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 510; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "freenect.pyx":504
+    /* "freenect.pyx":508
  *     cdef npc.npy_intp dims[3]
  * 
  *     if mode.video_format in (VIDEO_RGB, VIDEO_YUV_RGB):             # <<<<<<<<<<<<<<
@@ -6863,25 +6897,25 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
  */
   }
 
-  /* "freenect.pyx":507
+  /* "freenect.pyx":511
  *         dims[0], dims[1], dims[2]  = mode.height, mode.width, 3
  *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data)
  *     elif mode.video_format == VIDEO_IR_8BIT:             # <<<<<<<<<<<<<<
  *         dims[0], dims[1]  = mode.height, mode.width
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data)
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int32_t(__pyx_v_mode->video_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 507; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_int32_t(__pyx_v_mode->video_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 511; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_IR_8BIT); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 507; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_IR_8BIT); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 511; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 507; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 511; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 507; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 511; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (__pyx_t_6) {
 
-    /* "freenect.pyx":508
+    /* "freenect.pyx":512
  *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data)
  *     elif mode.video_format == VIDEO_IR_8BIT:
  *         dims[0], dims[1]  = mode.height, mode.width             # <<<<<<<<<<<<<<
@@ -6893,7 +6927,7 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
     (__pyx_v_dims[0]) = __pyx_t_8;
     (__pyx_v_dims[1]) = __pyx_t_7;
 
-    /* "freenect.pyx":509
+    /* "freenect.pyx":513
  *     elif mode.video_format == VIDEO_IR_8BIT:
  *         dims[0], dims[1]  = mode.height, mode.width
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data)             # <<<<<<<<<<<<<<
@@ -6901,13 +6935,13 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
  *         dims[0], dims[1]  = mode.height, mode.width
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_5 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT8, __pyx_v_data); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 509; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT8, __pyx_v_data); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 513; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "freenect.pyx":507
+    /* "freenect.pyx":511
  *         dims[0], dims[1], dims[2]  = mode.height, mode.width, 3
  *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data)
  *     elif mode.video_format == VIDEO_IR_8BIT:             # <<<<<<<<<<<<<<
@@ -6916,25 +6950,25 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
  */
   }
 
-  /* "freenect.pyx":510
+  /* "freenect.pyx":514
  *         dims[0], dims[1]  = mode.height, mode.width
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data)
  *     elif mode.video_format == VIDEO_IR_10BIT:             # <<<<<<<<<<<<<<
  *         dims[0], dims[1]  = mode.height, mode.width
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data)
  */
-  __pyx_t_5 = __Pyx_PyInt_From_int32_t(__pyx_v_mode->video_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 510; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_From_int32_t(__pyx_v_mode->video_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 514; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_IR_10BIT); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 510; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_IR_10BIT); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 514; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 510; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 514; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 510; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 514; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_6) {
 
-    /* "freenect.pyx":511
+    /* "freenect.pyx":515
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data)
  *     elif mode.video_format == VIDEO_IR_10BIT:
  *         dims[0], dims[1]  = mode.height, mode.width             # <<<<<<<<<<<<<<
@@ -6946,7 +6980,7 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
     (__pyx_v_dims[0]) = __pyx_t_7;
     (__pyx_v_dims[1]) = __pyx_t_8;
 
-    /* "freenect.pyx":512
+    /* "freenect.pyx":516
  *     elif mode.video_format == VIDEO_IR_10BIT:
  *         dims[0], dims[1]  = mode.height, mode.width
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data)             # <<<<<<<<<<<<<<
@@ -6954,13 +6988,13 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
  *         return (<char *>data)[:mode.bytes]
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT16, __pyx_v_data); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 512; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT16, __pyx_v_data); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "freenect.pyx":510
+    /* "freenect.pyx":514
  *         dims[0], dims[1]  = mode.height, mode.width
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data)
  *     elif mode.video_format == VIDEO_IR_10BIT:             # <<<<<<<<<<<<<<
@@ -6969,7 +7003,7 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
  */
   }
 
-  /* "freenect.pyx":514
+  /* "freenect.pyx":518
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data)
  *     else:
  *         return (<char *>data)[:mode.bytes]             # <<<<<<<<<<<<<<
@@ -6978,14 +7012,14 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = __Pyx_PyBytes_FromStringAndSize(((char *)__pyx_v_data) + 0, __pyx_v_mode->bytes - 0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 514; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyBytes_FromStringAndSize(((char *)__pyx_v_data) + 0, __pyx_v_mode->bytes - 0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 518; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
   }
 
-  /* "freenect.pyx":501
+  /* "freenect.pyx":505
  * 
  * 
  * cdef _video_cb_np(void *data, freenect_frame_mode *mode):             # <<<<<<<<<<<<<<
@@ -7006,7 +7040,7 @@ static PyObject *__pyx_f_8freenect__video_cb_np(void *__pyx_v_data, freenect_fra
   return __pyx_r;
 }
 
-/* "freenect.pyx":516
+/* "freenect.pyx":520
  *         return (<char *>data)[:mode.bytes]
  * 
  * def sync_get_depth(index=0, format=DEPTH_11BIT):             # <<<<<<<<<<<<<<
@@ -7055,7 +7089,7 @@ static PyObject *__pyx_pw_8freenect_55sync_get_depth(PyObject *__pyx_self, PyObj
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "sync_get_depth") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 516; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "sync_get_depth") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 520; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7070,7 +7104,7 @@ static PyObject *__pyx_pw_8freenect_55sync_get_depth(PyObject *__pyx_self, PyObj
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("sync_get_depth", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 516; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("sync_get_depth", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 520; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.sync_get_depth", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7106,27 +7140,27 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("sync_get_depth", 0);
 
-  /* "freenect.pyx":532
+  /* "freenect.pyx":536
  *     cdef npc.npy_intp dims[2]
  *     cdef int out
  *     cdef int _index = index             # <<<<<<<<<<<<<<
  *     cdef freenect_depth_format _format = format
  *     with nogil:
  */
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_index); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 532; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_index); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 536; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v__index = __pyx_t_1;
 
-  /* "freenect.pyx":533
+  /* "freenect.pyx":537
  *     cdef int out
  *     cdef int _index = index
  *     cdef freenect_depth_format _format = format             # <<<<<<<<<<<<<<
  *     with nogil:
  *         out = freenect_sync_get_depth(&data, &timestamp, _index, _format)
  */
-  __pyx_t_2 = ((freenect_depth_format)__Pyx_PyInt_As_freenect_depth_format(__pyx_v_format)); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 533; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = ((freenect_depth_format)__Pyx_PyInt_As_freenect_depth_format(__pyx_v_format)); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v__format = __pyx_t_2;
 
-  /* "freenect.pyx":534
+  /* "freenect.pyx":538
  *     cdef int _index = index
  *     cdef freenect_depth_format _format = format
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -7140,7 +7174,7 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
       #endif
       /*try:*/ {
 
-        /* "freenect.pyx":535
+        /* "freenect.pyx":539
  *     cdef freenect_depth_format _format = format
  *     with nogil:
  *         out = freenect_sync_get_depth(&data, &timestamp, _index, _format)             # <<<<<<<<<<<<<<
@@ -7150,7 +7184,7 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
         __pyx_v_out = freenect_sync_get_depth((&__pyx_v_data), (&__pyx_v_timestamp), __pyx_v__index, __pyx_v__format);
       }
 
-      /* "freenect.pyx":534
+      /* "freenect.pyx":538
  *     cdef int _index = index
  *     cdef freenect_depth_format _format = format
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -7168,7 +7202,7 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
       }
   }
 
-  /* "freenect.pyx":536
+  /* "freenect.pyx":540
  *     with nogil:
  *         out = freenect_sync_get_depth(&data, &timestamp, _index, _format)
  *     if out:             # <<<<<<<<<<<<<<
@@ -7178,14 +7212,14 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
   __pyx_t_3 = (__pyx_v_out != 0);
   if (__pyx_t_3) {
 
-    /* "freenect.pyx":537
+    /* "freenect.pyx":541
  *         out = freenect_sync_get_depth(&data, &timestamp, _index, _format)
  *     if out:
  *         error_open_device()             # <<<<<<<<<<<<<<
  *         return
  *     if format in [DEPTH_11BIT, DEPTH_10BIT, DEPTH_MM, DEPTH_REGISTERED]:
  */
-    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_error_open_device); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_error_open_device); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 541; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -7198,16 +7232,16 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
       }
     }
     if (__pyx_t_6) {
-      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 541; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     } else {
-      __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 541; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "freenect.pyx":538
+    /* "freenect.pyx":542
  *     if out:
  *         error_open_device()
  *         return             # <<<<<<<<<<<<<<
@@ -7218,7 +7252,7 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "freenect.pyx":536
+    /* "freenect.pyx":540
  *     with nogil:
  *         out = freenect_sync_get_depth(&data, &timestamp, _index, _format)
  *     if out:             # <<<<<<<<<<<<<<
@@ -7227,7 +7261,7 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
  */
   }
 
-  /* "freenect.pyx":539
+  /* "freenect.pyx":543
  *         error_open_device()
  *         return
  *     if format in [DEPTH_11BIT, DEPTH_10BIT, DEPTH_MM, DEPTH_REGISTERED]:             # <<<<<<<<<<<<<<
@@ -7236,44 +7270,44 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
  */
   __Pyx_INCREF(__pyx_v_format);
   __pyx_t_4 = __pyx_v_format;
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_11BIT); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_11BIT); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   if (!__pyx_t_7) {
   } else {
     __pyx_t_3 = __pyx_t_7;
     goto __pyx_L8_bool_binop_done;
   }
-  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_10BIT); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_10BIT); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_4, __pyx_t_6, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_4, __pyx_t_6, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (!__pyx_t_7) {
   } else {
     __pyx_t_3 = __pyx_t_7;
     goto __pyx_L8_bool_binop_done;
   }
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_MM); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_MM); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   if (!__pyx_t_7) {
   } else {
     __pyx_t_3 = __pyx_t_7;
     goto __pyx_L8_bool_binop_done;
   }
-  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_REGISTERED); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_REGISTERED); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_4, __pyx_t_6, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_4, __pyx_t_6, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 539; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_3 = __pyx_t_7;
   __pyx_L8_bool_binop_done:;
@@ -7281,7 +7315,7 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
   __pyx_t_7 = (__pyx_t_3 != 0);
   if (__pyx_t_7) {
 
-    /* "freenect.pyx":540
+    /* "freenect.pyx":544
  *         return
  *     if format in [DEPTH_11BIT, DEPTH_10BIT, DEPTH_MM, DEPTH_REGISTERED]:
  *         dims[0], dims[1]  = 480, 640             # <<<<<<<<<<<<<<
@@ -7293,7 +7327,7 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
     (__pyx_v_dims[0]) = __pyx_t_8;
     (__pyx_v_dims[1]) = __pyx_t_9;
 
-    /* "freenect.pyx":541
+    /* "freenect.pyx":545
  *     if format in [DEPTH_11BIT, DEPTH_10BIT, DEPTH_MM, DEPTH_REGISTERED]:
  *         dims[0], dims[1]  = 480, 640
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp             # <<<<<<<<<<<<<<
@@ -7301,11 +7335,11 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
  *         raise TypeError('Conversion not implemented for type [%d]' % (format))
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_4 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT16, __pyx_v_data); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 541; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT16, __pyx_v_data); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 545; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 541; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 545; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 541; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 545; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4);
@@ -7317,7 +7351,7 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "freenect.pyx":539
+    /* "freenect.pyx":543
  *         error_open_device()
  *         return
  *     if format in [DEPTH_11BIT, DEPTH_10BIT, DEPTH_MM, DEPTH_REGISTERED]:             # <<<<<<<<<<<<<<
@@ -7326,7 +7360,7 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
  */
   }
 
-  /* "freenect.pyx":543
+  /* "freenect.pyx":547
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
  *     else:
  *         raise TypeError('Conversion not implemented for type [%d]' % (format))             # <<<<<<<<<<<<<<
@@ -7334,22 +7368,22 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
  * 
  */
   /*else*/ {
-    __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_Conversion_not_implemented_for_t, __pyx_v_format); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_Conversion_not_implemented_for_t, __pyx_v_format); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 547; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 547; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_6);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_6);
     __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 547; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 543; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 547; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "freenect.pyx":516
+  /* "freenect.pyx":520
  *         return (<char *>data)[:mode.bytes]
  * 
  * def sync_get_depth(index=0, format=DEPTH_11BIT):             # <<<<<<<<<<<<<<
@@ -7370,7 +7404,7 @@ static PyObject *__pyx_pf_8freenect_54sync_get_depth(CYTHON_UNUSED PyObject *__p
   return __pyx_r;
 }
 
-/* "freenect.pyx":546
+/* "freenect.pyx":550
  * 
  * 
  * def sync_get_video(index=0, format=VIDEO_RGB):             # <<<<<<<<<<<<<<
@@ -7419,7 +7453,7 @@ static PyObject *__pyx_pw_8freenect_57sync_get_video(PyObject *__pyx_self, PyObj
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "sync_get_video") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 546; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "sync_get_video") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7434,7 +7468,7 @@ static PyObject *__pyx_pw_8freenect_57sync_get_video(PyObject *__pyx_self, PyObj
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("sync_get_video", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 546; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("sync_get_video", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("freenect.sync_get_video", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7470,27 +7504,27 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("sync_get_video", 0);
 
-  /* "freenect.pyx":562
+  /* "freenect.pyx":566
  *     cdef npc.npy_intp dims[3]
  *     cdef int out
  *     cdef int _index = index             # <<<<<<<<<<<<<<
  *     cdef freenect_video_format _format = format
  *     with nogil:
  */
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_index); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 562; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_index); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 566; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v__index = __pyx_t_1;
 
-  /* "freenect.pyx":563
+  /* "freenect.pyx":567
  *     cdef int out
  *     cdef int _index = index
  *     cdef freenect_video_format _format = format             # <<<<<<<<<<<<<<
  *     with nogil:
  *         out = freenect_sync_get_video(&data, &timestamp, _index, _format)
  */
-  __pyx_t_2 = ((freenect_video_format)__Pyx_PyInt_As_freenect_video_format(__pyx_v_format)); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 563; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = ((freenect_video_format)__Pyx_PyInt_As_freenect_video_format(__pyx_v_format)); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 567; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v__format = __pyx_t_2;
 
-  /* "freenect.pyx":564
+  /* "freenect.pyx":568
  *     cdef int _index = index
  *     cdef freenect_video_format _format = format
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -7504,7 +7538,7 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
       #endif
       /*try:*/ {
 
-        /* "freenect.pyx":565
+        /* "freenect.pyx":569
  *     cdef freenect_video_format _format = format
  *     with nogil:
  *         out = freenect_sync_get_video(&data, &timestamp, _index, _format)             # <<<<<<<<<<<<<<
@@ -7514,7 +7548,7 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
         __pyx_v_out = freenect_sync_get_video((&__pyx_v_data), (&__pyx_v_timestamp), __pyx_v__index, __pyx_v__format);
       }
 
-      /* "freenect.pyx":564
+      /* "freenect.pyx":568
  *     cdef int _index = index
  *     cdef freenect_video_format _format = format
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -7532,7 +7566,7 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
       }
   }
 
-  /* "freenect.pyx":566
+  /* "freenect.pyx":570
  *     with nogil:
  *         out = freenect_sync_get_video(&data, &timestamp, _index, _format)
  *     if out:             # <<<<<<<<<<<<<<
@@ -7542,14 +7576,14 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
   __pyx_t_3 = (__pyx_v_out != 0);
   if (__pyx_t_3) {
 
-    /* "freenect.pyx":567
+    /* "freenect.pyx":571
  *         out = freenect_sync_get_video(&data, &timestamp, _index, _format)
  *     if out:
  *         error_open_device()             # <<<<<<<<<<<<<<
  *         return
  *     if format == VIDEO_RGB:
  */
-    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_error_open_device); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 567; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_error_open_device); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -7562,16 +7596,16 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
       }
     }
     if (__pyx_t_6) {
-      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 567; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     } else {
-      __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 567; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "freenect.pyx":568
+    /* "freenect.pyx":572
  *     if out:
  *         error_open_device()
  *         return             # <<<<<<<<<<<<<<
@@ -7582,7 +7616,7 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "freenect.pyx":566
+    /* "freenect.pyx":570
  *     with nogil:
  *         out = freenect_sync_get_video(&data, &timestamp, _index, _format)
  *     if out:             # <<<<<<<<<<<<<<
@@ -7591,22 +7625,22 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
  */
   }
 
-  /* "freenect.pyx":569
+  /* "freenect.pyx":573
  *         error_open_device()
  *         return
  *     if format == VIDEO_RGB:             # <<<<<<<<<<<<<<
  *         dims[0], dims[1], dims[2]  = 480, 640, 3
  *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_RGB); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_RGB); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 573; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_v_format, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_v_format, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 573; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 573; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (__pyx_t_3) {
 
-    /* "freenect.pyx":570
+    /* "freenect.pyx":574
  *         return
  *     if format == VIDEO_RGB:
  *         dims[0], dims[1], dims[2]  = 480, 640, 3             # <<<<<<<<<<<<<<
@@ -7620,7 +7654,7 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
     (__pyx_v_dims[1]) = __pyx_t_8;
     (__pyx_v_dims[2]) = __pyx_t_9;
 
-    /* "freenect.pyx":571
+    /* "freenect.pyx":575
  *     if format == VIDEO_RGB:
  *         dims[0], dims[1], dims[2]  = 480, 640, 3
  *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp             # <<<<<<<<<<<<<<
@@ -7628,11 +7662,11 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
  *         dims[0], dims[1]  = 480, 640
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_5 = PyArray_SimpleNewFromData(3, __pyx_v_dims, NPY_UINT8, __pyx_v_data); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyArray_SimpleNewFromData(3, __pyx_v_dims, NPY_UINT8, __pyx_v_data); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 575; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 575; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 575; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_5);
@@ -7644,7 +7678,7 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "freenect.pyx":569
+    /* "freenect.pyx":573
  *         error_open_device()
  *         return
  *     if format == VIDEO_RGB:             # <<<<<<<<<<<<<<
@@ -7653,22 +7687,22 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
  */
   }
 
-  /* "freenect.pyx":572
+  /* "freenect.pyx":576
  *         dims[0], dims[1], dims[2]  = 480, 640, 3
  *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp
  *     elif format == VIDEO_IR_8BIT:             # <<<<<<<<<<<<<<
  *         dims[0], dims[1]  = 480, 640
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp
  */
-  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_IR_8BIT); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 572; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_IR_8BIT); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 576; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_format, __pyx_t_6, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 572; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_format, __pyx_t_6, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 576; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 572; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 576; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_3) {
 
-    /* "freenect.pyx":573
+    /* "freenect.pyx":577
  *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp
  *     elif format == VIDEO_IR_8BIT:
  *         dims[0], dims[1]  = 480, 640             # <<<<<<<<<<<<<<
@@ -7680,7 +7714,7 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
     (__pyx_v_dims[0]) = __pyx_t_9;
     (__pyx_v_dims[1]) = __pyx_t_8;
 
-    /* "freenect.pyx":574
+    /* "freenect.pyx":578
  *     elif format == VIDEO_IR_8BIT:
  *         dims[0], dims[1]  = 480, 640
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp             # <<<<<<<<<<<<<<
@@ -7688,11 +7722,11 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
  *         dims[0], dims[1]  = 480, 640
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_4 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT8, __pyx_v_data); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 574; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT8, __pyx_v_data); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 578; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 574; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 578; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 574; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 578; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4);
@@ -7704,7 +7738,7 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "freenect.pyx":572
+    /* "freenect.pyx":576
  *         dims[0], dims[1], dims[2]  = 480, 640, 3
  *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp
  *     elif format == VIDEO_IR_8BIT:             # <<<<<<<<<<<<<<
@@ -7713,22 +7747,22 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
  */
   }
 
-  /* "freenect.pyx":575
+  /* "freenect.pyx":579
  *         dims[0], dims[1]  = 480, 640
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp
  *     elif format == VIDEO_IR_10BIT:             # <<<<<<<<<<<<<<
  *         dims[0], dims[1]  = 480, 640
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_IR_10BIT); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 575; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_IR_10BIT); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 579; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyObject_RichCompare(__pyx_v_format, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 575; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyObject_RichCompare(__pyx_v_format, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 579; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 575; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 579; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   if (__pyx_t_3) {
 
-    /* "freenect.pyx":576
+    /* "freenect.pyx":580
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp
  *     elif format == VIDEO_IR_10BIT:
  *         dims[0], dims[1]  = 480, 640             # <<<<<<<<<<<<<<
@@ -7740,7 +7774,7 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
     (__pyx_v_dims[0]) = __pyx_t_8;
     (__pyx_v_dims[1]) = __pyx_t_9;
 
-    /* "freenect.pyx":577
+    /* "freenect.pyx":581
  *     elif format == VIDEO_IR_10BIT:
  *         dims[0], dims[1]  = 480, 640
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp             # <<<<<<<<<<<<<<
@@ -7748,11 +7782,11 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
  *         raise TypeError('Conversion not implemented for type [%d]' % (format))
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_6 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT16, __pyx_v_data); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 577; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT16, __pyx_v_data); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 577; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 577; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_6);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6);
@@ -7764,7 +7798,7 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
     __pyx_t_4 = 0;
     goto __pyx_L0;
 
-    /* "freenect.pyx":575
+    /* "freenect.pyx":579
  *         dims[0], dims[1]  = 480, 640
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp
  *     elif format == VIDEO_IR_10BIT:             # <<<<<<<<<<<<<<
@@ -7773,30 +7807,30 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
  */
   }
 
-  /* "freenect.pyx":579
+  /* "freenect.pyx":583
  *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
  *     else:
  *         raise TypeError('Conversion not implemented for type [%d]' % (format))             # <<<<<<<<<<<<<<
  * 
- * 
+ * # modification pgaskell
  */
   /*else*/ {
-    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_Conversion_not_implemented_for_t, __pyx_v_format); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 579; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_Conversion_not_implemented_for_t, __pyx_v_format); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 583; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 579; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 583; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 579; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 583; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 579; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 583; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "freenect.pyx":546
+  /* "freenect.pyx":550
  * 
  * 
  * def sync_get_video(index=0, format=VIDEO_RGB):             # <<<<<<<<<<<<<<
@@ -7817,8 +7851,1189 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
   return __pyx_r;
 }
 
-/* "freenect.pyx":582
+/* "freenect.pyx":586
  * 
+ * # modification pgaskell
+ * def sync_get_depth_with_res(index=0, resolution=RESOLUTION_MEDIUM,format=DEPTH_11BIT):             # <<<<<<<<<<<<<<
+ *     """Get the next available depth frame from the kinect, as a numpy array.
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_8freenect_59sync_get_depth_with_res(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_8freenect_58sync_get_depth_with_res[] = "Get the next available depth frame from the kinect, as a numpy array.\n\n    Args:\n        index: Kinect device index (default: 0)\n        format: Depth format (default: DEPTH_11BIT)\n\n    Returns:\n        (depth, timestamp) or None on error\n        depth: A numpy array, shape:(480,640) dtype:np.uint16\n        timestamp: int representing the time\n    ";
+static PyMethodDef __pyx_mdef_8freenect_59sync_get_depth_with_res = {"sync_get_depth_with_res", (PyCFunction)__pyx_pw_8freenect_59sync_get_depth_with_res, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8freenect_58sync_get_depth_with_res};
+static PyObject *__pyx_pw_8freenect_59sync_get_depth_with_res(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_index = 0;
+  PyObject *__pyx_v_resolution = 0;
+  PyObject *__pyx_v_format = 0;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("sync_get_depth_with_res (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_index,&__pyx_n_s_resolution,&__pyx_n_s_format,0};
+    PyObject* values[3] = {0,0,0};
+    values[0] = ((PyObject *)__pyx_int_0);
+    values[1] = __pyx_k__7;
+    values[2] = __pyx_k__8;
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_index);
+          if (value) { values[0] = value; kw_args--; }
+        }
+        case  1:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_resolution);
+          if (value) { values[1] = value; kw_args--; }
+        }
+        case  2:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_format);
+          if (value) { values[2] = value; kw_args--; }
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "sync_get_depth_with_res") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 586; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      }
+    } else {
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+    }
+    __pyx_v_index = values[0];
+    __pyx_v_resolution = values[1];
+    __pyx_v_format = values[2];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("sync_get_depth_with_res", 0, 0, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 586; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("freenect.sync_get_depth_with_res", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_8freenect_58sync_get_depth_with_res(__pyx_self, __pyx_v_index, __pyx_v_resolution, __pyx_v_format);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_8freenect_58sync_get_depth_with_res(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_index, PyObject *__pyx_v_resolution, PyObject *__pyx_v_format) {
+  void *__pyx_v_data;
+  uint32_t __pyx_v_timestamp;
+  npy_intp __pyx_v_dims[2];
+  PyObject *__pyx_v_width = 0;
+  PyObject *__pyx_v_height = 0;
+  int __pyx_v_out;
+  int __pyx_v__index;
+  freenect_resolution __pyx_v__res;
+  freenect_depth_format __pyx_v__format;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  freenect_resolution __pyx_t_2;
+  freenect_depth_format __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  int __pyx_t_8;
+  npy_intp __pyx_t_9;
+  npy_intp __pyx_t_10;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("sync_get_depth_with_res", 0);
+
+  /* "freenect.pyx":604
+ *     cdef height
+ *     cdef int out
+ *     cdef int _index = index             # <<<<<<<<<<<<<<
+ *     cdef freenect_resolution _res = resolution
+ *     cdef freenect_depth_format _format = format
+ */
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_index); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 604; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_v__index = __pyx_t_1;
+
+  /* "freenect.pyx":605
+ *     cdef int out
+ *     cdef int _index = index
+ *     cdef freenect_resolution _res = resolution             # <<<<<<<<<<<<<<
+ *     cdef freenect_depth_format _format = format
+ *     with nogil:
+ */
+  __pyx_t_2 = ((freenect_resolution)__Pyx_PyInt_As_freenect_resolution(__pyx_v_resolution)); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 605; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_v__res = __pyx_t_2;
+
+  /* "freenect.pyx":606
+ *     cdef int _index = index
+ *     cdef freenect_resolution _res = resolution
+ *     cdef freenect_depth_format _format = format             # <<<<<<<<<<<<<<
+ *     with nogil:
+ *         out = freenect_sync_get_depth_with_res(&data, &timestamp, _index, _res, _format)
+ */
+  __pyx_t_3 = ((freenect_depth_format)__Pyx_PyInt_As_freenect_depth_format(__pyx_v_format)); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 606; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_v__format = __pyx_t_3;
+
+  /* "freenect.pyx":607
+ *     cdef freenect_resolution _res = resolution
+ *     cdef freenect_depth_format _format = format
+ *     with nogil:             # <<<<<<<<<<<<<<
+ *         out = freenect_sync_get_depth_with_res(&data, &timestamp, _index, _res, _format)
+ *     if out:
+ */
+  {
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
+      #endif
+      /*try:*/ {
+
+        /* "freenect.pyx":608
+ *     cdef freenect_depth_format _format = format
+ *     with nogil:
+ *         out = freenect_sync_get_depth_with_res(&data, &timestamp, _index, _res, _format)             # <<<<<<<<<<<<<<
+ *     if out:
+ *         error_open_device()
+ */
+        __pyx_v_out = freenect_sync_get_depth_with_res((&__pyx_v_data), (&__pyx_v_timestamp), __pyx_v__index, __pyx_v__res, __pyx_v__format);
+      }
+
+      /* "freenect.pyx":607
+ *     cdef freenect_resolution _res = resolution
+ *     cdef freenect_depth_format _format = format
+ *     with nogil:             # <<<<<<<<<<<<<<
+ *         out = freenect_sync_get_depth_with_res(&data, &timestamp, _index, _res, _format)
+ *     if out:
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L5:;
+      }
+  }
+
+  /* "freenect.pyx":609
+ *     with nogil:
+ *         out = freenect_sync_get_depth_with_res(&data, &timestamp, _index, _res, _format)
+ *     if out:             # <<<<<<<<<<<<<<
+ *         error_open_device()
+ *         return
+ */
+  __pyx_t_4 = (__pyx_v_out != 0);
+  if (__pyx_t_4) {
+
+    /* "freenect.pyx":610
+ *         out = freenect_sync_get_depth_with_res(&data, &timestamp, _index, _res, _format)
+ *     if out:
+ *         error_open_device()             # <<<<<<<<<<<<<<
+ *         return
+ * 
+ */
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_error_open_device); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_7 = NULL;
+    if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_6))) {
+      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_6);
+      if (likely(__pyx_t_7)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
+        __Pyx_INCREF(__pyx_t_7);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_6, function);
+      }
+    }
+    if (__pyx_t_7) {
+      __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_7); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    } else {
+      __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    }
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+    /* "freenect.pyx":611
+ *     if out:
+ *         error_open_device()
+ *         return             # <<<<<<<<<<<<<<
+ * 
+ *     if resolution == RESOLUTION_LOW:
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "freenect.pyx":609
+ *     with nogil:
+ *         out = freenect_sync_get_depth_with_res(&data, &timestamp, _index, _res, _format)
+ *     if out:             # <<<<<<<<<<<<<<
+ *         error_open_device()
+ *         return
+ */
+  }
+
+  /* "freenect.pyx":613
+ *         return
+ * 
+ *     if resolution == RESOLUTION_LOW:             # <<<<<<<<<<<<<<
+ *         width = 320
+ *         height = 240
+ */
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_RESOLUTION_LOW); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_6 = PyObject_RichCompare(__pyx_v_resolution, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__pyx_t_4) {
+
+    /* "freenect.pyx":614
+ * 
+ *     if resolution == RESOLUTION_LOW:
+ *         width = 320             # <<<<<<<<<<<<<<
+ *         height = 240
+ *     elif resolution == RESOLUTION_HIGH:
+ */
+    __Pyx_INCREF(__pyx_int_320);
+    __pyx_v_width = __pyx_int_320;
+
+    /* "freenect.pyx":615
+ *     if resolution == RESOLUTION_LOW:
+ *         width = 320
+ *         height = 240             # <<<<<<<<<<<<<<
+ *     elif resolution == RESOLUTION_HIGH:
+ *         width = 1280
+ */
+    __Pyx_INCREF(__pyx_int_240);
+    __pyx_v_height = __pyx_int_240;
+
+    /* "freenect.pyx":613
+ *         return
+ * 
+ *     if resolution == RESOLUTION_LOW:             # <<<<<<<<<<<<<<
+ *         width = 320
+ *         height = 240
+ */
+    goto __pyx_L7;
+  }
+
+  /* "freenect.pyx":616
+ *         width = 320
+ *         height = 240
+ *     elif resolution == RESOLUTION_HIGH:             # <<<<<<<<<<<<<<
+ *         width = 1280
+ *         height = 1024
+ */
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_RESOLUTION_HIGH); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 616; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_5 = PyObject_RichCompare(__pyx_v_resolution, __pyx_t_6, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 616; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 616; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (__pyx_t_4) {
+
+    /* "freenect.pyx":617
+ *         height = 240
+ *     elif resolution == RESOLUTION_HIGH:
+ *         width = 1280             # <<<<<<<<<<<<<<
+ *         height = 1024
+ *     elif resolution == RESOLUTION_MEDIUM:
+ */
+    __Pyx_INCREF(__pyx_int_1280);
+    __pyx_v_width = __pyx_int_1280;
+
+    /* "freenect.pyx":618
+ *     elif resolution == RESOLUTION_HIGH:
+ *         width = 1280
+ *         height = 1024             # <<<<<<<<<<<<<<
+ *     elif resolution == RESOLUTION_MEDIUM:
+ *         width = 640
+ */
+    __Pyx_INCREF(__pyx_int_1024);
+    __pyx_v_height = __pyx_int_1024;
+
+    /* "freenect.pyx":616
+ *         width = 320
+ *         height = 240
+ *     elif resolution == RESOLUTION_HIGH:             # <<<<<<<<<<<<<<
+ *         width = 1280
+ *         height = 1024
+ */
+    goto __pyx_L7;
+  }
+
+  /* "freenect.pyx":619
+ *         width = 1280
+ *         height = 1024
+ *     elif resolution == RESOLUTION_MEDIUM:             # <<<<<<<<<<<<<<
+ *         width = 640
+ *         height = 480
+ */
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_RESOLUTION_MEDIUM); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 619; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_6 = PyObject_RichCompare(__pyx_v_resolution, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 619; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 619; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__pyx_t_4) {
+
+    /* "freenect.pyx":620
+ *         height = 1024
+ *     elif resolution == RESOLUTION_MEDIUM:
+ *         width = 640             # <<<<<<<<<<<<<<
+ *         height = 480
+ *     else:
+ */
+    __Pyx_INCREF(__pyx_int_640);
+    __pyx_v_width = __pyx_int_640;
+
+    /* "freenect.pyx":621
+ *     elif resolution == RESOLUTION_MEDIUM:
+ *         width = 640
+ *         height = 480             # <<<<<<<<<<<<<<
+ *     else:
+ *         raise TypeError('Resolution not implemented for type [%d]' % (resolution))
+ */
+    __Pyx_INCREF(__pyx_int_480);
+    __pyx_v_height = __pyx_int_480;
+
+    /* "freenect.pyx":619
+ *         width = 1280
+ *         height = 1024
+ *     elif resolution == RESOLUTION_MEDIUM:             # <<<<<<<<<<<<<<
+ *         width = 640
+ *         height = 480
+ */
+    goto __pyx_L7;
+  }
+
+  /* "freenect.pyx":623
+ *         height = 480
+ *     else:
+ *         raise TypeError('Resolution not implemented for type [%d]' % (resolution))             # <<<<<<<<<<<<<<
+ * 
+ *     if format in [DEPTH_11BIT, DEPTH_10BIT, DEPTH_MM, DEPTH_REGISTERED]:
+ */
+  /*else*/ {
+    __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_Resolution_not_implemented_for_t, __pyx_v_resolution); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 623; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 623; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_6);
+    __pyx_t_6 = 0;
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 623; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_Raise(__pyx_t_6, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 623; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+  __pyx_L7:;
+
+  /* "freenect.pyx":625
+ *         raise TypeError('Resolution not implemented for type [%d]' % (resolution))
+ * 
+ *     if format in [DEPTH_11BIT, DEPTH_10BIT, DEPTH_MM, DEPTH_REGISTERED]:             # <<<<<<<<<<<<<<
+ *         dims[0], dims[1]  = height, width
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
+ */
+  __Pyx_INCREF(__pyx_v_format);
+  __pyx_t_6 = __pyx_v_format;
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_11BIT); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_7 = PyObject_RichCompare(__pyx_t_6, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (!__pyx_t_8) {
+  } else {
+    __pyx_t_4 = __pyx_t_8;
+    goto __pyx_L9_bool_binop_done;
+  }
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_10BIT); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_6, __pyx_t_7, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (!__pyx_t_8) {
+  } else {
+    __pyx_t_4 = __pyx_t_8;
+    goto __pyx_L9_bool_binop_done;
+  }
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_MM); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_7 = PyObject_RichCompare(__pyx_t_6, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (!__pyx_t_8) {
+  } else {
+    __pyx_t_4 = __pyx_t_8;
+    goto __pyx_L9_bool_binop_done;
+  }
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_REGISTERED); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_6, __pyx_t_7, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_4 = __pyx_t_8;
+  __pyx_L9_bool_binop_done:;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_8 = (__pyx_t_4 != 0);
+  if (__pyx_t_8) {
+
+    /* "freenect.pyx":626
+ * 
+ *     if format in [DEPTH_11BIT, DEPTH_10BIT, DEPTH_MM, DEPTH_REGISTERED]:
+ *         dims[0], dims[1]  = height, width             # <<<<<<<<<<<<<<
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
+ *     else:
+ */
+    __pyx_t_9 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_height); if (unlikely((__pyx_t_9 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 626; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_10 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_width); if (unlikely((__pyx_t_10 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 626; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    (__pyx_v_dims[0]) = __pyx_t_9;
+    (__pyx_v_dims[1]) = __pyx_t_10;
+
+    /* "freenect.pyx":627
+ *     if format in [DEPTH_11BIT, DEPTH_10BIT, DEPTH_MM, DEPTH_REGISTERED]:
+ *         dims[0], dims[1]  = height, width
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp             # <<<<<<<<<<<<<<
+ *     else:
+ *         raise TypeError('Conversion not implemented for type [%d]' % (format))
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_6 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT16, __pyx_v_data); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_5 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6);
+    __Pyx_GIVEREF(__pyx_t_5);
+    PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_5);
+    __pyx_t_6 = 0;
+    __pyx_t_5 = 0;
+    __pyx_r = __pyx_t_7;
+    __pyx_t_7 = 0;
+    goto __pyx_L0;
+
+    /* "freenect.pyx":625
+ *         raise TypeError('Resolution not implemented for type [%d]' % (resolution))
+ * 
+ *     if format in [DEPTH_11BIT, DEPTH_10BIT, DEPTH_MM, DEPTH_REGISTERED]:             # <<<<<<<<<<<<<<
+ *         dims[0], dims[1]  = height, width
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
+ */
+  }
+
+  /* "freenect.pyx":629
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
+ *     else:
+ *         raise TypeError('Conversion not implemented for type [%d]' % (format))             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  /*else*/ {
+    __pyx_t_7 = __Pyx_PyString_Format(__pyx_kp_s_Conversion_not_implemented_for_t, __pyx_v_format); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 629; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 629; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_7);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_7);
+    __pyx_t_7 = 0;
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 629; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_Raise(__pyx_t_7, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 629; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+
+  /* "freenect.pyx":586
+ * 
+ * # modification pgaskell
+ * def sync_get_depth_with_res(index=0, resolution=RESOLUTION_MEDIUM,format=DEPTH_11BIT):             # <<<<<<<<<<<<<<
+ *     """Get the next available depth frame from the kinect, as a numpy array.
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("freenect.sync_get_depth_with_res", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_width);
+  __Pyx_XDECREF(__pyx_v_height);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "freenect.pyx":632
+ * 
+ * 
+ * def sync_get_video_with_res(index=0, resolution=RESOLUTION_MEDIUM, format=VIDEO_RGB):             # <<<<<<<<<<<<<<
+ *     """Get the next available rgb frame from the kinect, as a numpy array.
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_8freenect_61sync_get_video_with_res(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_8freenect_60sync_get_video_with_res[] = "Get the next available rgb frame from the kinect, as a numpy array.\n\n    Args:\n        index: Kinect device index (default: 0)\n        format: Depth format (default: VIDEO_RGB)\n\n    Returns:\n        (depth, timestamp) or None on error\n        depth: A numpy array, shape:(480, 640, 3) dtype:np.uint8\n        timestamp: int representing the time\n    ";
+static PyMethodDef __pyx_mdef_8freenect_61sync_get_video_with_res = {"sync_get_video_with_res", (PyCFunction)__pyx_pw_8freenect_61sync_get_video_with_res, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8freenect_60sync_get_video_with_res};
+static PyObject *__pyx_pw_8freenect_61sync_get_video_with_res(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_index = 0;
+  PyObject *__pyx_v_resolution = 0;
+  PyObject *__pyx_v_format = 0;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("sync_get_video_with_res (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_index,&__pyx_n_s_resolution,&__pyx_n_s_format,0};
+    PyObject* values[3] = {0,0,0};
+    values[0] = ((PyObject *)__pyx_int_0);
+    values[1] = __pyx_k__9;
+    values[2] = __pyx_k__10;
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_index);
+          if (value) { values[0] = value; kw_args--; }
+        }
+        case  1:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_resolution);
+          if (value) { values[1] = value; kw_args--; }
+        }
+        case  2:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_format);
+          if (value) { values[2] = value; kw_args--; }
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "sync_get_video_with_res") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 632; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      }
+    } else {
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+    }
+    __pyx_v_index = values[0];
+    __pyx_v_resolution = values[1];
+    __pyx_v_format = values[2];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("sync_get_video_with_res", 0, 0, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 632; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("freenect.sync_get_video_with_res", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_8freenect_60sync_get_video_with_res(__pyx_self, __pyx_v_index, __pyx_v_resolution, __pyx_v_format);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_8freenect_60sync_get_video_with_res(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_index, PyObject *__pyx_v_resolution, PyObject *__pyx_v_format) {
+  void *__pyx_v_data;
+  uint32_t __pyx_v_timestamp;
+  npy_intp __pyx_v_dims[3];
+  PyObject *__pyx_v_width = 0;
+  PyObject *__pyx_v_height = 0;
+  int __pyx_v_out;
+  freenect_resolution __pyx_v__res;
+  int __pyx_v__index;
+  freenect_video_format __pyx_v__format;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  freenect_resolution __pyx_t_1;
+  int __pyx_t_2;
+  freenect_video_format __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  npy_intp __pyx_t_8;
+  npy_intp __pyx_t_9;
+  npy_intp __pyx_t_10;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("sync_get_video_with_res", 0);
+
+  /* "freenect.pyx":650
+ *     cdef height
+ *     cdef int out
+ *     cdef freenect_resolution _res = resolution             # <<<<<<<<<<<<<<
+ *     cdef int _index = index
+ *     cdef freenect_video_format _format = format
+ */
+  __pyx_t_1 = ((freenect_resolution)__Pyx_PyInt_As_freenect_resolution(__pyx_v_resolution)); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_v__res = __pyx_t_1;
+
+  /* "freenect.pyx":651
+ *     cdef int out
+ *     cdef freenect_resolution _res = resolution
+ *     cdef int _index = index             # <<<<<<<<<<<<<<
+ *     cdef freenect_video_format _format = format
+ *     with nogil:
+ */
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_index); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 651; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_v__index = __pyx_t_2;
+
+  /* "freenect.pyx":652
+ *     cdef freenect_resolution _res = resolution
+ *     cdef int _index = index
+ *     cdef freenect_video_format _format = format             # <<<<<<<<<<<<<<
+ *     with nogil:
+ *         out = freenect_sync_get_video_with_res(&data, &timestamp, _index, _res ,_format)
+ */
+  __pyx_t_3 = ((freenect_video_format)__Pyx_PyInt_As_freenect_video_format(__pyx_v_format)); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_v__format = __pyx_t_3;
+
+  /* "freenect.pyx":653
+ *     cdef int _index = index
+ *     cdef freenect_video_format _format = format
+ *     with nogil:             # <<<<<<<<<<<<<<
+ *         out = freenect_sync_get_video_with_res(&data, &timestamp, _index, _res ,_format)
+ *     if out:
+ */
+  {
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
+      #endif
+      /*try:*/ {
+
+        /* "freenect.pyx":654
+ *     cdef freenect_video_format _format = format
+ *     with nogil:
+ *         out = freenect_sync_get_video_with_res(&data, &timestamp, _index, _res ,_format)             # <<<<<<<<<<<<<<
+ *     if out:
+ *         error_open_device()
+ */
+        __pyx_v_out = freenect_sync_get_video_with_res((&__pyx_v_data), (&__pyx_v_timestamp), __pyx_v__index, __pyx_v__res, __pyx_v__format);
+      }
+
+      /* "freenect.pyx":653
+ *     cdef int _index = index
+ *     cdef freenect_video_format _format = format
+ *     with nogil:             # <<<<<<<<<<<<<<
+ *         out = freenect_sync_get_video_with_res(&data, &timestamp, _index, _res ,_format)
+ *     if out:
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L5:;
+      }
+  }
+
+  /* "freenect.pyx":655
+ *     with nogil:
+ *         out = freenect_sync_get_video_with_res(&data, &timestamp, _index, _res ,_format)
+ *     if out:             # <<<<<<<<<<<<<<
+ *         error_open_device()
+ *         return
+ */
+  __pyx_t_4 = (__pyx_v_out != 0);
+  if (__pyx_t_4) {
+
+    /* "freenect.pyx":656
+ *         out = freenect_sync_get_video_with_res(&data, &timestamp, _index, _res ,_format)
+ *     if out:
+ *         error_open_device()             # <<<<<<<<<<<<<<
+ *         return
+ * 
+ */
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_error_open_device); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 656; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_7 = NULL;
+    if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_6))) {
+      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_6);
+      if (likely(__pyx_t_7)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
+        __Pyx_INCREF(__pyx_t_7);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_6, function);
+      }
+    }
+    if (__pyx_t_7) {
+      __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_7); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 656; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    } else {
+      __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 656; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    }
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+    /* "freenect.pyx":657
+ *     if out:
+ *         error_open_device()
+ *         return             # <<<<<<<<<<<<<<
+ * 
+ *     if resolution == RESOLUTION_LOW:
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "freenect.pyx":655
+ *     with nogil:
+ *         out = freenect_sync_get_video_with_res(&data, &timestamp, _index, _res ,_format)
+ *     if out:             # <<<<<<<<<<<<<<
+ *         error_open_device()
+ *         return
+ */
+  }
+
+  /* "freenect.pyx":659
+ *         return
+ * 
+ *     if resolution == RESOLUTION_LOW:             # <<<<<<<<<<<<<<
+ *         width = 320
+ *         height = 240
+ */
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_RESOLUTION_LOW); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 659; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_6 = PyObject_RichCompare(__pyx_v_resolution, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 659; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 659; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__pyx_t_4) {
+
+    /* "freenect.pyx":660
+ * 
+ *     if resolution == RESOLUTION_LOW:
+ *         width = 320             # <<<<<<<<<<<<<<
+ *         height = 240
+ *     elif resolution == RESOLUTION_HIGH:
+ */
+    __Pyx_INCREF(__pyx_int_320);
+    __pyx_v_width = __pyx_int_320;
+
+    /* "freenect.pyx":661
+ *     if resolution == RESOLUTION_LOW:
+ *         width = 320
+ *         height = 240             # <<<<<<<<<<<<<<
+ *     elif resolution == RESOLUTION_HIGH:
+ *         width = 1280
+ */
+    __Pyx_INCREF(__pyx_int_240);
+    __pyx_v_height = __pyx_int_240;
+
+    /* "freenect.pyx":659
+ *         return
+ * 
+ *     if resolution == RESOLUTION_LOW:             # <<<<<<<<<<<<<<
+ *         width = 320
+ *         height = 240
+ */
+    goto __pyx_L7;
+  }
+
+  /* "freenect.pyx":662
+ *         width = 320
+ *         height = 240
+ *     elif resolution == RESOLUTION_HIGH:             # <<<<<<<<<<<<<<
+ *         width = 1280
+ *         height = 1024
+ */
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_RESOLUTION_HIGH); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 662; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_5 = PyObject_RichCompare(__pyx_v_resolution, __pyx_t_6, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 662; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 662; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (__pyx_t_4) {
+
+    /* "freenect.pyx":663
+ *         height = 240
+ *     elif resolution == RESOLUTION_HIGH:
+ *         width = 1280             # <<<<<<<<<<<<<<
+ *         height = 1024
+ *     elif resolution == RESOLUTION_MEDIUM:
+ */
+    __Pyx_INCREF(__pyx_int_1280);
+    __pyx_v_width = __pyx_int_1280;
+
+    /* "freenect.pyx":664
+ *     elif resolution == RESOLUTION_HIGH:
+ *         width = 1280
+ *         height = 1024             # <<<<<<<<<<<<<<
+ *     elif resolution == RESOLUTION_MEDIUM:
+ *         width = 640
+ */
+    __Pyx_INCREF(__pyx_int_1024);
+    __pyx_v_height = __pyx_int_1024;
+
+    /* "freenect.pyx":662
+ *         width = 320
+ *         height = 240
+ *     elif resolution == RESOLUTION_HIGH:             # <<<<<<<<<<<<<<
+ *         width = 1280
+ *         height = 1024
+ */
+    goto __pyx_L7;
+  }
+
+  /* "freenect.pyx":665
+ *         width = 1280
+ *         height = 1024
+ *     elif resolution == RESOLUTION_MEDIUM:             # <<<<<<<<<<<<<<
+ *         width = 640
+ *         height = 480
+ */
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_RESOLUTION_MEDIUM); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 665; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_6 = PyObject_RichCompare(__pyx_v_resolution, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 665; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 665; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__pyx_t_4) {
+
+    /* "freenect.pyx":666
+ *         height = 1024
+ *     elif resolution == RESOLUTION_MEDIUM:
+ *         width = 640             # <<<<<<<<<<<<<<
+ *         height = 480
+ *     else:
+ */
+    __Pyx_INCREF(__pyx_int_640);
+    __pyx_v_width = __pyx_int_640;
+
+    /* "freenect.pyx":667
+ *     elif resolution == RESOLUTION_MEDIUM:
+ *         width = 640
+ *         height = 480             # <<<<<<<<<<<<<<
+ *     else:
+ *         raise TypeError('Resolution not implemented for type [%d]' % (resolution))
+ */
+    __Pyx_INCREF(__pyx_int_480);
+    __pyx_v_height = __pyx_int_480;
+
+    /* "freenect.pyx":665
+ *         width = 1280
+ *         height = 1024
+ *     elif resolution == RESOLUTION_MEDIUM:             # <<<<<<<<<<<<<<
+ *         width = 640
+ *         height = 480
+ */
+    goto __pyx_L7;
+  }
+
+  /* "freenect.pyx":669
+ *         height = 480
+ *     else:
+ *         raise TypeError('Resolution not implemented for type [%d]' % (resolution))             # <<<<<<<<<<<<<<
+ * 
+ *     if format == VIDEO_RGB:
+ */
+  /*else*/ {
+    __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_Resolution_not_implemented_for_t, __pyx_v_resolution); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_6);
+    __pyx_t_6 = 0;
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_Raise(__pyx_t_6, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+  __pyx_L7:;
+
+  /* "freenect.pyx":671
+ *         raise TypeError('Resolution not implemented for type [%d]' % (resolution))
+ * 
+ *     if format == VIDEO_RGB:             # <<<<<<<<<<<<<<
+ *         dims[0], dims[1], dims[2]  = height, width, 3
+ *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp
+ */
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_RGB); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_5 = PyObject_RichCompare(__pyx_v_format, __pyx_t_6, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (__pyx_t_4) {
+
+    /* "freenect.pyx":672
+ * 
+ *     if format == VIDEO_RGB:
+ *         dims[0], dims[1], dims[2]  = height, width, 3             # <<<<<<<<<<<<<<
+ *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp
+ *     elif format == VIDEO_IR_8BIT:
+ */
+    __pyx_t_8 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_height); if (unlikely((__pyx_t_8 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 672; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_width); if (unlikely((__pyx_t_9 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 672; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_10 = 3;
+    (__pyx_v_dims[0]) = __pyx_t_8;
+    (__pyx_v_dims[1]) = __pyx_t_9;
+    (__pyx_v_dims[2]) = __pyx_t_10;
+
+    /* "freenect.pyx":673
+ *     if format == VIDEO_RGB:
+ *         dims[0], dims[1], dims[2]  = height, width, 3
+ *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp             # <<<<<<<<<<<<<<
+ *     elif format == VIDEO_IR_8BIT:
+ *         dims[0], dims[1]  = 480, 640
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_5 = PyArray_SimpleNewFromData(3, __pyx_v_dims, NPY_UINT8, __pyx_v_data); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_6 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_5);
+    PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_6);
+    __pyx_t_5 = 0;
+    __pyx_t_6 = 0;
+    __pyx_r = __pyx_t_7;
+    __pyx_t_7 = 0;
+    goto __pyx_L0;
+
+    /* "freenect.pyx":671
+ *         raise TypeError('Resolution not implemented for type [%d]' % (resolution))
+ * 
+ *     if format == VIDEO_RGB:             # <<<<<<<<<<<<<<
+ *         dims[0], dims[1], dims[2]  = height, width, 3
+ *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp
+ */
+  }
+
+  /* "freenect.pyx":674
+ *         dims[0], dims[1], dims[2]  = height, width, 3
+ *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp
+ *     elif format == VIDEO_IR_8BIT:             # <<<<<<<<<<<<<<
+ *         dims[0], dims[1]  = 480, 640
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp
+ */
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_IR_8BIT); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 674; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_6 = PyObject_RichCompare(__pyx_v_format, __pyx_t_7, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 674; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 674; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__pyx_t_4) {
+
+    /* "freenect.pyx":675
+ *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp
+ *     elif format == VIDEO_IR_8BIT:
+ *         dims[0], dims[1]  = 480, 640             # <<<<<<<<<<<<<<
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp
+ *     elif format == VIDEO_IR_10BIT:
+ */
+    __pyx_t_10 = 0x1E0;
+    __pyx_t_9 = 0x280;
+    (__pyx_v_dims[0]) = __pyx_t_10;
+    (__pyx_v_dims[1]) = __pyx_t_9;
+
+    /* "freenect.pyx":676
+ *     elif format == VIDEO_IR_8BIT:
+ *         dims[0], dims[1]  = 480, 640
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp             # <<<<<<<<<<<<<<
+ *     elif format == VIDEO_IR_10BIT:
+ *         dims[0], dims[1]  = 480, 640
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_6 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT8, __pyx_v_data); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 676; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_7 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 676; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 676; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_6);
+    __Pyx_GIVEREF(__pyx_t_7);
+    PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_7);
+    __pyx_t_6 = 0;
+    __pyx_t_7 = 0;
+    __pyx_r = __pyx_t_5;
+    __pyx_t_5 = 0;
+    goto __pyx_L0;
+
+    /* "freenect.pyx":674
+ *         dims[0], dims[1], dims[2]  = height, width, 3
+ *         return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp
+ *     elif format == VIDEO_IR_8BIT:             # <<<<<<<<<<<<<<
+ *         dims[0], dims[1]  = 480, 640
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp
+ */
+  }
+
+  /* "freenect.pyx":677
+ *         dims[0], dims[1]  = 480, 640
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp
+ *     elif format == VIDEO_IR_10BIT:             # <<<<<<<<<<<<<<
+ *         dims[0], dims[1]  = 480, 640
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
+ */
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_IR_10BIT); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 677; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_7 = PyObject_RichCompare(__pyx_v_format, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 677; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 677; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (__pyx_t_4) {
+
+    /* "freenect.pyx":678
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp
+ *     elif format == VIDEO_IR_10BIT:
+ *         dims[0], dims[1]  = 480, 640             # <<<<<<<<<<<<<<
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
+ *     else:
+ */
+    __pyx_t_9 = 0x1E0;
+    __pyx_t_10 = 0x280;
+    (__pyx_v_dims[0]) = __pyx_t_9;
+    (__pyx_v_dims[1]) = __pyx_t_10;
+
+    /* "freenect.pyx":679
+ *     elif format == VIDEO_IR_10BIT:
+ *         dims[0], dims[1]  = 480, 640
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp             # <<<<<<<<<<<<<<
+ *     else:
+ *         raise TypeError('Conversion not implemented for type [%d]' % (format))
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_7 = PyArray_SimpleNewFromData(2, __pyx_v_dims, NPY_UINT16, __pyx_v_data); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 679; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_5 = __Pyx_PyInt_From_uint32_t(__pyx_v_timestamp); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 679; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 679; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_GIVEREF(__pyx_t_7);
+    PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_5);
+    PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_5);
+    __pyx_t_7 = 0;
+    __pyx_t_5 = 0;
+    __pyx_r = __pyx_t_6;
+    __pyx_t_6 = 0;
+    goto __pyx_L0;
+
+    /* "freenect.pyx":677
+ *         dims[0], dims[1]  = 480, 640
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp
+ *     elif format == VIDEO_IR_10BIT:             # <<<<<<<<<<<<<<
+ *         dims[0], dims[1]  = 480, 640
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
+ */
+  }
+
+  /* "freenect.pyx":681
+ *         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
+ *     else:
+ *         raise TypeError('Conversion not implemented for type [%d]' % (format))             # <<<<<<<<<<<<<<
+ * # end modification pgaskell
+ * 
+ */
+  /*else*/ {
+    __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_Conversion_not_implemented_for_t, __pyx_v_format); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 681; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 681; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_6);
+    __pyx_t_6 = 0;
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 681; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_Raise(__pyx_t_6, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 681; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+
+  /* "freenect.pyx":632
+ * 
+ * 
+ * def sync_get_video_with_res(index=0, resolution=RESOLUTION_MEDIUM, format=VIDEO_RGB):             # <<<<<<<<<<<<<<
+ *     """Get the next available rgb frame from the kinect, as a numpy array.
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("freenect.sync_get_video_with_res", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_width);
+  __Pyx_XDECREF(__pyx_v_height);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "freenect.pyx":684
+ * # end modification pgaskell
  * 
  * def sync_stop():             # <<<<<<<<<<<<<<
  *     """Terminate the synchronous runloop if running, else this is a NOP
@@ -7826,34 +9041,34 @@ static PyObject *__pyx_pf_8freenect_56sync_get_video(CYTHON_UNUSED PyObject *__p
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8freenect_59sync_stop(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_8freenect_58sync_stop[] = "Terminate the synchronous runloop if running, else this is a NOP\n    ";
-static PyMethodDef __pyx_mdef_8freenect_59sync_stop = {"sync_stop", (PyCFunction)__pyx_pw_8freenect_59sync_stop, METH_NOARGS, __pyx_doc_8freenect_58sync_stop};
-static PyObject *__pyx_pw_8freenect_59sync_stop(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_8freenect_63sync_stop(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_8freenect_62sync_stop[] = "Terminate the synchronous runloop if running, else this is a NOP\n    ";
+static PyMethodDef __pyx_mdef_8freenect_63sync_stop = {"sync_stop", (PyCFunction)__pyx_pw_8freenect_63sync_stop, METH_NOARGS, __pyx_doc_8freenect_62sync_stop};
+static PyObject *__pyx_pw_8freenect_63sync_stop(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("sync_stop (wrapper)", 0);
-  __pyx_r = __pyx_pf_8freenect_58sync_stop(__pyx_self);
+  __pyx_r = __pyx_pf_8freenect_62sync_stop(__pyx_self);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8freenect_58sync_stop(CYTHON_UNUSED PyObject *__pyx_self) {
+static PyObject *__pyx_pf_8freenect_62sync_stop(CYTHON_UNUSED PyObject *__pyx_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("sync_stop", 0);
 
-  /* "freenect.pyx":585
+  /* "freenect.pyx":687
  *     """Terminate the synchronous runloop if running, else this is a NOP
  *     """
  *     freenect_sync_stop()             # <<<<<<<<<<<<<<
  */
   freenect_sync_stop();
 
-  /* "freenect.pyx":582
- * 
+  /* "freenect.pyx":684
+ * # end modification pgaskell
  * 
  * def sync_stop():             # <<<<<<<<<<<<<<
  *     """Terminate the synchronous runloop if running, else this is a NOP
@@ -8039,7 +9254,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -8095,7 +9310,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  * 
  *             info.buf = PyArray_DATA(self)
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -8404,7 +9619,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9237,7 +10452,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  * 
  *         if ((child.byteorder == c'>' and little_endian) or
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9305,7 +10520,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  *             # One could encode it in the format string and have Cython
  *             # complain instead, BUT: < and > in format strings also imply
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 803; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 803; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9414,7 +10629,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  * 
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  */
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_Raise(__pyx_t_4, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -10349,6 +11564,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_RESOLUTION_HIGH, __pyx_k_RESOLUTION_HIGH, sizeof(__pyx_k_RESOLUTION_HIGH), 0, 0, 1, 1},
   {&__pyx_n_s_RESOLUTION_LOW, __pyx_k_RESOLUTION_LOW, sizeof(__pyx_k_RESOLUTION_LOW), 0, 0, 1, 1},
   {&__pyx_n_s_RESOLUTION_MEDIUM, __pyx_k_RESOLUTION_MEDIUM, sizeof(__pyx_k_RESOLUTION_MEDIUM), 0, 0, 1, 1},
+  {&__pyx_kp_s_Resolution_not_implemented_for_t, __pyx_k_Resolution_not_implemented_for_t, sizeof(__pyx_k_Resolution_not_implemented_for_t), 0, 0, 1, 0},
   {&__pyx_n_s_RuntimeError, __pyx_k_RuntimeError, sizeof(__pyx_k_RuntimeError), 0, 0, 1, 1},
   {&__pyx_kp_s_State_Pointer_s, __pyx_k_State_Pointer_s, sizeof(__pyx_k_State_Pointer_s), 0, 0, 1, 0},
   {&__pyx_kp_s_This_kills_the_runloop_raise_fro, __pyx_k_This_kills_the_runloop_raise_fro, sizeof(__pyx_k_This_kills_the_runloop_raise_fro), 0, 0, 1, 0},
@@ -10398,6 +11614,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_get_tilt_state, __pyx_k_get_tilt_state, sizeof(__pyx_k_get_tilt_state), 0, 0, 1, 1},
   {&__pyx_n_s_get_tilt_status, __pyx_k_get_tilt_status, sizeof(__pyx_k_get_tilt_status), 0, 0, 1, 1},
   {&__pyx_n_s_get_video_format, __pyx_k_get_video_format, sizeof(__pyx_k_get_video_format), 0, 0, 1, 1},
+  {&__pyx_n_s_height, __pyx_k_height, sizeof(__pyx_k_height), 0, 0, 1, 1},
   {&__pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_k_home_pgaskell_github_libfreenec, sizeof(__pyx_k_home_pgaskell_github_libfreenec), 0, 0, 1, 0},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_index, __pyx_k_index, sizeof(__pyx_k_index), 0, 0, 1, 1},
@@ -10421,6 +11638,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_qualname, __pyx_k_qualname, sizeof(__pyx_k_qualname), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_res, __pyx_k_res, sizeof(__pyx_k_res), 0, 0, 1, 1},
+  {&__pyx_n_s_res_2, __pyx_k_res_2, sizeof(__pyx_k_res_2), 0, 0, 1, 1},
+  {&__pyx_n_s_resolution, __pyx_k_resolution, sizeof(__pyx_k_resolution), 0, 0, 1, 1},
   {&__pyx_n_s_runloop, __pyx_k_runloop, sizeof(__pyx_k_runloop), 0, 0, 1, 1},
   {&__pyx_n_s_set_depth_callback, __pyx_k_set_depth_callback, sizeof(__pyx_k_set_depth_callback), 0, 0, 1, 1},
   {&__pyx_n_s_set_depth_mode, __pyx_k_set_depth_mode, sizeof(__pyx_k_set_depth_mode), 0, 0, 1, 1},
@@ -10437,7 +11656,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_stop_depth, __pyx_k_stop_depth, sizeof(__pyx_k_stop_depth), 0, 0, 1, 1},
   {&__pyx_n_s_stop_video, __pyx_k_stop_video, sizeof(__pyx_k_stop_video), 0, 0, 1, 1},
   {&__pyx_n_s_sync_get_depth, __pyx_k_sync_get_depth, sizeof(__pyx_k_sync_get_depth), 0, 0, 1, 1},
+  {&__pyx_n_s_sync_get_depth_with_res, __pyx_k_sync_get_depth_with_res, sizeof(__pyx_k_sync_get_depth_with_res), 0, 0, 1, 1},
   {&__pyx_n_s_sync_get_video, __pyx_k_sync_get_video, sizeof(__pyx_k_sync_get_video), 0, 0, 1, 1},
+  {&__pyx_n_s_sync_get_video_with_res, __pyx_k_sync_get_video_with_res, sizeof(__pyx_k_sync_get_video_with_res), 0, 0, 1, 1},
   {&__pyx_n_s_sync_stop, __pyx_k_sync_stop, sizeof(__pyx_k_sync_stop), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_tilt_angle, __pyx_k_tilt_angle, sizeof(__pyx_k_tilt_angle), 0, 0, 1, 1},
@@ -10447,15 +11668,16 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_update_tilt_state, __pyx_k_update_tilt_state, sizeof(__pyx_k_update_tilt_state), 0, 0, 1, 1},
   {&__pyx_n_s_video, __pyx_k_video, sizeof(__pyx_k_video), 0, 0, 1, 1},
   {&__pyx_n_s_video_cb, __pyx_k_video_cb, sizeof(__pyx_k_video_cb), 0, 0, 1, 1},
+  {&__pyx_n_s_width, __pyx_k_width, sizeof(__pyx_k_width), 0, 0, 1, 1},
   {&__pyx_n_s_x, __pyx_k_x, sizeof(__pyx_k_x), 0, 0, 1, 1},
   {&__pyx_n_s_y, __pyx_k_y, sizeof(__pyx_k_y), 0, 0, 1, 1},
   {&__pyx_n_s_z, __pyx_k_z, sizeof(__pyx_k_z), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_property = __Pyx_GetBuiltinName(__pyx_n_s_property); if (!__pyx_builtin_property) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_Exception = __Pyx_GetBuiltinName(__pyx_n_s_Exception); if (!__pyx_builtin_Exception) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_property = __Pyx_GetBuiltinName(__pyx_n_s_property); if (!__pyx_builtin_property) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_Exception = __Pyx_GetBuiltinName(__pyx_n_s_Exception); if (!__pyx_builtin_Exception) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 204; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -10468,47 +11690,47 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "freenect.pyx":200
+  /* "freenect.pyx":204
  *         return "0x%016x" % <Py_ssize_t>ptr
  *     else:
  *         raise TypeError("What kind of system are you using?!")             # <<<<<<<<<<<<<<
  * 
  * cdef class CtxPtr:
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_What_kind_of_system_are_you_usin); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_What_kind_of_system_are_you_usin); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 204; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "freenect.pyx":206
+  /* "freenect.pyx":210
  *     def __init__(self):
  *         # Safety: do not allow Python to create instances as they would be NULL
  *         raise TypeError("Cannot create instances of CtxPtr from Python")             # <<<<<<<<<<<<<<
  * 
  *     def __repr__(self):
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_instances_of_CtxPt); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 206; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_instances_of_CtxPt); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 210; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "freenect.pyx":216
+  /* "freenect.pyx":220
  *     def __init__(self):
  *         # Safety: do not allow Python to create instances as they would be NULL
  *         raise TypeError("Cannot create instances of DevPtr from Python")             # <<<<<<<<<<<<<<
  * 
  *     def __repr__(self):
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_instances_of_DevPt); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 216; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_instances_of_DevPt); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "freenect.pyx":225
+  /* "freenect.pyx":229
  *     def __init__(self):
  *         # Safety: do not allow Python to create instances as they would be NULL
  *         raise TypeError("Cannot create instances of StatePtr from Python")             # <<<<<<<<<<<<<<
  * 
  *     def __repr__(self):
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_instances_of_State); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 225; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_instances_of_State); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
@@ -10519,9 +11741,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_C_contiguous); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_C_contiguous); if (unlikely(!__pyx_tuple__11)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
 
   /* "../../../../../../usr/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":222
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
@@ -10530,9 +11752,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             info.buf = PyArray_DATA(self)
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_Fortran_contiguou); if (unlikely(!__pyx_tuple__8)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__8);
-  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_Fortran_contiguou); if (unlikely(!__pyx_tuple__12)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__12);
+  __Pyx_GIVEREF(__pyx_tuple__12);
 
   /* "../../../../../../usr/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":259
  *                 if ((descr.byteorder == c'>' and little_endian) or
@@ -10541,9 +11763,9 @@ static int __Pyx_InitCachedConstants(void) {
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__9);
-  __Pyx_GIVEREF(__pyx_tuple__9);
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__13)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
 
   /* "../../../../../../usr/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":799
  * 
@@ -10552,9 +11774,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *         if ((child.byteorder == c'>' and little_endian) or
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor); if (unlikely(!__pyx_tuple__10)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor); if (unlikely(!__pyx_tuple__14)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
 
   /* "../../../../../../usr/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":803
  *         if ((child.byteorder == c'>' and little_endian) or
@@ -10563,9 +11785,9 @@ static int __Pyx_InitCachedConstants(void) {
  *             # One could encode it in the format string and have Cython
  *             # complain instead, BUT: < and > in format strings also imply
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__11)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 803; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__15)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 803; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__15);
+  __Pyx_GIVEREF(__pyx_tuple__15);
 
   /* "../../../../../../usr/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":823
  *             t = child.type_num
@@ -10574,339 +11796,363 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor_2); if (unlikely(!__pyx_tuple__12)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
+  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor_2); if (unlikely(!__pyx_tuple__16)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__16);
+  __Pyx_GIVEREF(__pyx_tuple__16);
 
-  /* "freenect.pyx":251
+  /* "freenect.pyx":255
  *     tilt_status = property(_get_tilt_status)
  * 
  * def set_depth_mode(DevPtr dev, int res, int mode):             # <<<<<<<<<<<<<<
  *     return freenect_set_depth_mode(dev._ptr, freenect_find_depth_mode(res, mode))
  * 
  */
-  __pyx_tuple__13 = PyTuple_Pack(3, __pyx_n_s_dev, __pyx_n_s_res, __pyx_n_s_mode); if (unlikely(!__pyx_tuple__13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_depth_mode, 251, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__17 = PyTuple_Pack(3, __pyx_n_s_dev, __pyx_n_s_res, __pyx_n_s_mode); if (unlikely(!__pyx_tuple__17)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_depth_mode, 255, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":255
+  /* "freenect.pyx":259
  * 
  * # modification pgaskell
  * def set_flags(DevPtr dev, freenect_flag flag, freenect_flag_value state):             # <<<<<<<<<<<<<<
  *     return freenect_set_flag(dev._ptr, flag, state)
  * # end modification
  */
-  __pyx_tuple__15 = PyTuple_Pack(3, __pyx_n_s_dev, __pyx_n_s_flag, __pyx_n_s_state); if (unlikely(!__pyx_tuple__15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_flags, 255, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__19 = PyTuple_Pack(3, __pyx_n_s_dev, __pyx_n_s_flag, __pyx_n_s_state); if (unlikely(!__pyx_tuple__19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_flags, 259, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":259
+  /* "freenect.pyx":263
  * # end modification
  * 
  * def set_video_mode(DevPtr dev, int res, int mode):             # <<<<<<<<<<<<<<
  *     return freenect_set_video_mode(dev._ptr, freenect_find_video_mode(res, mode))
  * 
  */
-  __pyx_tuple__17 = PyTuple_Pack(3, __pyx_n_s_dev, __pyx_n_s_res, __pyx_n_s_mode); if (unlikely(!__pyx_tuple__17)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_video_mode, 259, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__21 = PyTuple_Pack(3, __pyx_n_s_dev, __pyx_n_s_res, __pyx_n_s_mode); if (unlikely(!__pyx_tuple__21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_video_mode, 263, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":262
+  /* "freenect.pyx":266
  *     return freenect_set_video_mode(dev._ptr, freenect_find_video_mode(res, mode))
  * 
  * def get_depth_format(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_get_current_depth_mode(dev._ptr).video_format
  * 
  */
-  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__19);
-  __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_depth_format, 262, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_depth_format, 266, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":265
+  /* "freenect.pyx":269
  *     return freenect_get_current_depth_mode(dev._ptr).video_format
  * 
  * def get_video_format(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_get_current_video_mode(dev._ptr).video_format
  * 
  */
-  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_video_format, 265, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__25);
+  __Pyx_GIVEREF(__pyx_tuple__25);
+  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_video_format, 269, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":268
+  /* "freenect.pyx":272
  *     return freenect_get_current_video_mode(dev._ptr).video_format
  * 
  * def start_depth(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_start_depth(dev._ptr)
  * 
  */
-  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 268; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__23);
-  __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_start_depth, 268, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 268; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__27)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__27);
+  __Pyx_GIVEREF(__pyx_tuple__27);
+  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_start_depth, 272, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":271
+  /* "freenect.pyx":275
  *     return freenect_start_depth(dev._ptr)
  * 
  * def start_video(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_start_video(dev._ptr)
  * 
  */
-  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 271; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
-  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_start_video, 271, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 271; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__29)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__29);
+  __Pyx_GIVEREF(__pyx_tuple__29);
+  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_start_video, 275, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":274
+  /* "freenect.pyx":278
  *     return freenect_start_video(dev._ptr)
  * 
  * def stop_depth(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_stop_depth(dev._ptr)
  * 
  */
-  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__27)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__27);
-  __Pyx_GIVEREF(__pyx_tuple__27);
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_stop_depth, 274, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__31 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__31)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__31);
+  __Pyx_GIVEREF(__pyx_tuple__31);
+  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_stop_depth, 278, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":277
+  /* "freenect.pyx":281
  *     return freenect_stop_depth(dev._ptr)
  * 
  * def stop_video(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_stop_video(dev._ptr)
  * 
  */
-  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__29)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__29);
-  __Pyx_GIVEREF(__pyx_tuple__29);
-  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_stop_video, 277, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__33)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__33);
+  __Pyx_GIVEREF(__pyx_tuple__33);
+  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_stop_video, 281, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":280
+  /* "freenect.pyx":284
  *     return freenect_stop_video(dev._ptr)
  * 
  * def shutdown(CtxPtr ctx):             # <<<<<<<<<<<<<<
  *     return freenect_shutdown(ctx._ptr)
  * 
  */
-  __pyx_tuple__31 = PyTuple_Pack(1, __pyx_n_s_ctx); if (unlikely(!__pyx_tuple__31)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__31);
-  __Pyx_GIVEREF(__pyx_tuple__31);
-  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_shutdown, 280, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__35 = PyTuple_Pack(1, __pyx_n_s_ctx); if (unlikely(!__pyx_tuple__35)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__35);
+  __Pyx_GIVEREF(__pyx_tuple__35);
+  __pyx_codeobj__36 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__35, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_shutdown, 284, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__36)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":283
+  /* "freenect.pyx":287
  *     return freenect_shutdown(ctx._ptr)
  * 
  * def process_events(CtxPtr ctx):             # <<<<<<<<<<<<<<
  *     return freenect_process_events(ctx._ptr)
  * 
  */
-  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_n_s_ctx); if (unlikely(!__pyx_tuple__33)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__33);
-  __Pyx_GIVEREF(__pyx_tuple__33);
-  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_process_events, 283, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__37 = PyTuple_Pack(1, __pyx_n_s_ctx); if (unlikely(!__pyx_tuple__37)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__37);
+  __Pyx_GIVEREF(__pyx_tuple__37);
+  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_process_events, 287, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":286
+  /* "freenect.pyx":290
  *     return freenect_process_events(ctx._ptr)
  * 
  * def num_devices(CtxPtr ctx):             # <<<<<<<<<<<<<<
  *     return freenect_num_devices(ctx._ptr)
  * 
  */
-  __pyx_tuple__35 = PyTuple_Pack(1, __pyx_n_s_ctx); if (unlikely(!__pyx_tuple__35)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__35);
-  __Pyx_GIVEREF(__pyx_tuple__35);
-  __pyx_codeobj__36 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__35, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_num_devices, 286, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__36)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__39 = PyTuple_Pack(1, __pyx_n_s_ctx); if (unlikely(!__pyx_tuple__39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__39);
+  __Pyx_GIVEREF(__pyx_tuple__39);
+  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__39, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_num_devices, 290, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":289
+  /* "freenect.pyx":293
  *     return freenect_num_devices(ctx._ptr)
  * 
  * def close_device(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_close_device(dev._ptr)
  * 
  */
-  __pyx_tuple__37 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__37)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__37);
-  __Pyx_GIVEREF(__pyx_tuple__37);
-  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_close_device, 289, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__41 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__41)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__41);
+  __Pyx_GIVEREF(__pyx_tuple__41);
+  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__41, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_close_device, 293, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":292
+  /* "freenect.pyx":296
  *     return freenect_close_device(dev._ptr)
  * 
  * def set_tilt_degs(DevPtr dev, float angle):             # <<<<<<<<<<<<<<
  *     freenect_set_tilt_degs(dev._ptr, angle)
  * 
  */
-  __pyx_tuple__39 = PyTuple_Pack(2, __pyx_n_s_dev, __pyx_n_s_angle); if (unlikely(!__pyx_tuple__39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__39);
-  __Pyx_GIVEREF(__pyx_tuple__39);
-  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__39, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_tilt_degs, 292, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__43 = PyTuple_Pack(2, __pyx_n_s_dev, __pyx_n_s_angle); if (unlikely(!__pyx_tuple__43)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__43);
+  __Pyx_GIVEREF(__pyx_tuple__43);
+  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__43, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_tilt_degs, 296, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":295
+  /* "freenect.pyx":299
  *     freenect_set_tilt_degs(dev._ptr, angle)
  * 
  * def set_led(DevPtr dev, freenect_led_options option):             # <<<<<<<<<<<<<<
  *     return freenect_set_led(dev._ptr, option)
  * 
  */
-  __pyx_tuple__41 = PyTuple_Pack(2, __pyx_n_s_dev, __pyx_n_s_option); if (unlikely(!__pyx_tuple__41)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__41);
-  __Pyx_GIVEREF(__pyx_tuple__41);
-  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__41, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_led, 295, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__45 = PyTuple_Pack(2, __pyx_n_s_dev, __pyx_n_s_option); if (unlikely(!__pyx_tuple__45)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__45);
+  __Pyx_GIVEREF(__pyx_tuple__45);
+  __pyx_codeobj__46 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__45, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_led, 299, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__46)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":298
+  /* "freenect.pyx":302
  *     return freenect_set_led(dev._ptr, option)
  * 
  * def update_tilt_state(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_update_tilt_state(dev._ptr)
  * 
  */
-  __pyx_tuple__43 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__43)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__43);
-  __Pyx_GIVEREF(__pyx_tuple__43);
-  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__43, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_update_tilt_state, 298, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__47 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__47)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__47);
+  __Pyx_GIVEREF(__pyx_tuple__47);
+  __pyx_codeobj__48 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__47, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_update_tilt_state, 302, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__48)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":301
+  /* "freenect.pyx":305
  *     return freenect_update_tilt_state(dev._ptr)
  * 
  * def get_tilt_state(DevPtr dev):             # <<<<<<<<<<<<<<
  *     cdef freenect_raw_tilt_state* state = freenect_get_tilt_state(dev._ptr)
  *     cdef StatePtr state_out = StatePtr.__new__(StatePtr)
  */
-  __pyx_tuple__45 = PyTuple_Pack(3, __pyx_n_s_dev, __pyx_n_s_state, __pyx_n_s_state_out); if (unlikely(!__pyx_tuple__45)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__45);
-  __Pyx_GIVEREF(__pyx_tuple__45);
-  __pyx_codeobj__46 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__45, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_tilt_state, 301, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__46)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__49 = PyTuple_Pack(3, __pyx_n_s_dev, __pyx_n_s_state, __pyx_n_s_state_out); if (unlikely(!__pyx_tuple__49)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__49);
+  __Pyx_GIVEREF(__pyx_tuple__49);
+  __pyx_codeobj__50 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__49, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_tilt_state, 305, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__50)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":307
+  /* "freenect.pyx":311
  *     return state_out
  * 
  * def get_mks_accel(StatePtr state):             # <<<<<<<<<<<<<<
  *     cdef double x, y, z
  *     freenect_get_mks_accel(state._ptr, &x, &y, &z)
  */
-  __pyx_tuple__47 = PyTuple_Pack(4, __pyx_n_s_state, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_z); if (unlikely(!__pyx_tuple__47)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__47);
-  __Pyx_GIVEREF(__pyx_tuple__47);
-  __pyx_codeobj__48 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__47, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_mks_accel, 307, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__48)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__51 = PyTuple_Pack(4, __pyx_n_s_state, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_z); if (unlikely(!__pyx_tuple__51)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__51);
+  __Pyx_GIVEREF(__pyx_tuple__51);
+  __pyx_codeobj__52 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__51, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_mks_accel, 311, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__52)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":312
+  /* "freenect.pyx":316
  *     return x, y, z
  * 
  * def get_accel(DevPtr dev):             # <<<<<<<<<<<<<<
  *     """MKS Accelerometer helper
  * 
  */
-  __pyx_tuple__49 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__49)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__49);
-  __Pyx_GIVEREF(__pyx_tuple__49);
-  __pyx_codeobj__50 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__49, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_accel, 312, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__50)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__53 = PyTuple_Pack(1, __pyx_n_s_dev); if (unlikely(!__pyx_tuple__53)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__53);
+  __Pyx_GIVEREF(__pyx_tuple__53);
+  __pyx_codeobj__54 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__53, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_accel, 316, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__54)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":325
+  /* "freenect.pyx":329
  * 
  * 
  * def get_tilt_degs(StatePtr state):             # <<<<<<<<<<<<<<
  *     return freenect_get_tilt_degs(state._ptr)
  * 
  */
-  __pyx_tuple__51 = PyTuple_Pack(1, __pyx_n_s_state); if (unlikely(!__pyx_tuple__51)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__51);
-  __Pyx_GIVEREF(__pyx_tuple__51);
-  __pyx_codeobj__52 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__51, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_tilt_degs, 325, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__52)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_n_s_state); if (unlikely(!__pyx_tuple__55)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__55);
+  __Pyx_GIVEREF(__pyx_tuple__55);
+  __pyx_codeobj__56 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__55, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_get_tilt_degs, 329, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__56)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":329
+  /* "freenect.pyx":333
  * 
  * 
  * def error_open_device():             # <<<<<<<<<<<<<<
  *     print("Error: Can't open device. 1.) is it plugged in? 2.) Read the README")
  * 
  */
-  __pyx_codeobj__53 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_error_open_device, 329, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__53)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__57 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_error_open_device, 333, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__57)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":378
+  /* "freenect.pyx":382
  *     _video_cb(dev_out, pydata, timestamp)
  * 
  * def set_depth_callback(DevPtr dev, cb):             # <<<<<<<<<<<<<<
  *     global _depth_cb
  *     if cb is not None:
  */
-  __pyx_tuple__54 = PyTuple_Pack(2, __pyx_n_s_dev, __pyx_n_s_cb); if (unlikely(!__pyx_tuple__54)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__54);
-  __Pyx_GIVEREF(__pyx_tuple__54);
-  __pyx_codeobj__55 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__54, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_depth_callback, 378, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__55)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__58 = PyTuple_Pack(2, __pyx_n_s_dev, __pyx_n_s_cb); if (unlikely(!__pyx_tuple__58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__58);
+  __Pyx_GIVEREF(__pyx_tuple__58);
+  __pyx_codeobj__59 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__58, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_depth_callback, 382, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__59)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":387
+  /* "freenect.pyx":391
  *         freenect_set_depth_callback(dev._ptr, NULL)
  * 
  * def set_video_callback(DevPtr dev, cb):             # <<<<<<<<<<<<<<
  *     global _video_cb
  *     if cb is not None:
  */
-  __pyx_tuple__56 = PyTuple_Pack(2, __pyx_n_s_dev, __pyx_n_s_cb); if (unlikely(!__pyx_tuple__56)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 387; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__56);
-  __Pyx_GIVEREF(__pyx_tuple__56);
-  __pyx_codeobj__57 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__56, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_video_callback, 387, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__57)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 387; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__60 = PyTuple_Pack(2, __pyx_n_s_dev, __pyx_n_s_cb); if (unlikely(!__pyx_tuple__60)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 391; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__60);
+  __Pyx_GIVEREF(__pyx_tuple__60);
+  __pyx_codeobj__61 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__60, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_set_video_callback, 391, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__61)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 391; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":401
+  /* "freenect.pyx":405
  * 
  * 
  * def runloop(depth=None, video=None, body=None, dev=None):             # <<<<<<<<<<<<<<
  *     """Sets up the kinect and maintains a runloop
  * 
  */
-  __pyx_tuple__58 = PyTuple_Pack(8, __pyx_n_s_depth, __pyx_n_s_video, __pyx_n_s_body, __pyx_n_s_dev, __pyx_n_s_mdev, __pyx_n_s_ctx, __pyx_n_s_devp, __pyx_n_s_ctxp); if (unlikely(!__pyx_tuple__58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__58);
-  __Pyx_GIVEREF(__pyx_tuple__58);
-  __pyx_codeobj__59 = (PyObject*)__Pyx_PyCode_New(4, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__58, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_runloop, 401, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__59)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__62 = PyTuple_Pack(8, __pyx_n_s_depth, __pyx_n_s_video, __pyx_n_s_body, __pyx_n_s_dev, __pyx_n_s_mdev, __pyx_n_s_ctx, __pyx_n_s_devp, __pyx_n_s_ctxp); if (unlikely(!__pyx_tuple__62)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__62);
+  __Pyx_GIVEREF(__pyx_tuple__62);
+  __pyx_codeobj__63 = (PyObject*)__Pyx_PyCode_New(4, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__62, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_runloop, 405, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__63)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":465
+  /* "freenect.pyx":469
  *         freenect_shutdown(ctxp)
  * 
  * def base_runloop(CtxPtr ctx, body=None):             # <<<<<<<<<<<<<<
  *     """Starts a runloop
  * 
  */
-  __pyx_tuple__60 = PyTuple_Pack(3, __pyx_n_s_ctx, __pyx_n_s_body, __pyx_n_s_ctxp); if (unlikely(!__pyx_tuple__60)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 465; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__60);
-  __Pyx_GIVEREF(__pyx_tuple__60);
-  __pyx_codeobj__61 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__60, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_base_runloop, 465, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__61)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 465; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__64 = PyTuple_Pack(3, __pyx_n_s_ctx, __pyx_n_s_body, __pyx_n_s_ctxp); if (unlikely(!__pyx_tuple__64)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 469; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__64);
+  __Pyx_GIVEREF(__pyx_tuple__64);
+  __pyx_codeobj__65 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__64, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_base_runloop, 469, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__65)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 469; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":516
+  /* "freenect.pyx":520
  *         return (<char *>data)[:mode.bytes]
  * 
  * def sync_get_depth(index=0, format=DEPTH_11BIT):             # <<<<<<<<<<<<<<
  *     """Get the next available depth frame from the kinect, as a numpy array.
  * 
  */
-  __pyx_tuple__62 = PyTuple_Pack(8, __pyx_n_s_index, __pyx_n_s_format, __pyx_n_s_data, __pyx_n_s_timestamp, __pyx_n_s_dims, __pyx_n_s_out, __pyx_n_s_index_2, __pyx_n_s_format_2); if (unlikely(!__pyx_tuple__62)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__62);
-  __Pyx_GIVEREF(__pyx_tuple__62);
-  __pyx_codeobj__63 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__62, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_sync_get_depth, 516, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__63)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__66 = PyTuple_Pack(8, __pyx_n_s_index, __pyx_n_s_format, __pyx_n_s_data, __pyx_n_s_timestamp, __pyx_n_s_dims, __pyx_n_s_out, __pyx_n_s_index_2, __pyx_n_s_format_2); if (unlikely(!__pyx_tuple__66)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 520; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__66);
+  __Pyx_GIVEREF(__pyx_tuple__66);
+  __pyx_codeobj__67 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__66, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_sync_get_depth, 520, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__67)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 520; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":546
+  /* "freenect.pyx":550
  * 
  * 
  * def sync_get_video(index=0, format=VIDEO_RGB):             # <<<<<<<<<<<<<<
  *     """Get the next available rgb frame from the kinect, as a numpy array.
  * 
  */
-  __pyx_tuple__64 = PyTuple_Pack(8, __pyx_n_s_index, __pyx_n_s_format, __pyx_n_s_data, __pyx_n_s_timestamp, __pyx_n_s_dims, __pyx_n_s_out, __pyx_n_s_index_2, __pyx_n_s_format_2); if (unlikely(!__pyx_tuple__64)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 546; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__64);
-  __Pyx_GIVEREF(__pyx_tuple__64);
-  __pyx_codeobj__65 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__64, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_sync_get_video, 546, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__65)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 546; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__68 = PyTuple_Pack(8, __pyx_n_s_index, __pyx_n_s_format, __pyx_n_s_data, __pyx_n_s_timestamp, __pyx_n_s_dims, __pyx_n_s_out, __pyx_n_s_index_2, __pyx_n_s_format_2); if (unlikely(!__pyx_tuple__68)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__68);
+  __Pyx_GIVEREF(__pyx_tuple__68);
+  __pyx_codeobj__69 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__68, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_sync_get_video, 550, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__69)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "freenect.pyx":582
+  /* "freenect.pyx":586
  * 
+ * # modification pgaskell
+ * def sync_get_depth_with_res(index=0, resolution=RESOLUTION_MEDIUM,format=DEPTH_11BIT):             # <<<<<<<<<<<<<<
+ *     """Get the next available depth frame from the kinect, as a numpy array.
+ * 
+ */
+  __pyx_tuple__70 = PyTuple_Pack(12, __pyx_n_s_index, __pyx_n_s_resolution, __pyx_n_s_format, __pyx_n_s_data, __pyx_n_s_timestamp, __pyx_n_s_dims, __pyx_n_s_width, __pyx_n_s_height, __pyx_n_s_out, __pyx_n_s_index_2, __pyx_n_s_res_2, __pyx_n_s_format_2); if (unlikely(!__pyx_tuple__70)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 586; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__70);
+  __Pyx_GIVEREF(__pyx_tuple__70);
+  __pyx_codeobj__71 = (PyObject*)__Pyx_PyCode_New(3, 0, 12, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__70, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_sync_get_depth_with_res, 586, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__71)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 586; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+
+  /* "freenect.pyx":632
+ * 
+ * 
+ * def sync_get_video_with_res(index=0, resolution=RESOLUTION_MEDIUM, format=VIDEO_RGB):             # <<<<<<<<<<<<<<
+ *     """Get the next available rgb frame from the kinect, as a numpy array.
+ * 
+ */
+  __pyx_tuple__72 = PyTuple_Pack(12, __pyx_n_s_index, __pyx_n_s_resolution, __pyx_n_s_format, __pyx_n_s_data, __pyx_n_s_timestamp, __pyx_n_s_dims, __pyx_n_s_width, __pyx_n_s_height, __pyx_n_s_out, __pyx_n_s_res_2, __pyx_n_s_index_2, __pyx_n_s_format_2); if (unlikely(!__pyx_tuple__72)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 632; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__72);
+  __Pyx_GIVEREF(__pyx_tuple__72);
+  __pyx_codeobj__73 = (PyObject*)__Pyx_PyCode_New(3, 0, 12, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__72, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_sync_get_video_with_res, 632, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__73)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 632; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+
+  /* "freenect.pyx":684
+ * # end modification pgaskell
  * 
  * def sync_stop():             # <<<<<<<<<<<<<<
  *     """Terminate the synchronous runloop if running, else this is a NOP
  *     """
  */
-  __pyx_codeobj__66 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_sync_stop, 582, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__66)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 582; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__74 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_pgaskell_github_libfreenec, __pyx_n_s_sync_stop, 684, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__74)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -10917,6 +12163,12 @@ static int __Pyx_InitCachedConstants(void) {
 static int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_240 = PyInt_FromLong(240); if (unlikely(!__pyx_int_240)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_320 = PyInt_FromLong(320); if (unlikely(!__pyx_int_320)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_480 = PyInt_FromLong(480); if (unlikely(!__pyx_int_480)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_640 = PyInt_FromLong(640); if (unlikely(!__pyx_int_640)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_1024 = PyInt_FromLong(1024); if (unlikely(!__pyx_int_1024)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_1280 = PyInt_FromLong(1280); if (unlikely(!__pyx_int_1280)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -11011,17 +12263,17 @@ PyMODINIT_FUNC PyInit_freenect(void)
   /*--- Variable export code ---*/
   /*--- Function export code ---*/
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_8freenect_CtxPtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_8freenect_CtxPtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 206; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_8freenect_CtxPtr.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "CtxPtr", (PyObject *)&__pyx_type_8freenect_CtxPtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "CtxPtr", (PyObject *)&__pyx_type_8freenect_CtxPtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 206; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_8freenect_CtxPtr = &__pyx_type_8freenect_CtxPtr;
-  if (PyType_Ready(&__pyx_type_8freenect_DevPtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 211; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_8freenect_DevPtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_8freenect_DevPtr.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "DevPtr", (PyObject *)&__pyx_type_8freenect_DevPtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 211; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "DevPtr", (PyObject *)&__pyx_type_8freenect_DevPtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_8freenect_DevPtr = &__pyx_type_8freenect_DevPtr;
-  if (PyType_Ready(&__pyx_type_8freenect_StatePtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_8freenect_StatePtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 225; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_8freenect_StatePtr.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "StatePtr", (PyObject *)&__pyx_type_8freenect_StatePtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "StatePtr", (PyObject *)&__pyx_type_8freenect_StatePtr) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 225; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_8freenect_StatePtr = &__pyx_type_8freenect_StatePtr;
   /*--- Type import code ---*/
   __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "type", 
@@ -11055,494 +12307,410 @@ PyMODINIT_FUNC PyInit_freenect(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 26; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":158
+  /* "freenect.pyx":162
  * 
  * 
  * VIDEO_RGB = FREENECT_VIDEO_RGB             # <<<<<<<<<<<<<<
  * VIDEO_BAYER = FREENECT_VIDEO_BAYER
  * VIDEO_IR_8BIT = FREENECT_VIDEO_IR_8BIT
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_RGB); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_RGB); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_RGB, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_RGB, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":159
+  /* "freenect.pyx":163
  * 
  * VIDEO_RGB = FREENECT_VIDEO_RGB
  * VIDEO_BAYER = FREENECT_VIDEO_BAYER             # <<<<<<<<<<<<<<
  * VIDEO_IR_8BIT = FREENECT_VIDEO_IR_8BIT
  * VIDEO_IR_10BIT = FREENECT_VIDEO_IR_10BIT
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_BAYER); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_BAYER); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_BAYER, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_BAYER, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":160
+  /* "freenect.pyx":164
  * VIDEO_RGB = FREENECT_VIDEO_RGB
  * VIDEO_BAYER = FREENECT_VIDEO_BAYER
  * VIDEO_IR_8BIT = FREENECT_VIDEO_IR_8BIT             # <<<<<<<<<<<<<<
  * VIDEO_IR_10BIT = FREENECT_VIDEO_IR_10BIT
  * VIDEO_IR_10BIT_PACKED = FREENECT_VIDEO_IR_10BIT_PACKED
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_IR_8BIT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_IR_8BIT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_IR_8BIT, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_IR_8BIT, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":161
+  /* "freenect.pyx":165
  * VIDEO_BAYER = FREENECT_VIDEO_BAYER
  * VIDEO_IR_8BIT = FREENECT_VIDEO_IR_8BIT
  * VIDEO_IR_10BIT = FREENECT_VIDEO_IR_10BIT             # <<<<<<<<<<<<<<
  * VIDEO_IR_10BIT_PACKED = FREENECT_VIDEO_IR_10BIT_PACKED
  * VIDEO_YUV_RGB = FREENECT_VIDEO_YUV_RGB
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_IR_10BIT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_IR_10BIT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_IR_10BIT, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_IR_10BIT, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":162
+  /* "freenect.pyx":166
  * VIDEO_IR_8BIT = FREENECT_VIDEO_IR_8BIT
  * VIDEO_IR_10BIT = FREENECT_VIDEO_IR_10BIT
  * VIDEO_IR_10BIT_PACKED = FREENECT_VIDEO_IR_10BIT_PACKED             # <<<<<<<<<<<<<<
  * VIDEO_YUV_RGB = FREENECT_VIDEO_YUV_RGB
  * VIDEO_YUV_RAW = FREENECT_VIDEO_YUV_RAW
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_IR_10BIT_PACKED); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_IR_10BIT_PACKED); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_IR_10BIT_PACKED, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_IR_10BIT_PACKED, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":163
+  /* "freenect.pyx":167
  * VIDEO_IR_10BIT = FREENECT_VIDEO_IR_10BIT
  * VIDEO_IR_10BIT_PACKED = FREENECT_VIDEO_IR_10BIT_PACKED
  * VIDEO_YUV_RGB = FREENECT_VIDEO_YUV_RGB             # <<<<<<<<<<<<<<
  * VIDEO_YUV_RAW = FREENECT_VIDEO_YUV_RAW
  * DEPTH_11BIT = FREENECT_DEPTH_11BIT
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_YUV_RGB); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_YUV_RGB); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 167; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_YUV_RGB, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_YUV_RGB, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 167; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":164
+  /* "freenect.pyx":168
  * VIDEO_IR_10BIT_PACKED = FREENECT_VIDEO_IR_10BIT_PACKED
  * VIDEO_YUV_RGB = FREENECT_VIDEO_YUV_RGB
  * VIDEO_YUV_RAW = FREENECT_VIDEO_YUV_RAW             # <<<<<<<<<<<<<<
  * DEPTH_11BIT = FREENECT_DEPTH_11BIT
  * DEPTH_10BIT = FREENECT_DEPTH_10BIT
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_YUV_RAW); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_video_format(FREENECT_VIDEO_YUV_RAW); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_YUV_RAW, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_VIDEO_YUV_RAW, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":165
+  /* "freenect.pyx":169
  * VIDEO_YUV_RGB = FREENECT_VIDEO_YUV_RGB
  * VIDEO_YUV_RAW = FREENECT_VIDEO_YUV_RAW
  * DEPTH_11BIT = FREENECT_DEPTH_11BIT             # <<<<<<<<<<<<<<
  * DEPTH_10BIT = FREENECT_DEPTH_10BIT
  * DEPTH_11BIT_PACKED = FREENECT_DEPTH_11BIT_PACKED
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_11BIT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_11BIT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_11BIT, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_11BIT, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":166
+  /* "freenect.pyx":170
  * VIDEO_YUV_RAW = FREENECT_VIDEO_YUV_RAW
  * DEPTH_11BIT = FREENECT_DEPTH_11BIT
  * DEPTH_10BIT = FREENECT_DEPTH_10BIT             # <<<<<<<<<<<<<<
  * DEPTH_11BIT_PACKED = FREENECT_DEPTH_11BIT_PACKED
  * DEPTH_10BIT_PACKED = FREENECT_DEPTH_10BIT_PACKED
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_10BIT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_10BIT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_10BIT, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_10BIT, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":167
+  /* "freenect.pyx":171
  * DEPTH_11BIT = FREENECT_DEPTH_11BIT
  * DEPTH_10BIT = FREENECT_DEPTH_10BIT
  * DEPTH_11BIT_PACKED = FREENECT_DEPTH_11BIT_PACKED             # <<<<<<<<<<<<<<
  * DEPTH_10BIT_PACKED = FREENECT_DEPTH_10BIT_PACKED
  * DEPTH_REGISTERED = FREENECT_DEPTH_REGISTERED
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_11BIT_PACKED); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 167; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_11BIT_PACKED); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 171; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_11BIT_PACKED, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 167; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_11BIT_PACKED, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 171; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":168
+  /* "freenect.pyx":172
  * DEPTH_10BIT = FREENECT_DEPTH_10BIT
  * DEPTH_11BIT_PACKED = FREENECT_DEPTH_11BIT_PACKED
  * DEPTH_10BIT_PACKED = FREENECT_DEPTH_10BIT_PACKED             # <<<<<<<<<<<<<<
  * DEPTH_REGISTERED = FREENECT_DEPTH_REGISTERED
  * DEPTH_MM = FREENECT_DEPTH_MM
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_10BIT_PACKED); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_10BIT_PACKED); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_10BIT_PACKED, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_10BIT_PACKED, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":169
+  /* "freenect.pyx":173
  * DEPTH_11BIT_PACKED = FREENECT_DEPTH_11BIT_PACKED
  * DEPTH_10BIT_PACKED = FREENECT_DEPTH_10BIT_PACKED
  * DEPTH_REGISTERED = FREENECT_DEPTH_REGISTERED             # <<<<<<<<<<<<<<
  * DEPTH_MM = FREENECT_DEPTH_MM
  * LED_OFF = FREENECT_LED_OFF
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_REGISTERED); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_REGISTERED); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_REGISTERED, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_REGISTERED, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":170
+  /* "freenect.pyx":174
  * DEPTH_10BIT_PACKED = FREENECT_DEPTH_10BIT_PACKED
  * DEPTH_REGISTERED = FREENECT_DEPTH_REGISTERED
  * DEPTH_MM = FREENECT_DEPTH_MM             # <<<<<<<<<<<<<<
  * LED_OFF = FREENECT_LED_OFF
  * LED_GREEN = FREENECT_LED_GREEN
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_MM); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_depth_format(FREENECT_DEPTH_MM); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_MM, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEPTH_MM, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":171
+  /* "freenect.pyx":175
  * DEPTH_REGISTERED = FREENECT_DEPTH_REGISTERED
  * DEPTH_MM = FREENECT_DEPTH_MM
  * LED_OFF = FREENECT_LED_OFF             # <<<<<<<<<<<<<<
  * LED_GREEN = FREENECT_LED_GREEN
  * LED_RED = FREENECT_LED_RED
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_OFF); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 171; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_OFF); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_OFF, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 171; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_OFF, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":172
+  /* "freenect.pyx":176
  * DEPTH_MM = FREENECT_DEPTH_MM
  * LED_OFF = FREENECT_LED_OFF
  * LED_GREEN = FREENECT_LED_GREEN             # <<<<<<<<<<<<<<
  * LED_RED = FREENECT_LED_RED
  * LED_YELLOW = FREENECT_LED_YELLOW
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_GREEN); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_GREEN); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_GREEN, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_GREEN, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":173
+  /* "freenect.pyx":177
  * LED_OFF = FREENECT_LED_OFF
  * LED_GREEN = FREENECT_LED_GREEN
  * LED_RED = FREENECT_LED_RED             # <<<<<<<<<<<<<<
  * LED_YELLOW = FREENECT_LED_YELLOW
  * LED_BLINK_GREEN = FREENECT_LED_BLINK_GREEN
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_RED); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_RED); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_RED, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_RED, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":174
+  /* "freenect.pyx":178
  * LED_GREEN = FREENECT_LED_GREEN
  * LED_RED = FREENECT_LED_RED
  * LED_YELLOW = FREENECT_LED_YELLOW             # <<<<<<<<<<<<<<
  * LED_BLINK_GREEN = FREENECT_LED_BLINK_GREEN
  * LED_BLINK_RED_YELLOW = FREENECT_LED_BLINK_RED_YELLOW
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_YELLOW); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_YELLOW); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_YELLOW, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_YELLOW, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":175
+  /* "freenect.pyx":179
  * LED_RED = FREENECT_LED_RED
  * LED_YELLOW = FREENECT_LED_YELLOW
  * LED_BLINK_GREEN = FREENECT_LED_BLINK_GREEN             # <<<<<<<<<<<<<<
  * LED_BLINK_RED_YELLOW = FREENECT_LED_BLINK_RED_YELLOW
  * RESOLUTION_LOW = FREENECT_RESOLUTION_LOW
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_BLINK_GREEN); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_BLINK_GREEN); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 179; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_BLINK_GREEN, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_BLINK_GREEN, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 179; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":176
+  /* "freenect.pyx":180
  * LED_YELLOW = FREENECT_LED_YELLOW
  * LED_BLINK_GREEN = FREENECT_LED_BLINK_GREEN
  * LED_BLINK_RED_YELLOW = FREENECT_LED_BLINK_RED_YELLOW             # <<<<<<<<<<<<<<
  * RESOLUTION_LOW = FREENECT_RESOLUTION_LOW
  * RESOLUTION_MEDIUM = FREENECT_RESOLUTION_MEDIUM
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_BLINK_RED_YELLOW); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_led_options(LED_BLINK_RED_YELLOW); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 180; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_BLINK_RED_YELLOW, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LED_BLINK_RED_YELLOW, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 180; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":177
+  /* "freenect.pyx":181
  * LED_BLINK_GREEN = FREENECT_LED_BLINK_GREEN
  * LED_BLINK_RED_YELLOW = FREENECT_LED_BLINK_RED_YELLOW
  * RESOLUTION_LOW = FREENECT_RESOLUTION_LOW             # <<<<<<<<<<<<<<
  * RESOLUTION_MEDIUM = FREENECT_RESOLUTION_MEDIUM
  * RESOLUTION_HIGH = FREENECT_RESOLUTION_HIGH
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_resolution(FREENECT_RESOLUTION_LOW); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_resolution(FREENECT_RESOLUTION_LOW); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 181; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_RESOLUTION_LOW, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_RESOLUTION_LOW, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 181; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":178
+  /* "freenect.pyx":182
  * LED_BLINK_RED_YELLOW = FREENECT_LED_BLINK_RED_YELLOW
  * RESOLUTION_LOW = FREENECT_RESOLUTION_LOW
  * RESOLUTION_MEDIUM = FREENECT_RESOLUTION_MEDIUM             # <<<<<<<<<<<<<<
  * RESOLUTION_HIGH = FREENECT_RESOLUTION_HIGH
  * DEVICE_MOTOR = FREENECT_DEVICE_MOTOR
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_resolution(FREENECT_RESOLUTION_MEDIUM); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_resolution(FREENECT_RESOLUTION_MEDIUM); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_RESOLUTION_MEDIUM, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_RESOLUTION_MEDIUM, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":179
+  /* "freenect.pyx":183
  * RESOLUTION_LOW = FREENECT_RESOLUTION_LOW
  * RESOLUTION_MEDIUM = FREENECT_RESOLUTION_MEDIUM
  * RESOLUTION_HIGH = FREENECT_RESOLUTION_HIGH             # <<<<<<<<<<<<<<
  * DEVICE_MOTOR = FREENECT_DEVICE_MOTOR
  * DEVICE_CAMERA = FREENECT_DEVICE_CAMERA
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_resolution(FREENECT_RESOLUTION_HIGH); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 179; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_resolution(FREENECT_RESOLUTION_HIGH); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_RESOLUTION_HIGH, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 179; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_RESOLUTION_HIGH, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":180
+  /* "freenect.pyx":184
  * RESOLUTION_MEDIUM = FREENECT_RESOLUTION_MEDIUM
  * RESOLUTION_HIGH = FREENECT_RESOLUTION_HIGH
  * DEVICE_MOTOR = FREENECT_DEVICE_MOTOR             # <<<<<<<<<<<<<<
  * DEVICE_CAMERA = FREENECT_DEVICE_CAMERA
  * DEVICE_AUDIO = FREENECT_DEVICE_AUDIO
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_device_flags(FREENECT_DEVICE_MOTOR); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 180; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_device_flags(FREENECT_DEVICE_MOTOR); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 184; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEVICE_MOTOR, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 180; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEVICE_MOTOR, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 184; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":181
+  /* "freenect.pyx":185
  * RESOLUTION_HIGH = FREENECT_RESOLUTION_HIGH
  * DEVICE_MOTOR = FREENECT_DEVICE_MOTOR
  * DEVICE_CAMERA = FREENECT_DEVICE_CAMERA             # <<<<<<<<<<<<<<
  * DEVICE_AUDIO = FREENECT_DEVICE_AUDIO
  * # modified by pgaskell
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_device_flags(FREENECT_DEVICE_CAMERA); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 181; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_device_flags(FREENECT_DEVICE_CAMERA); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 185; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEVICE_CAMERA, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 181; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEVICE_CAMERA, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 185; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":182
+  /* "freenect.pyx":186
  * DEVICE_MOTOR = FREENECT_DEVICE_MOTOR
  * DEVICE_CAMERA = FREENECT_DEVICE_CAMERA
  * DEVICE_AUDIO = FREENECT_DEVICE_AUDIO             # <<<<<<<<<<<<<<
  * # modified by pgaskell
  * AUTO_EXPOSURE = FREENECT_AUTO_EXPOSURE
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_device_flags(FREENECT_DEVICE_AUDIO); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_device_flags(FREENECT_DEVICE_AUDIO); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEVICE_AUDIO, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DEVICE_AUDIO, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":184
+  /* "freenect.pyx":188
  * DEVICE_AUDIO = FREENECT_DEVICE_AUDIO
  * # modified by pgaskell
  * AUTO_EXPOSURE = FREENECT_AUTO_EXPOSURE             # <<<<<<<<<<<<<<
  * WHITE_BALANCE = FREENECT_AUTO_WHITE_BALANCE
  * RAW_COLOR = FREENECT_RAW_COLOR
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_AUTO_EXPOSURE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 184; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_AUTO_EXPOSURE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AUTO_EXPOSURE, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 184; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AUTO_EXPOSURE, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":185
+  /* "freenect.pyx":189
  * # modified by pgaskell
  * AUTO_EXPOSURE = FREENECT_AUTO_EXPOSURE
  * WHITE_BALANCE = FREENECT_AUTO_WHITE_BALANCE             # <<<<<<<<<<<<<<
  * RAW_COLOR = FREENECT_RAW_COLOR
  * MIRROR_DEPTH = FREENECT_MIRROR_DEPTH
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_AUTO_WHITE_BALANCE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 185; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_AUTO_WHITE_BALANCE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_WHITE_BALANCE, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 185; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_WHITE_BALANCE, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":186
+  /* "freenect.pyx":190
  * AUTO_EXPOSURE = FREENECT_AUTO_EXPOSURE
  * WHITE_BALANCE = FREENECT_AUTO_WHITE_BALANCE
  * RAW_COLOR = FREENECT_RAW_COLOR             # <<<<<<<<<<<<<<
  * MIRROR_DEPTH = FREENECT_MIRROR_DEPTH
  * MIRROR_VIDEO = FREENECT_MIRROR_VIDEO
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_RAW_COLOR); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_RAW_COLOR); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_RAW_COLOR, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_RAW_COLOR, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":187
+  /* "freenect.pyx":191
  * WHITE_BALANCE = FREENECT_AUTO_WHITE_BALANCE
  * RAW_COLOR = FREENECT_RAW_COLOR
  * MIRROR_DEPTH = FREENECT_MIRROR_DEPTH             # <<<<<<<<<<<<<<
  * MIRROR_VIDEO = FREENECT_MIRROR_VIDEO
  * NEAR_MODE = FREENECT_NEAR_MODE
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_MIRROR_DEPTH); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 187; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_MIRROR_DEPTH); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_MIRROR_DEPTH, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 187; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_MIRROR_DEPTH, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":188
+  /* "freenect.pyx":192
  * RAW_COLOR = FREENECT_RAW_COLOR
  * MIRROR_DEPTH = FREENECT_MIRROR_DEPTH
  * MIRROR_VIDEO = FREENECT_MIRROR_VIDEO             # <<<<<<<<<<<<<<
  * NEAR_MODE = FREENECT_NEAR_MODE
  * OFF = FREENECT_OFF
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_MIRROR_VIDEO); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_MIRROR_VIDEO); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_MIRROR_VIDEO, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_MIRROR_VIDEO, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":189
+  /* "freenect.pyx":193
  * MIRROR_DEPTH = FREENECT_MIRROR_DEPTH
  * MIRROR_VIDEO = FREENECT_MIRROR_VIDEO
  * NEAR_MODE = FREENECT_NEAR_MODE             # <<<<<<<<<<<<<<
  * OFF = FREENECT_OFF
  * ON = FREENECT_ON
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_NEAR_MODE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag(FREENECT_NEAR_MODE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NEAR_MODE, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NEAR_MODE, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":190
+  /* "freenect.pyx":194
  * MIRROR_VIDEO = FREENECT_MIRROR_VIDEO
  * NEAR_MODE = FREENECT_NEAR_MODE
  * OFF = FREENECT_OFF             # <<<<<<<<<<<<<<
  * ON = FREENECT_ON
  * # end modification
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag_value(FREENECT_OFF); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag_value(FREENECT_OFF); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_OFF, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_OFF, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":191
+  /* "freenect.pyx":195
  * NEAR_MODE = FREENECT_NEAR_MODE
  * OFF = FREENECT_OFF
  * ON = FREENECT_ON             # <<<<<<<<<<<<<<
  * # end modification
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag_value(FREENECT_ON); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_freenect_flag_value(FREENECT_ON); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ON, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ON, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":245
+  /* "freenect.pyx":249
  *         return int(self._ptr.tilt_status)
  * 
  *     accelerometer_x = property(_get_accelx)             # <<<<<<<<<<<<<<
  *     accelerometer_y = property(_get_accely)
  *     accelerometer_z = property(_get_accelz)
  */
-  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_8freenect_StatePtr, __pyx_n_s_get_accelx); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_property, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_8freenect_StatePtr->tp_dict, __pyx_n_s_accelerometer_x, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_8freenect_StatePtr);
-
-  /* "freenect.pyx":246
- * 
- *     accelerometer_x = property(_get_accelx)
- *     accelerometer_y = property(_get_accely)             # <<<<<<<<<<<<<<
- *     accelerometer_z = property(_get_accelz)
- *     tilt_angle = property(_get_tilt_angle)
- */
-  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_8freenect_StatePtr, __pyx_n_s_get_accely); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_property, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_8freenect_StatePtr->tp_dict, __pyx_n_s_accelerometer_y, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_8freenect_StatePtr);
-
-  /* "freenect.pyx":247
- *     accelerometer_x = property(_get_accelx)
- *     accelerometer_y = property(_get_accely)
- *     accelerometer_z = property(_get_accelz)             # <<<<<<<<<<<<<<
- *     tilt_angle = property(_get_tilt_angle)
- *     tilt_status = property(_get_tilt_status)
- */
-  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_8freenect_StatePtr, __pyx_n_s_get_accelz); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_property, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_8freenect_StatePtr->tp_dict, __pyx_n_s_accelerometer_z, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_8freenect_StatePtr);
-
-  /* "freenect.pyx":248
- *     accelerometer_y = property(_get_accely)
- *     accelerometer_z = property(_get_accelz)
- *     tilt_angle = property(_get_tilt_angle)             # <<<<<<<<<<<<<<
- *     tilt_status = property(_get_tilt_status)
- * 
- */
-  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_8freenect_StatePtr, __pyx_n_s_get_tilt_angle); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 248; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 248; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_property, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 248; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_8freenect_StatePtr->tp_dict, __pyx_n_s_tilt_angle, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 248; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_8freenect_StatePtr);
-
-  /* "freenect.pyx":249
- *     accelerometer_z = property(_get_accelz)
- *     tilt_angle = property(_get_tilt_angle)
- *     tilt_status = property(_get_tilt_status)             # <<<<<<<<<<<<<<
- * 
- * def set_depth_mode(DevPtr dev, int res, int mode):
- */
-  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_8freenect_StatePtr, __pyx_n_s_get_tilt_status); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_8freenect_StatePtr, __pyx_n_s_get_accelx); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
@@ -11552,263 +12720,347 @@ PyMODINIT_FUNC PyInit_freenect(void)
   __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_property, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_8freenect_StatePtr->tp_dict, __pyx_n_s_tilt_status, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_8freenect_StatePtr->tp_dict, __pyx_n_s_accelerometer_x, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  PyType_Modified(__pyx_ptype_8freenect_StatePtr);
+
+  /* "freenect.pyx":250
+ * 
+ *     accelerometer_x = property(_get_accelx)
+ *     accelerometer_y = property(_get_accely)             # <<<<<<<<<<<<<<
+ *     accelerometer_z = property(_get_accelz)
+ *     tilt_angle = property(_get_tilt_angle)
+ */
+  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_8freenect_StatePtr, __pyx_n_s_get_accely); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 250; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 250; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_property, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 250; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_8freenect_StatePtr->tp_dict, __pyx_n_s_accelerometer_y, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 250; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   PyType_Modified(__pyx_ptype_8freenect_StatePtr);
 
   /* "freenect.pyx":251
+ *     accelerometer_x = property(_get_accelx)
+ *     accelerometer_y = property(_get_accely)
+ *     accelerometer_z = property(_get_accelz)             # <<<<<<<<<<<<<<
+ *     tilt_angle = property(_get_tilt_angle)
+ *     tilt_status = property(_get_tilt_status)
+ */
+  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_8freenect_StatePtr, __pyx_n_s_get_accelz); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_property, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_8freenect_StatePtr->tp_dict, __pyx_n_s_accelerometer_z, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  PyType_Modified(__pyx_ptype_8freenect_StatePtr);
+
+  /* "freenect.pyx":252
+ *     accelerometer_y = property(_get_accely)
+ *     accelerometer_z = property(_get_accelz)
+ *     tilt_angle = property(_get_tilt_angle)             # <<<<<<<<<<<<<<
+ *     tilt_status = property(_get_tilt_status)
+ * 
+ */
+  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_8freenect_StatePtr, __pyx_n_s_get_tilt_angle); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_property, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_8freenect_StatePtr->tp_dict, __pyx_n_s_tilt_angle, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  PyType_Modified(__pyx_ptype_8freenect_StatePtr);
+
+  /* "freenect.pyx":253
+ *     accelerometer_z = property(_get_accelz)
+ *     tilt_angle = property(_get_tilt_angle)
+ *     tilt_status = property(_get_tilt_status)             # <<<<<<<<<<<<<<
+ * 
+ * def set_depth_mode(DevPtr dev, int res, int mode):
+ */
+  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_8freenect_StatePtr, __pyx_n_s_get_tilt_status); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_property, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_8freenect_StatePtr->tp_dict, __pyx_n_s_tilt_status, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  PyType_Modified(__pyx_ptype_8freenect_StatePtr);
+
+  /* "freenect.pyx":255
  *     tilt_status = property(_get_tilt_status)
  * 
  * def set_depth_mode(DevPtr dev, int res, int mode):             # <<<<<<<<<<<<<<
  *     return freenect_set_depth_mode(dev._ptr, freenect_find_depth_mode(res, mode))
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_1set_depth_mode, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_1set_depth_mode, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_depth_mode, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_depth_mode, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":255
+  /* "freenect.pyx":259
  * 
  * # modification pgaskell
  * def set_flags(DevPtr dev, freenect_flag flag, freenect_flag_value state):             # <<<<<<<<<<<<<<
  *     return freenect_set_flag(dev._ptr, flag, state)
  * # end modification
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_3set_flags, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_3set_flags, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_flags, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_flags, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":259
+  /* "freenect.pyx":263
  * # end modification
  * 
  * def set_video_mode(DevPtr dev, int res, int mode):             # <<<<<<<<<<<<<<
  *     return freenect_set_video_mode(dev._ptr, freenect_find_video_mode(res, mode))
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_5set_video_mode, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_5set_video_mode, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_video_mode, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_video_mode, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":262
+  /* "freenect.pyx":266
  *     return freenect_set_video_mode(dev._ptr, freenect_find_video_mode(res, mode))
  * 
  * def get_depth_format(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_get_current_depth_mode(dev._ptr).video_format
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_7get_depth_format, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_7get_depth_format, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_depth_format, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_depth_format, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":265
+  /* "freenect.pyx":269
  *     return freenect_get_current_depth_mode(dev._ptr).video_format
  * 
  * def get_video_format(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_get_current_video_mode(dev._ptr).video_format
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_9get_video_format, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_9get_video_format, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_video_format, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_video_format, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":268
+  /* "freenect.pyx":272
  *     return freenect_get_current_video_mode(dev._ptr).video_format
  * 
  * def start_depth(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_start_depth(dev._ptr)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_11start_depth, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 268; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_11start_depth, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_start_depth, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 268; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_start_depth, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":271
+  /* "freenect.pyx":275
  *     return freenect_start_depth(dev._ptr)
  * 
  * def start_video(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_start_video(dev._ptr)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_13start_video, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 271; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_13start_video, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_start_video, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 271; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_start_video, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":274
+  /* "freenect.pyx":278
  *     return freenect_start_video(dev._ptr)
  * 
  * def stop_depth(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_stop_depth(dev._ptr)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_15stop_depth, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_15stop_depth, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_stop_depth, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_stop_depth, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":277
+  /* "freenect.pyx":281
  *     return freenect_stop_depth(dev._ptr)
  * 
  * def stop_video(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_stop_video(dev._ptr)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_17stop_video, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_17stop_video, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_stop_video, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_stop_video, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":280
+  /* "freenect.pyx":284
  *     return freenect_stop_video(dev._ptr)
  * 
  * def shutdown(CtxPtr ctx):             # <<<<<<<<<<<<<<
  *     return freenect_shutdown(ctx._ptr)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_19shutdown, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_19shutdown, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_shutdown, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_shutdown, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":283
+  /* "freenect.pyx":287
  *     return freenect_shutdown(ctx._ptr)
  * 
  * def process_events(CtxPtr ctx):             # <<<<<<<<<<<<<<
  *     return freenect_process_events(ctx._ptr)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_21process_events, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_21process_events, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_process_events, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_process_events, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":286
+  /* "freenect.pyx":290
  *     return freenect_process_events(ctx._ptr)
  * 
  * def num_devices(CtxPtr ctx):             # <<<<<<<<<<<<<<
  *     return freenect_num_devices(ctx._ptr)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_23num_devices, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_23num_devices, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_num_devices, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_num_devices, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":289
+  /* "freenect.pyx":293
  *     return freenect_num_devices(ctx._ptr)
  * 
  * def close_device(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_close_device(dev._ptr)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_25close_device, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_25close_device, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_close_device, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_close_device, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":292
+  /* "freenect.pyx":296
  *     return freenect_close_device(dev._ptr)
  * 
  * def set_tilt_degs(DevPtr dev, float angle):             # <<<<<<<<<<<<<<
  *     freenect_set_tilt_degs(dev._ptr, angle)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_27set_tilt_degs, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_27set_tilt_degs, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_tilt_degs, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_tilt_degs, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":295
+  /* "freenect.pyx":299
  *     freenect_set_tilt_degs(dev._ptr, angle)
  * 
  * def set_led(DevPtr dev, freenect_led_options option):             # <<<<<<<<<<<<<<
  *     return freenect_set_led(dev._ptr, option)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_29set_led, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_29set_led, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_led, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_led, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":298
+  /* "freenect.pyx":302
  *     return freenect_set_led(dev._ptr, option)
  * 
  * def update_tilt_state(DevPtr dev):             # <<<<<<<<<<<<<<
  *     return freenect_update_tilt_state(dev._ptr)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_31update_tilt_state, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_31update_tilt_state, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_update_tilt_state, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_update_tilt_state, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":301
+  /* "freenect.pyx":305
  *     return freenect_update_tilt_state(dev._ptr)
  * 
  * def get_tilt_state(DevPtr dev):             # <<<<<<<<<<<<<<
  *     cdef freenect_raw_tilt_state* state = freenect_get_tilt_state(dev._ptr)
  *     cdef StatePtr state_out = StatePtr.__new__(StatePtr)
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_33get_tilt_state, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_33get_tilt_state, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_tilt_state, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_tilt_state, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":307
+  /* "freenect.pyx":311
  *     return state_out
  * 
  * def get_mks_accel(StatePtr state):             # <<<<<<<<<<<<<<
  *     cdef double x, y, z
  *     freenect_get_mks_accel(state._ptr, &x, &y, &z)
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_35get_mks_accel, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_35get_mks_accel, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_mks_accel, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_mks_accel, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":312
+  /* "freenect.pyx":316
  *     return x, y, z
  * 
  * def get_accel(DevPtr dev):             # <<<<<<<<<<<<<<
  *     """MKS Accelerometer helper
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_37get_accel, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_37get_accel, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_accel, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_accel, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":325
+  /* "freenect.pyx":329
  * 
  * 
  * def get_tilt_degs(StatePtr state):             # <<<<<<<<<<<<<<
  *     return freenect_get_tilt_degs(state._ptr)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_39get_tilt_degs, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_39get_tilt_degs, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_tilt_degs, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_tilt_degs, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":329
+  /* "freenect.pyx":333
  * 
  * 
  * def error_open_device():             # <<<<<<<<<<<<<<
  *     print("Error: Can't open device. 1.) is it plugged in? 2.) Read the README")
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_41error_open_device, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8freenect_41error_open_device, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_error_open_device, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_error_open_device, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "freenect.pyx":354
+  /* "freenect.pyx":358
  *     return dev_out
  * 
  * _depth_cb, _video_cb = None, None             # <<<<<<<<<<<<<<
@@ -11819,84 +13071,84 @@ PyMODINIT_FUNC PyInit_freenect(void)
   __Pyx_INCREF(__pyx_t_1);
   __pyx_t_2 = Py_None;
   __Pyx_INCREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_depth_cb, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 354; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_depth_cb, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_video_cb, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 354; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_video_cb, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "freenect.pyx":378
+  /* "freenect.pyx":382
  *     _video_cb(dev_out, pydata, timestamp)
  * 
  * def set_depth_callback(DevPtr dev, cb):             # <<<<<<<<<<<<<<
  *     global _depth_cb
  *     if cb is not None:
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_47set_depth_callback, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_47set_depth_callback, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_depth_callback, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_depth_callback, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "freenect.pyx":387
+  /* "freenect.pyx":391
  *         freenect_set_depth_callback(dev._ptr, NULL)
  * 
  * def set_video_callback(DevPtr dev, cb):             # <<<<<<<<<<<<<<
  *     global _video_cb
  *     if cb is not None:
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_49set_video_callback, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 387; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_49set_video_callback, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 391; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_video_callback, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 387; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_set_video_callback, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 391; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "freenect.pyx":397
+  /* "freenect.pyx":401
  * 
  * 
  * class Kill(Exception):             # <<<<<<<<<<<<<<
  *     """This kills the runloop, raise from the body only"""
  * 
  */
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_builtin_Exception);
   __Pyx_GIVEREF(__pyx_builtin_Exception);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_builtin_Exception);
-  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_Kill, __pyx_n_s_Kill, (PyObject *) NULL, __pyx_n_s_freenect, __pyx_kp_s_This_kills_the_runloop_raise_fro); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_Kill, __pyx_n_s_Kill, (PyObject *) NULL, __pyx_n_s_freenect, __pyx_kp_s_This_kills_the_runloop_raise_fro); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_Kill, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_Kill, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Kill, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Kill, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "freenect.pyx":401
+  /* "freenect.pyx":405
  * 
  * 
  * def runloop(depth=None, video=None, body=None, dev=None):             # <<<<<<<<<<<<<<
  *     """Sets up the kinect and maintains a runloop
  * 
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_51runloop, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_51runloop, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_runloop, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_runloop, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "freenect.pyx":465
+  /* "freenect.pyx":469
  *         freenect_shutdown(ctxp)
  * 
  * def base_runloop(CtxPtr ctx, body=None):             # <<<<<<<<<<<<<<
  *     """Starts a runloop
  * 
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_53base_runloop, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 465; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_53base_runloop, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 469; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_base_runloop, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 465; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_base_runloop, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 469; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "freenect.pyx":489
+  /* "freenect.pyx":493
  *         pass
  * 
  * import_array()             # <<<<<<<<<<<<<<
@@ -11905,50 +13157,94 @@ PyMODINIT_FUNC PyInit_freenect(void)
  */
   import_array();
 
-  /* "freenect.pyx":516
+  /* "freenect.pyx":520
  *         return (<char *>data)[:mode.bytes]
  * 
  * def sync_get_depth(index=0, format=DEPTH_11BIT):             # <<<<<<<<<<<<<<
  *     """Get the next available depth frame from the kinect, as a numpy array.
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_11BIT); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_11BIT); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 520; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_k__5 = __pyx_t_2;
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_55sync_get_depth, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_55sync_get_depth, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 520; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sync_get_depth, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sync_get_depth, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 520; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "freenect.pyx":546
+  /* "freenect.pyx":550
  * 
  * 
  * def sync_get_video(index=0, format=VIDEO_RGB):             # <<<<<<<<<<<<<<
  *     """Get the next available rgb frame from the kinect, as a numpy array.
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_RGB); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 546; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_RGB); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_k__6 = __pyx_t_2;
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_57sync_get_video, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 546; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_57sync_get_video, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sync_get_video, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 546; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sync_get_video, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "freenect.pyx":582
+  /* "freenect.pyx":586
  * 
+ * # modification pgaskell
+ * def sync_get_depth_with_res(index=0, resolution=RESOLUTION_MEDIUM,format=DEPTH_11BIT):             # <<<<<<<<<<<<<<
+ *     """Get the next available depth frame from the kinect, as a numpy array.
+ * 
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_RESOLUTION_MEDIUM); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 586; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_k__7 = __pyx_t_2;
+  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_DEPTH_11BIT); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 586; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_k__8 = __pyx_t_2;
+  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_59sync_get_depth_with_res, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 586; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sync_get_depth_with_res, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 586; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "freenect.pyx":632
+ * 
+ * 
+ * def sync_get_video_with_res(index=0, resolution=RESOLUTION_MEDIUM, format=VIDEO_RGB):             # <<<<<<<<<<<<<<
+ *     """Get the next available rgb frame from the kinect, as a numpy array.
+ * 
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_RESOLUTION_MEDIUM); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 632; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_k__9 = __pyx_t_2;
+  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_VIDEO_RGB); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 632; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_k__10 = __pyx_t_2;
+  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_61sync_get_video_with_res, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 632; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sync_get_video_with_res, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 632; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "freenect.pyx":684
+ * # end modification pgaskell
  * 
  * def sync_stop():             # <<<<<<<<<<<<<<
  *     """Terminate the synchronous runloop if running, else this is a NOP
  *     """
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_59sync_stop, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 582; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8freenect_63sync_stop, NULL, __pyx_n_s_freenect); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sync_stop, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 582; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sync_stop, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "freenect.pyx":1
@@ -14567,6 +15863,374 @@ raise_neg_overflow:
     PyErr_SetString(PyExc_OverflowError,
         "can't convert negative value to freenect_video_format");
     return (freenect_video_format) -1;
+}
+
+static CYTHON_INLINE freenect_resolution __Pyx_PyInt_As_freenect_resolution(PyObject *x) {
+    const freenect_resolution neg_one = (freenect_resolution) -1, const_zero = (freenect_resolution) 0;
+    const int is_unsigned = neg_one > const_zero;
+#if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_Check(x))) {
+        if (sizeof(freenect_resolution) < sizeof(long)) {
+            __PYX_VERIFY_RETURN_INT(freenect_resolution, long, PyInt_AS_LONG(x))
+        } else {
+            long val = PyInt_AS_LONG(x);
+            if (is_unsigned && unlikely(val < 0)) {
+                goto raise_neg_overflow;
+            }
+            return (freenect_resolution) val;
+        }
+    } else
+#endif
+    if (likely(PyLong_Check(x))) {
+        if (is_unsigned) {
+#if CYTHON_USE_PYLONG_INTERNALS
+            const digit* digits = ((PyLongObject*)x)->ob_digit;
+            switch (Py_SIZE(x)) {
+                case  0: return (freenect_resolution) 0;
+                case  1: __PYX_VERIFY_RETURN_INT(freenect_resolution, digit, digits[0])
+                case 2:
+                    if (8 * sizeof(freenect_resolution) > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(freenect_resolution, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(freenect_resolution) >= 2 * PyLong_SHIFT) {
+                            return (freenect_resolution) (((((freenect_resolution)digits[1]) << PyLong_SHIFT) | (freenect_resolution)digits[0]));
+                        }
+                    }
+                    break;
+                case 3:
+                    if (8 * sizeof(freenect_resolution) > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(freenect_resolution, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(freenect_resolution) >= 3 * PyLong_SHIFT) {
+                            return (freenect_resolution) (((((((freenect_resolution)digits[2]) << PyLong_SHIFT) | (freenect_resolution)digits[1]) << PyLong_SHIFT) | (freenect_resolution)digits[0]));
+                        }
+                    }
+                    break;
+                case 4:
+                    if (8 * sizeof(freenect_resolution) > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(freenect_resolution, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(freenect_resolution) >= 4 * PyLong_SHIFT) {
+                            return (freenect_resolution) (((((((((freenect_resolution)digits[3]) << PyLong_SHIFT) | (freenect_resolution)digits[2]) << PyLong_SHIFT) | (freenect_resolution)digits[1]) << PyLong_SHIFT) | (freenect_resolution)digits[0]));
+                        }
+                    }
+                    break;
+            }
+#endif
+#if CYTHON_COMPILING_IN_CPYTHON
+            if (unlikely(Py_SIZE(x) < 0)) {
+                goto raise_neg_overflow;
+            }
+#else
+            {
+                int result = PyObject_RichCompareBool(x, Py_False, Py_LT);
+                if (unlikely(result < 0))
+                    return (freenect_resolution) -1;
+                if (unlikely(result == 1))
+                    goto raise_neg_overflow;
+            }
+#endif
+            if (sizeof(freenect_resolution) <= sizeof(unsigned long)) {
+                __PYX_VERIFY_RETURN_INT_EXC(freenect_resolution, unsigned long, PyLong_AsUnsignedLong(x))
+            } else if (sizeof(freenect_resolution) <= sizeof(unsigned PY_LONG_LONG)) {
+                __PYX_VERIFY_RETURN_INT_EXC(freenect_resolution, unsigned PY_LONG_LONG, PyLong_AsUnsignedLongLong(x))
+            }
+        } else {
+#if CYTHON_USE_PYLONG_INTERNALS
+            const digit* digits = ((PyLongObject*)x)->ob_digit;
+            switch (Py_SIZE(x)) {
+                case  0: return (freenect_resolution) 0;
+                case -1: __PYX_VERIFY_RETURN_INT(freenect_resolution, sdigit, -(sdigit) digits[0])
+                case  1: __PYX_VERIFY_RETURN_INT(freenect_resolution,  digit, +digits[0])
+                case -2:
+                    if (8 * sizeof(freenect_resolution) - 1 > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(freenect_resolution, long, -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(freenect_resolution) - 1 > 2 * PyLong_SHIFT) {
+                            return (freenect_resolution) (((freenect_resolution)-1)*(((((freenect_resolution)digits[1]) << PyLong_SHIFT) | (freenect_resolution)digits[0])));
+                        }
+                    }
+                    break;
+                case 2:
+                    if (8 * sizeof(freenect_resolution) > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(freenect_resolution, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(freenect_resolution) - 1 > 2 * PyLong_SHIFT) {
+                            return (freenect_resolution) ((((((freenect_resolution)digits[1]) << PyLong_SHIFT) | (freenect_resolution)digits[0])));
+                        }
+                    }
+                    break;
+                case -3:
+                    if (8 * sizeof(freenect_resolution) - 1 > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(freenect_resolution, long, -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(freenect_resolution) - 1 > 3 * PyLong_SHIFT) {
+                            return (freenect_resolution) (((freenect_resolution)-1)*(((((((freenect_resolution)digits[2]) << PyLong_SHIFT) | (freenect_resolution)digits[1]) << PyLong_SHIFT) | (freenect_resolution)digits[0])));
+                        }
+                    }
+                    break;
+                case 3:
+                    if (8 * sizeof(freenect_resolution) > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(freenect_resolution, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(freenect_resolution) - 1 > 3 * PyLong_SHIFT) {
+                            return (freenect_resolution) ((((((((freenect_resolution)digits[2]) << PyLong_SHIFT) | (freenect_resolution)digits[1]) << PyLong_SHIFT) | (freenect_resolution)digits[0])));
+                        }
+                    }
+                    break;
+                case -4:
+                    if (8 * sizeof(freenect_resolution) - 1 > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(freenect_resolution, long, -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(freenect_resolution) - 1 > 4 * PyLong_SHIFT) {
+                            return (freenect_resolution) (((freenect_resolution)-1)*(((((((((freenect_resolution)digits[3]) << PyLong_SHIFT) | (freenect_resolution)digits[2]) << PyLong_SHIFT) | (freenect_resolution)digits[1]) << PyLong_SHIFT) | (freenect_resolution)digits[0])));
+                        }
+                    }
+                    break;
+                case 4:
+                    if (8 * sizeof(freenect_resolution) > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(freenect_resolution, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(freenect_resolution) - 1 > 4 * PyLong_SHIFT) {
+                            return (freenect_resolution) ((((((((((freenect_resolution)digits[3]) << PyLong_SHIFT) | (freenect_resolution)digits[2]) << PyLong_SHIFT) | (freenect_resolution)digits[1]) << PyLong_SHIFT) | (freenect_resolution)digits[0])));
+                        }
+                    }
+                    break;
+            }
+#endif
+            if (sizeof(freenect_resolution) <= sizeof(long)) {
+                __PYX_VERIFY_RETURN_INT_EXC(freenect_resolution, long, PyLong_AsLong(x))
+            } else if (sizeof(freenect_resolution) <= sizeof(PY_LONG_LONG)) {
+                __PYX_VERIFY_RETURN_INT_EXC(freenect_resolution, PY_LONG_LONG, PyLong_AsLongLong(x))
+            }
+        }
+        {
+#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
+            PyErr_SetString(PyExc_RuntimeError,
+                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
+#else
+            freenect_resolution val;
+            PyObject *v = __Pyx_PyNumber_Int(x);
+ #if PY_MAJOR_VERSION < 3
+            if (likely(v) && !PyLong_Check(v)) {
+                PyObject *tmp = v;
+                v = PyNumber_Long(tmp);
+                Py_DECREF(tmp);
+            }
+ #endif
+            if (likely(v)) {
+                int one = 1; int is_little = (int)*(unsigned char *)&one;
+                unsigned char *bytes = (unsigned char *)&val;
+                int ret = _PyLong_AsByteArray((PyLongObject *)v,
+                                              bytes, sizeof(val),
+                                              is_little, !is_unsigned);
+                Py_DECREF(v);
+                if (likely(!ret))
+                    return val;
+            }
+#endif
+            return (freenect_resolution) -1;
+        }
+    } else {
+        freenect_resolution val;
+        PyObject *tmp = __Pyx_PyNumber_Int(x);
+        if (!tmp) return (freenect_resolution) -1;
+        val = __Pyx_PyInt_As_freenect_resolution(tmp);
+        Py_DECREF(tmp);
+        return val;
+    }
+raise_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "value too large to convert to freenect_resolution");
+    return (freenect_resolution) -1;
+raise_neg_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "can't convert negative value to freenect_resolution");
+    return (freenect_resolution) -1;
+}
+
+static CYTHON_INLINE Py_intptr_t __Pyx_PyInt_As_Py_intptr_t(PyObject *x) {
+    const Py_intptr_t neg_one = (Py_intptr_t) -1, const_zero = (Py_intptr_t) 0;
+    const int is_unsigned = neg_one > const_zero;
+#if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_Check(x))) {
+        if (sizeof(Py_intptr_t) < sizeof(long)) {
+            __PYX_VERIFY_RETURN_INT(Py_intptr_t, long, PyInt_AS_LONG(x))
+        } else {
+            long val = PyInt_AS_LONG(x);
+            if (is_unsigned && unlikely(val < 0)) {
+                goto raise_neg_overflow;
+            }
+            return (Py_intptr_t) val;
+        }
+    } else
+#endif
+    if (likely(PyLong_Check(x))) {
+        if (is_unsigned) {
+#if CYTHON_USE_PYLONG_INTERNALS
+            const digit* digits = ((PyLongObject*)x)->ob_digit;
+            switch (Py_SIZE(x)) {
+                case  0: return (Py_intptr_t) 0;
+                case  1: __PYX_VERIFY_RETURN_INT(Py_intptr_t, digit, digits[0])
+                case 2:
+                    if (8 * sizeof(Py_intptr_t) > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(Py_intptr_t, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(Py_intptr_t) >= 2 * PyLong_SHIFT) {
+                            return (Py_intptr_t) (((((Py_intptr_t)digits[1]) << PyLong_SHIFT) | (Py_intptr_t)digits[0]));
+                        }
+                    }
+                    break;
+                case 3:
+                    if (8 * sizeof(Py_intptr_t) > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(Py_intptr_t, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(Py_intptr_t) >= 3 * PyLong_SHIFT) {
+                            return (Py_intptr_t) (((((((Py_intptr_t)digits[2]) << PyLong_SHIFT) | (Py_intptr_t)digits[1]) << PyLong_SHIFT) | (Py_intptr_t)digits[0]));
+                        }
+                    }
+                    break;
+                case 4:
+                    if (8 * sizeof(Py_intptr_t) > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(Py_intptr_t, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(Py_intptr_t) >= 4 * PyLong_SHIFT) {
+                            return (Py_intptr_t) (((((((((Py_intptr_t)digits[3]) << PyLong_SHIFT) | (Py_intptr_t)digits[2]) << PyLong_SHIFT) | (Py_intptr_t)digits[1]) << PyLong_SHIFT) | (Py_intptr_t)digits[0]));
+                        }
+                    }
+                    break;
+            }
+#endif
+#if CYTHON_COMPILING_IN_CPYTHON
+            if (unlikely(Py_SIZE(x) < 0)) {
+                goto raise_neg_overflow;
+            }
+#else
+            {
+                int result = PyObject_RichCompareBool(x, Py_False, Py_LT);
+                if (unlikely(result < 0))
+                    return (Py_intptr_t) -1;
+                if (unlikely(result == 1))
+                    goto raise_neg_overflow;
+            }
+#endif
+            if (sizeof(Py_intptr_t) <= sizeof(unsigned long)) {
+                __PYX_VERIFY_RETURN_INT_EXC(Py_intptr_t, unsigned long, PyLong_AsUnsignedLong(x))
+            } else if (sizeof(Py_intptr_t) <= sizeof(unsigned PY_LONG_LONG)) {
+                __PYX_VERIFY_RETURN_INT_EXC(Py_intptr_t, unsigned PY_LONG_LONG, PyLong_AsUnsignedLongLong(x))
+            }
+        } else {
+#if CYTHON_USE_PYLONG_INTERNALS
+            const digit* digits = ((PyLongObject*)x)->ob_digit;
+            switch (Py_SIZE(x)) {
+                case  0: return (Py_intptr_t) 0;
+                case -1: __PYX_VERIFY_RETURN_INT(Py_intptr_t, sdigit, -(sdigit) digits[0])
+                case  1: __PYX_VERIFY_RETURN_INT(Py_intptr_t,  digit, +digits[0])
+                case -2:
+                    if (8 * sizeof(Py_intptr_t) - 1 > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(Py_intptr_t, long, -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(Py_intptr_t) - 1 > 2 * PyLong_SHIFT) {
+                            return (Py_intptr_t) (((Py_intptr_t)-1)*(((((Py_intptr_t)digits[1]) << PyLong_SHIFT) | (Py_intptr_t)digits[0])));
+                        }
+                    }
+                    break;
+                case 2:
+                    if (8 * sizeof(Py_intptr_t) > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(Py_intptr_t, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(Py_intptr_t) - 1 > 2 * PyLong_SHIFT) {
+                            return (Py_intptr_t) ((((((Py_intptr_t)digits[1]) << PyLong_SHIFT) | (Py_intptr_t)digits[0])));
+                        }
+                    }
+                    break;
+                case -3:
+                    if (8 * sizeof(Py_intptr_t) - 1 > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(Py_intptr_t, long, -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(Py_intptr_t) - 1 > 3 * PyLong_SHIFT) {
+                            return (Py_intptr_t) (((Py_intptr_t)-1)*(((((((Py_intptr_t)digits[2]) << PyLong_SHIFT) | (Py_intptr_t)digits[1]) << PyLong_SHIFT) | (Py_intptr_t)digits[0])));
+                        }
+                    }
+                    break;
+                case 3:
+                    if (8 * sizeof(Py_intptr_t) > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(Py_intptr_t, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(Py_intptr_t) - 1 > 3 * PyLong_SHIFT) {
+                            return (Py_intptr_t) ((((((((Py_intptr_t)digits[2]) << PyLong_SHIFT) | (Py_intptr_t)digits[1]) << PyLong_SHIFT) | (Py_intptr_t)digits[0])));
+                        }
+                    }
+                    break;
+                case -4:
+                    if (8 * sizeof(Py_intptr_t) - 1 > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(Py_intptr_t, long, -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(Py_intptr_t) - 1 > 4 * PyLong_SHIFT) {
+                            return (Py_intptr_t) (((Py_intptr_t)-1)*(((((((((Py_intptr_t)digits[3]) << PyLong_SHIFT) | (Py_intptr_t)digits[2]) << PyLong_SHIFT) | (Py_intptr_t)digits[1]) << PyLong_SHIFT) | (Py_intptr_t)digits[0])));
+                        }
+                    }
+                    break;
+                case 4:
+                    if (8 * sizeof(Py_intptr_t) > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(Py_intptr_t, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(Py_intptr_t) - 1 > 4 * PyLong_SHIFT) {
+                            return (Py_intptr_t) ((((((((((Py_intptr_t)digits[3]) << PyLong_SHIFT) | (Py_intptr_t)digits[2]) << PyLong_SHIFT) | (Py_intptr_t)digits[1]) << PyLong_SHIFT) | (Py_intptr_t)digits[0])));
+                        }
+                    }
+                    break;
+            }
+#endif
+            if (sizeof(Py_intptr_t) <= sizeof(long)) {
+                __PYX_VERIFY_RETURN_INT_EXC(Py_intptr_t, long, PyLong_AsLong(x))
+            } else if (sizeof(Py_intptr_t) <= sizeof(PY_LONG_LONG)) {
+                __PYX_VERIFY_RETURN_INT_EXC(Py_intptr_t, PY_LONG_LONG, PyLong_AsLongLong(x))
+            }
+        }
+        {
+#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
+            PyErr_SetString(PyExc_RuntimeError,
+                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
+#else
+            Py_intptr_t val;
+            PyObject *v = __Pyx_PyNumber_Int(x);
+ #if PY_MAJOR_VERSION < 3
+            if (likely(v) && !PyLong_Check(v)) {
+                PyObject *tmp = v;
+                v = PyNumber_Long(tmp);
+                Py_DECREF(tmp);
+            }
+ #endif
+            if (likely(v)) {
+                int one = 1; int is_little = (int)*(unsigned char *)&one;
+                unsigned char *bytes = (unsigned char *)&val;
+                int ret = _PyLong_AsByteArray((PyLongObject *)v,
+                                              bytes, sizeof(val),
+                                              is_little, !is_unsigned);
+                Py_DECREF(v);
+                if (likely(!ret))
+                    return val;
+            }
+#endif
+            return (Py_intptr_t) -1;
+        }
+    } else {
+        Py_intptr_t val;
+        PyObject *tmp = __Pyx_PyNumber_Int(x);
+        if (!tmp) return (Py_intptr_t) -1;
+        val = __Pyx_PyInt_As_Py_intptr_t(tmp);
+        Py_DECREF(tmp);
+        return val;
+    }
+raise_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "value too large to convert to Py_intptr_t");
+    return (Py_intptr_t) -1;
+raise_neg_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "can't convert negative value to Py_intptr_t");
+    return (Py_intptr_t) -1;
 }
 
 #if CYTHON_CCOMPLEX
