@@ -154,6 +154,8 @@ cdef extern from "libfreenect_sync.h":
     #modification
     int freenect_sync_get_video_with_res(void **video, uint32_t *timestamp, int index, freenect_resolution res,freenect_video_format fmt) nogil
     int freenect_sync_get_depth_with_res(void **depth, uint32_t *timestamp, int index, freenect_resolution res, freenect_depth_format fmt) nogil
+    int freenect_sync_set_whitebalance(int wb_en, int index)
+    int freenect_sync_set_autoexposure(int exp_en, int index)
     #end modification
     int freenect_sync_get_depth(void **depth, uint32_t *timestamp, int index, freenect_depth_format fmt) nogil
     void freenect_sync_stop()
@@ -679,6 +681,17 @@ def sync_get_video_with_res(index=0, resolution=RESOLUTION_MEDIUM, format=VIDEO_
         return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
     else:
         raise TypeError('Conversion not implemented for type [%d]' % (format))
+
+def sync_set_autoexposure(state, index=0):
+    cdef int _state = state
+    cdef int _index = index
+    return freenect_sync_set_autoexposure(_state, _index)
+
+def sync_set_whitebalance(state, index=0):
+    cdef int _state = state
+    cdef int _index = index
+    return freenect_sync_set_whitebalance(_state, _index)
+
 # end modification pgaskell
 
 def sync_stop():
