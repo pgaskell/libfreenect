@@ -151,6 +151,10 @@ cdef extern from "libfreenect.h":
 
 cdef extern from "libfreenect_sync.h":
     int freenect_sync_get_video(void **video, uint32_t *timestamp, int index, freenect_video_format fmt) nogil
+    #modification
+    int freenect_sync_get_video_with_res(void **video, uint32_t *timestamp, int index, freenect_resolution res,freenect_video_format fmt) nogil
+    int freenect_sync_get_depth_with_res(void **depth, uint32_t *timestamp, int index, freenect_resolution res, freenect_depth_format fmt) nogil
+    #end modification
     int freenect_sync_get_depth(void **depth, uint32_t *timestamp, int index, freenect_depth_format fmt) nogil
     void freenect_sync_stop()
 
@@ -578,6 +582,104 @@ def sync_get_video(index=0, format=VIDEO_RGB):
     else:
         raise TypeError('Conversion not implemented for type [%d]' % (format))
 
+# modification pgaskell
+def sync_get_depth_with_res(index=0, resolution=RESOLUTION_MEDIUM,format=DEPTH_11BIT):
+    """Get the next available depth frame from the kinect, as a numpy array.
+
+    Args:
+        index: Kinect device index (default: 0)
+        format: Depth format (default: DEPTH_11BIT)
+
+    Returns:
+        (depth, timestamp) or None on error
+        depth: A numpy array, shape:(480,640) dtype:np.uint16
+        timestamp: int representing the time
+    """
+    cdef void* data
+    cdef uint32_t timestamp
+    cdef npc.npy_intp dims[2]
+    cdef width
+    cdef height
+    cdef int out
+    cdef int _index = index
+    cdef freenect_resolution _res = resolution
+    cdef freenect_depth_format _format = format
+    with nogil:
+        out = freenect_sync_get_depth_with_res(&data, &timestamp, _index, _res, _format)
+    if out:
+        error_open_device()
+        return
+    
+    if resolution == RESOLUTION_LOW:
+        width = 320
+        height = 240
+    elif resolution == RESOLUTION_HIGH:
+        width = 1280
+        height = 1024
+    elif resolution == RESOLUTION_MEDIUM:
+        width = 640
+        height = 480
+    else:
+        raise TypeError('Resolution not implemented for type [%d]' % (resolution))
+    
+    if format in [DEPTH_11BIT, DEPTH_10BIT, DEPTH_MM, DEPTH_REGISTERED]:
+        dims[0], dims[1]  = height, width
+        return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
+    else:
+        raise TypeError('Conversion not implemented for type [%d]' % (format))
+
+
+def sync_get_video_with_res(index=0, resolution=RESOLUTION_MEDIUM, format=VIDEO_RGB):
+    """Get the next available rgb frame from the kinect, as a numpy array.
+
+    Args:
+        index: Kinect device index (default: 0)
+        format: Depth format (default: VIDEO_RGB)
+
+    Returns:
+        (depth, timestamp) or None on error
+        depth: A numpy array, shape:(480, 640, 3) dtype:np.uint8
+        timestamp: int representing the time
+    """
+    cdef void* data
+    cdef uint32_t timestamp
+    cdef npc.npy_intp dims[3]
+    cdef width
+    cdef height
+    cdef int out
+    cdef freenect_resolution _res = resolution
+    cdef int _index = index
+    cdef freenect_video_format _format = format
+    with nogil:
+        out = freenect_sync_get_video_with_res(&data, &timestamp, _index, _res ,_format)
+    if out:
+        error_open_device()
+        return
+    
+    if resolution == RESOLUTION_LOW:
+        width = 320
+        height = 240
+    elif resolution == RESOLUTION_HIGH:
+        width = 1280
+        height = 1024
+    elif resolution == RESOLUTION_MEDIUM:
+        width = 640
+        height = 480
+    else:
+        raise TypeError('Resolution not implemented for type [%d]' % (resolution))
+    
+    if format == VIDEO_RGB:
+        dims[0], dims[1], dims[2]  = height, width, 3
+        return PyArray_SimpleNewFromData(3, dims, npc.NPY_UINT8, data), timestamp
+    elif format == VIDEO_IR_8BIT:
+        dims[0], dims[1]  = 480, 640
+        return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT8, data), timestamp
+    elif format == VIDEO_IR_10BIT:
+        dims[0], dims[1]  = 480, 640
+        return PyArray_SimpleNewFromData(2, dims, npc.NPY_UINT16, data), timestamp
+    else:
+        raise TypeError('Conversion not implemented for type [%d]' % (format))
+# end modification pgaskell
 
 def sync_stop():
     """Terminate the synchronous runloop if running, else this is a NOP
