@@ -375,8 +375,8 @@ int freenect_sync_get_video_with_res(void **video, uint32_t *timestamp, int inde
 		if (setup_kinect(index, res, fmt, 0))
 			return -1;
 	//hack to turn off autogain and white balance - pgaskell
-	freenect_set_flag(kinects[index]->dev, FREENECT_AUTO_EXPOSURE, FREENECT_OFF);
-	freenect_set_flag(kinects[index]->dev, FREENECT_AUTO_WHITE_BALANCE, FREENECT_OFF);
+	//freenect_set_flag(kinects[index]->dev, FREENECT_AUTO_EXPOSURE, FREENECT_OFF);
+	//freenect_set_flag(kinects[index]->dev, FREENECT_AUTO_WHITE_BALANCE, FREENECT_OFF);
 	//end hack
 	sync_get(video, timestamp, &kinects[index]->video);
 	return 0;
@@ -420,6 +420,30 @@ int freenect_sync_get_tilt_state(freenect_raw_tilt_state **state, int index)
 int freenect_sync_set_tilt_degs(int angle, int index) {
 	if (runloop_enter(index)) return -1;
 	freenect_set_tilt_degs(kinects[index]->dev, angle);
+	runloop_exit();
+	return 0;
+}
+
+int freenect_sync_set_whitebalance(int wb_en, int index) {
+	if (runloop_enter(index)) return -1;
+	if(wb_en){
+		freenect_set_flag(kinects[index]->dev, FREENECT_AUTO_WHITE_BALANCE, FREENECT_ON);
+	}
+	else{
+		freenect_set_flag(kinects[index]->dev, FREENECT_AUTO_WHITE_BALANCE, FREENECT_OFF);
+	}
+	runloop_exit();
+	return 0;
+}
+
+int freenect_sync_set_autoexposure(int exp_en, int index) {
+	if (runloop_enter(index)) return -1;
+	if(exp_en){
+		freenect_set_flag(kinects[index]->dev, FREENECT_AUTO_EXPOSURE, FREENECT_ON);
+	}
+	else{
+		freenect_set_flag(kinects[index]->dev, FREENECT_AUTO_EXPOSURE, FREENECT_OFF);
+	}
 	runloop_exit();
 	return 0;
 }

@@ -128,6 +128,27 @@ FREENECTAPI_SYNC int freenect_sync_set_led(freenect_led_options led, int index);
         Nonzero on error.
 */
 
+FREENECTAPI_SYNC int freenect_sync_set_whitebalance(int wb_en, int index);
+/*  Whitebalance function
+    Args:
+        wb_en: boolean to enable or disable auto whitebalance
+	index: Device index (0 is the first)
+
+    Returns:
+        Nonzero on error.
+*/
+
+FREENECTAPI_SYNC int freenect_sync_set_autoexposure(int exp_en, int index);
+/*  Autoexposure function
+
+    Args:
+        exp_en: boolean to enable or disable auto autoexposure
+	index: Device index (0 is the first)
+
+    Returns:
+        Nonzero on error.
+*/
+
 FREENECTAPI_SYNC int freenect_sync_camera_to_world(int cx, int cy, int wz, double* wx, double* wy, int index);
 /*  Camera to world mapping, starts the runloop if it isn't running
 
